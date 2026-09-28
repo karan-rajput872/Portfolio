@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal portfolio of Priyanshu Karan, a Computer Science Engineering student exploring programming, web development, AI, and emerging technologies.">
+    <meta name="keywords" content="Priyanshu Karan, Portfolio, Computer Science, KIIT, Web Developer, Programming, Python, C">
+    <meta name="author" content="Priyanshu Karan">
+    <title>Priyanshu Karan | Computer Science Engineering Student</title>
+    
+    <!-- Google Fonts for Modern Developer Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation Bar -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="logo" aria-label="Priyanshu Karan Home">
+                <span class="logo-bracket">&lt;</span>Priyanshu Karan<span class="logo-bracket"> /&gt;</span>
+            </a>
+
+            <!-- Mobile Hamburger Toggle -->
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav id="navMenu" class="nav-menu" aria-label="Primary Navigation">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
+                    <li><a href="#achievements" class="nav-link">Achievements</a></li>
+                    <li><a href="#resume" class="nav-link">Resume</a></li>
+                    <li><a href="#contact" class="nav-link nav-btn-cta">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section (Enhanced Animated Design) -->
+        <section id="home" class="hero-section">
+            <!-- Animated Background Grid & Floating Ambient Glow Orbs -->
+            <div class="hero-bg-grid" aria-hidden="true"></div>
+            <div class="hero-glow-orb hero-glow-orb-1" aria-hidden="true"></div>
+            <div class="hero-glow-orb hero-glow-orb-2" aria-hidden="true"></div>
+
+
+            <div class="container hero-container">
+                <div class="hero-content reveal">
+                    <!-- Status / Academic Pill -->
+                    <div class="hero-status-pill">
+                        <span class="pulse-dot" aria-hidden="true"></span>
+                        <span id="heroStatusText">Learning by Building</span>
+                        <span class="status-sep" aria-hidden="true">&bull;</span>
+                        <span id="heroMetaText" class="hero-status-meta">2nd Year &bull; KIIT</span>
+                    </div>
+
+                    <!-- Intro greeting -->
+                    <p class="hero-greeting">Hi, I'm</p>
+
+                    <!-- Primary visual focus: Name with extra bold typography -->
+                    <h1 class="hero-title">
+                        <span class="hero-name-bold" id="heroName">Priyanshu Karan</span>
+                    </h1>
+
+                    <!-- Role -->
+                    <h2 class="hero-role" id="heroRole">Computer Science Engineering Student</h2>
+
+                    <!-- Tagline -->
+                    <p class="hero-tagline" id="heroTagline">
+                        Building, Learning &amp; Exploring Technology
+                    </p>
+
+                    <!-- Focus & Interests Dynamic Animated Reveal -->
+                    <div class="hero-interests-wrapper">
+                        <div class="hero-reveal-line" aria-live="polite">
+                            <span class="hero-reveal-label">Exploring &amp; Building in:</span>
+                            <span class="hero-reveal-word-box">
+                                <span id="heroDynamicWord" class="hero-dynamic-word">Programming</span>
+                                <span class="typing-cursor" aria-hidden="true"></span>
+                            </span>
+                        </div>
+                        <div class="hero-interests" id="heroInterests" aria-label="Core Interests">
+                            <span class="hero-interest-pill" style="--pill-delay: 0.1s" data-interest="Programming">Programming</span>
+                            <span class="hero-interest-pill" style="--pill-delay: 0.22s" data-interest="Web Development">Web Development</span>
+                            <span class="hero-interest-pill" style="--pill-delay: 0.34s" data-interest="Artificial Intelligence">Artificial Intelligence</span>
+                            <span class="hero-interest-pill" style="--pill-delay: 0.46s" data-interest="Emerging Technologies">Emerging Technologies</span>
+                            <span class="hero-interest-pill" style="--pill-delay: 0.58s" data-interest="Cybersecurity">Cybersecurity</span>
+                        </div>
+                    </div>
+
+                    <!-- Clear Call-To-Action Hierarchy -->
+                    <div class="hero-actions" id="heroActions">
+                        <!-- Primary CTA -->
+                        <a href="#projects" class="btn btn-primary" id="heroExploreBtn">
+                            <span>Explore My Work</span>
+                            <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                        <!-- Secondary CTA -->
+                        <a href="#resume" class="btn btn-outline" id="heroResumeBtn">
+                            <span>View Resume</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        </a>
+                        <!-- Subtle Tertiary CTA -->
+                        <a href="#contact" class="btn btn-secondary btn-subtle" id="heroConnectBtn">
+                            <span>Let's Connect</span>
+                            <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subtle Scroll to Explore Indicator -->
+            <a href="#projects" class="hero-scroll-indicator" aria-label="Scroll to explore projects">
+                <span>Scroll to explore</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+            </a>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">About Me</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">My academic journey, technical exploration, and approach to hands-on learning.</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-card reveal">
+                        <div class="about-icon-wrapper" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </div>
+                        <h3 class="about-heading">My Journey</h3>
+                        <div id="aboutJourneyContainer">
+                            <p class="about-text">
+                                I am a B.Tech Computer Science Engineering student at KIIT, currently building a strong foundation in programming, web development, and computer science concepts.
+                            </p>
+                            <p class="about-text">
+                                I enjoy learning new technologies, solving programming problems, and turning what I learn into practical projects. I am continuously working on improving my technical skills and exploring emerging areas of technology.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="learning-card reveal">
+                        <div class="about-icon-wrapper" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        </div>
+                        <h3 class="about-heading">Currently Learning</h3>
+                        <p class="learning-intro">Focused on strengthening core concepts and building real-world practical skills:</p>
+                        <!-- Dynamically populated from portfolioData.currentlyLearning -->
+                        <ul class="learning-list" id="currentlyLearningContainer"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section skills-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">Categorized skills and tools I actively practice and explore.</p>
+                </div>
+
+                <!-- Dynamically populated from portfolioData.skills -->
+                <div class="skills-grid" id="skillsContainer"></div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section projects-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">Hands-on applications and learning projects turning knowledge into practice.</p>
+                </div>
+
+                <!-- Dynamically populated from portfolioData.projects -->
+                <div class="projects-grid" id="projectsContainer"></div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="section certifications-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Certifications</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">Credentials and certificates earned through dedicated coursework.</p>
+                </div>
+
+                <!-- Dynamically populated from portfolioData.certifications -->
+                <div class="certifications-grid" id="certificationsContainer"></div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="section education-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Education</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">Academic background, ongoing engineering degree, and foundational coursework.</p>
+                </div>
+
+                <!-- Dynamically populated from portfolioData.education -->
+                <div class="education-container" id="educationContainer"></div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="section achievements-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Achievements &amp; Activities</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">Hackathons, team competitions, and practical building experiences.</p>
+                </div>
+
+                <!-- Dynamically populated from portfolioData.achievements -->
+                <div class="achievements-grid" id="achievementsContainer"></div>
+            </div>
+        </section>
+
+        <!-- Resume Section (Step 4H Professional Resume Integration) -->
+        <section id="resume" class="section resume-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Resume</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">Verified academic background, technical skills, projects, and credentials.</p>
+                </div>
+
+                <!-- Resume Action Bar: Download / Print -->
+                <div class="resume-actions-bar reveal">
+                    <button type="button" class="btn btn-primary" id="downloadResumeBtn" aria-label="Download resume as PDF">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Download Resume</span>
+                    </button>
+                    <button type="button" class="btn btn-outline" id="printResumeBtn" aria-label="Print resume">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                        <span>Print</span>
+                    </button>
+                </div>
+
+                <!-- Dynamic Clean ATS-Friendly Resume Container -->
+                <div class="resume-paper" id="resumeContainer"></div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Let's Connect</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">I'm always interested in learning, building projects, and connecting with people in technology.</p>
+                </div>
+
+                <!-- Dynamically populated from portfolioData.contact -->
+                <div class="contact-layout" id="contactContainer"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Certificate Viewer & Verification Modal -->
+    <div id="certModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content modal-viewer-content">
+            <div class="modal-header">
+                <div class="modal-header-titles">
+                    <span class="modal-badge-tag" id="modalCertType">Certification</span>
+                    <h3 id="modalTitle" class="modal-heading">Certificate Viewer</h3>
+                </div>
+                <button class="modal-close" id="modalClose" aria-label="Close certificate viewer">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-cert-heading">
+                    <h4 class="modal-cert-name" id="modalCertName"></h4>
+                    <p class="modal-cert-issuer" id="modalCertIssuer"></p>
+                </div>
+
+                <!-- Actual Certificate Preview Container (Image or PDF) -->
+                <div class="modal-cert-viewer" id="modalCertViewer"></div>
+
+                <!-- Verified Metadata Details -->
+                <div class="modal-cert-extra" id="modalCertExtra"></div>
+            </div>
+            <div class="modal-footer" id="modalFooter">
+                <button class="btn btn-secondary btn-sm" id="modalCloseBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Details Modal (Step 4K: Projects & Achievements Enhancement) -->
+    <div id="projectModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle" aria-hidden="true">
+        <div class="modal-overlay" id="projectModalOverlay"></div>
+        <div class="modal-content modal-viewer-content">
+            <div class="modal-header">
+                <div class="modal-header-titles">
+                    <span class="modal-badge-tag" id="projectModalCategory">Project</span>
+                    <h3 id="projectModalTitle" class="modal-heading">Project Details</h3>
+                </div>
+                <button class="modal-close" id="projectModalClose" aria-label="Close project details">&times;</button>
+            </div>
+            <div class="modal-body" id="projectModalBody">
+                <!-- Dynamically populated from portfolioData.projects -->
+            </div>
+            <div class="modal-footer" id="projectModalFooter">
+                <button class="btn btn-secondary btn-sm" id="projectModalCloseBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (Standardized & Accessible) -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <span class="footer-name">Priyanshu Karan</span>
+                <span class="footer-dot" aria-hidden="true">&bull;</span>
+                <span class="footer-role">Computer Science Engineering Student</span>
+            </div>
+            <div class="footer-links" id="footerLinksContainer">
+                <!-- Dynamically populated from portfolioData.contact -->
+            </div>
+            <p class="footer-copy">&copy; 2026 Priyanshu Karan &bull; KIIT. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
