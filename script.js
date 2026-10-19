@@ -78,12 +78,12 @@ const portfolioData = {
             description: "Verified live project demo deployments (FindIt, CLICKBAIT)"
         },
         {
-            id: "cgpa",
-            label: "1ST-YEAR CGPA",
-            value: 8.54,
-            displayValue: "8.54",
-            decimals: 2,
-            description: "B.Tech Computer Science Engineering at KIIT"
+            id: "repositories",
+            label: "CODE REPOSITORIES",
+            value: 5,
+            suffix: "+",
+            displayValue: "5+",
+            description: "Active repositories and open-source project codebases"
         }
     ],
 
@@ -92,7 +92,7 @@ const portfolioData = {
     // ----------------------------------------------------------------------
     resume: {
         headline: "Computer Science Engineering Student | AI & ML Enthusiast",
-        summary: "Computer Science Engineering undergraduate (B.Tech 2nd Year) at KIIT with a strong academic record (8.54 1st-Year CGPA) and a dedicated focus on Artificial Intelligence and Machine Learning. Building a solid foundation in programming, data structures, and web development, complemented by practical hackathon and project exposure including backend cryptography and digital communication verification in Smart India Hackathon 2026 Internal Round. Committed to continuous technical growth demonstrated through certified learning in programming, cloud foundations, and cybersecurity.",
+        summary: "Computer Science Engineering undergraduate (B.Tech 2nd Year) at KIIT with a dedicated focus on Artificial Intelligence and Machine Learning. Building a solid foundation in programming, data structures, and web development, complemented by practical hackathon and project exposure including backend cryptography and digital communication verification in Smart India Hackathon 2026 Internal Round. Committed to continuous technical growth demonstrated through certified learning in programming, cloud foundations, and cybersecurity.",
         languages: [
             "English",
             "Hindi"
@@ -493,8 +493,6 @@ const portfolioData = {
             academicYear: "2nd Year",
             startYear: "2025",
             expectedGraduation: "2029",
-            cgpa: "8.54",
-            cgpaLabel: "1st-Year CGPA",
             coursework: [
                 "Probability and Statistics (PS)",
                 "Data Structures (DS)",
@@ -621,17 +619,17 @@ function renderStats() {
     const projectCount = (portfolioData.projects || []).length || 5;
     const certCount = (portfolioData.certifications || []).length || 12;
     const liveDeployments = (portfolioData.projects || []).filter(p => p.liveUrl && p.liveUrl.trim() !== '' && p.liveUrl !== '#').length || 2;
-    const academicCgpa = parseFloat(portfolioData.education && portfolioData.education[0] ? portfolioData.education[0].cgpa : 8.54) || 8.54;
+    const repoCount = 5;
 
     const statsList = portfolioData.stats || [
         { label: "PROJECTS BUILT", value: projectCount, displayValue: String(projectCount) },
         { label: "CERTIFICATES EARNED", value: certCount, displayValue: String(certCount) },
         { label: "LIVE DEPLOYMENTS", value: liveDeployments, displayValue: String(liveDeployments) },
-        { label: "1ST-YEAR CGPA", value: academicCgpa, displayValue: academicCgpa.toFixed(2), decimals: 2 }
+        { label: "CODE REPOSITORIES", value: repoCount, suffix: "+", displayValue: `${repoCount}+` }
     ];
 
     container.innerHTML = statsList.map(s => `
-        <div class="stat-col" data-target="${s.value}" ${s.decimals ? `data-decimals="${s.decimals}"` : ''}>
+        <div class="stat-col" data-target="${s.value}" ${s.suffix ? `data-suffix="${s.suffix}"` : ''} ${s.decimals ? `data-decimals="${s.decimals}"` : ''}>
             <div class="stat-number-box">
                 <span class="stat-number" data-value="${s.value}">${s.displayValue}</span>
             </div>
@@ -675,6 +673,9 @@ function initStatsAnimation() {
                     const decimals = parentCol && parentCol.hasAttribute('data-decimals') 
                         ? parseInt(parentCol.getAttribute('data-decimals'), 10) 
                         : 0;
+                    const suffix = parentCol && parentCol.hasAttribute('data-suffix')
+                        ? parentCol.getAttribute('data-suffix')
+                        : '';
 
                     const duration = 1400; // ms
                     const startTime = performance.now();
@@ -685,13 +686,14 @@ function initStatsAnimation() {
                         // Ease-out cubic curve: 1 - (1 - p)^3
                         const easeOut = 1 - Math.pow(1 - progress, 3);
                         const current = easeOut * target;
+                        const formatted = (decimals > 0 ? current.toFixed(decimals) : Math.floor(current).toString()) + suffix;
 
-                        el.textContent = decimals > 0 ? current.toFixed(decimals) : Math.floor(current).toString();
+                        el.textContent = formatted;
 
                         if (progress < 1) {
                             requestAnimationFrame(update);
                         } else {
-                            el.textContent = decimals > 0 ? target.toFixed(decimals) : target.toString();
+                            el.textContent = (decimals > 0 ? target.toFixed(decimals) : target.toString()) + suffix;
                         }
                     }
 
@@ -1209,14 +1211,6 @@ function renderEducation() {
             // Status: "2nd Year • Currently Pursuing"
             const statusText = [edu.academicYear, edu.status].filter(Boolean).join(' • ');
 
-            // CGPA Badge: "1st-Year CGPA: 8.54"
-            const cgpaBadge = (edu.cgpa && edu.cgpaLabel)
-                ? `<span class="edu-cgpa-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    ${edu.cgpaLabel}: ${edu.cgpa}
-                   </span>`
-                : '';
-
             // Coursework Subsection: "Current Coursework"
             const courseworkHtml = (edu.coursework && edu.coursework.length > 0)
                 ? `
@@ -1244,10 +1238,9 @@ function renderEducation() {
                             ${duration ? `<span class="edu-period">${duration}</span>` : ''}
                         </div>
 
-                        ${(statusText || cgpaBadge) ? `
+                        ${statusText ? `
                             <div class="edu-badges-row">
-                                ${statusText ? `<span class="edu-status-badge">${statusText}</span>` : ''}
-                                ${cgpaBadge}
+                                <span class="edu-status-badge">${statusText}</span>
                             </div>
                         ` : ''}
 
@@ -1792,7 +1785,7 @@ function renderResume() {
                             </div>
                             <div class="resume-entry-right">
                                 <span class="resume-entry-date">${escapeHTML(btech.startYear)} &ndash; ${escapeHTML(btech.expectedGraduation)}</span>
-                                <span class="resume-highlight-badge">${escapeHTML(btech.cgpaLabel)}: ${escapeHTML(btech.cgpa)}</span>
+                                <span class="resume-highlight-badge">${escapeHTML(btech.academicYear || "2nd Year")}</span>
                             </div>
                         </div>
                     </div>
