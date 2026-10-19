@@ -11,7 +11,7 @@
     <!-- Google Fonts for Modern Developer Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
@@ -53,38 +53,36 @@
 
     <!-- Main Content -->
     <main id="main-content">
-        <!-- Hero Section (Enhanced Animated Design) -->
+        <!-- Hero Section (Upgraded Dark Developer Aesthetic) -->
         <section id="home" class="hero-section">
-            <!-- Animated Background Grid & Floating Ambient Glow Orbs -->
+            <!-- Subtle Technical Grid & Ambient Glow -->
             <div class="hero-bg-grid" aria-hidden="true"></div>
-            <div class="hero-glow-orb hero-glow-orb-1" aria-hidden="true"></div>
-            <div class="hero-glow-orb hero-glow-orb-2" aria-hidden="true"></div>
-
+            <div class="hero-glow-orb hero-glow-orb-center" aria-hidden="true"></div>
 
             <div class="container hero-container">
                 <div class="hero-content reveal">
-                    <!-- Status / Academic Pill -->
+                    <!-- Profile Avatar Area -->
+                    <div class="hero-avatar-wrapper" aria-label="Developer Profile Avatar">
+                        <img src="assets/images/avatar.svg" alt="Priyanshu Karan Avatar" class="hero-avatar-img" width="108" height="108" loading="eager" />
+                    </div>
+
+                    <!-- Availability Badge -->
                     <div class="hero-status-pill">
                         <span class="pulse-dot" aria-hidden="true"></span>
-                        <span id="heroStatusText">Learning by Building</span>
+                        <span id="heroStatusText">Open to Opportunities</span>
                         <span class="status-sep" aria-hidden="true">&bull;</span>
                         <span id="heroMetaText" class="hero-status-meta">2nd Year &bull; KIIT</span>
                     </div>
 
-                    <!-- Intro greeting -->
-                    <p class="hero-greeting">Hi, I'm</p>
-
-                    <!-- Primary visual focus: Name with extra bold typography -->
-                    <h1 class="hero-title">
-                        <span class="hero-name-bold" id="heroName">Priyanshu Karan</span>
+                    <!-- Prominent Two-Line Name Heading -->
+                    <h1 class="hero-title" id="heroName">
+                        <span class="hero-name-first" id="heroFirstName">Priyanshu</span>
+                        <span class="hero-name-last" id="heroLastName">Karan</span>
                     </h1>
 
-                    <!-- Role -->
-                    <h2 class="hero-role" id="heroRole">Computer Science Engineering Student</h2>
-
-                    <!-- Tagline -->
+                    <!-- Concise Professional Introduction -->
                     <p class="hero-tagline" id="heroTagline">
-                        Building, Learning &amp; Exploring Technology
+                        Computer Science Engineering student at KIIT, passionate about programming, problem-solving, web development, and artificial intelligence. Learning by building projects and exploring emerging technologies.
                     </p>
 
                     <!-- Focus & Interests Dynamic Animated Reveal -->
@@ -107,20 +105,19 @@
 
                     <!-- Clear Call-To-Action Hierarchy -->
                     <div class="hero-actions" id="heroActions">
-                        <!-- Primary CTA -->
+                        <!-- 1. VIEW PROJECTS → -->
                         <a href="#projects" class="btn btn-primary" id="heroExploreBtn">
-                            <span>Explore My Work</span>
-                            <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            <span>VIEW PROJECTS</span>
+                            <svg class="icon-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </a>
-                        <!-- Secondary CTA -->
+                        <!-- 2. GET IN TOUCH -->
+                        <a href="#contact" class="btn btn-secondary" id="heroConnectBtn">
+                            <span>GET IN TOUCH</span>
+                        </a>
+                        <!-- 3. RESUME -->
                         <a href="#resume" class="btn btn-outline" id="heroResumeBtn">
-                            <span>View Resume</span>
+                            <span>RESUME</span>
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                        </a>
-                        <!-- Subtle Tertiary CTA -->
-                        <a href="#contact" class="btn btn-secondary btn-subtle" id="heroConnectBtn">
-                            <span>Let's Connect</span>
-                            <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                         </a>
                     </div>
                 </div>
@@ -131,6 +128,38 @@
                 <span>Scroll to explore</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
             </a>
+        </section>
+
+        <!-- Statistics Counter Section (Immediately Below Hero) -->
+        <section id="stats" class="stats-section" aria-label="Key Portfolio Statistics">
+            <div class="container stats-container">
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-col" data-target="5">
+                        <div class="stat-number-box">
+                            <span class="stat-number" id="statProjects">5</span>
+                        </div>
+                        <span class="stat-label">PROJECTS BUILT</span>
+                    </div>
+                    <div class="stat-col" data-target="12">
+                        <div class="stat-number-box">
+                            <span class="stat-number" id="statCerts">12</span>
+                        </div>
+                        <span class="stat-label">CERTIFICATES EARNED</span>
+                    </div>
+                    <div class="stat-col" data-target="2">
+                        <div class="stat-number-box">
+                            <span class="stat-number" id="statDeployments">2</span>
+                        </div>
+                        <span class="stat-label">LIVE DEPLOYMENTS</span>
+                    </div>
+                    <div class="stat-col" data-target="8.54" data-decimals="2">
+                        <div class="stat-number-box">
+                            <span class="stat-number" id="statCgpa">8.54</span>
+                        </div>
+                        <span class="stat-label">1ST-YEAR CGPA</span>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- About Section -->

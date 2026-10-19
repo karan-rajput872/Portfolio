@@ -49,8 +49,43 @@ const portfolioData = {
             "Emerging Technologies",
             "Cybersecurity"
         ],
-        currentStatus: "Learning by Building"
+        currentStatus: "Open to Opportunities"
     },
+
+    // ----------------------------------------------------------------------
+    // PORTFOLIO STATISTICS (PART 2 VERIFIED METRICS)
+    // ----------------------------------------------------------------------
+    stats: [
+        {
+            id: "projects",
+            label: "PROJECTS BUILT",
+            value: 5,
+            displayValue: "5",
+            description: "Verified academic and hackathon projects"
+        },
+        {
+            id: "certifications",
+            label: "CERTIFICATES EARNED",
+            value: 12,
+            displayValue: "12",
+            description: "Official credentials across CS, AI, Cloud & Security"
+        },
+        {
+            id: "deployments",
+            label: "LIVE DEPLOYMENTS",
+            value: 2,
+            displayValue: "2",
+            description: "Verified live project demo deployments (FindIt, CLICKBAIT)"
+        },
+        {
+            id: "cgpa",
+            label: "1ST-YEAR CGPA",
+            value: 8.54,
+            displayValue: "8.54",
+            decimals: 2,
+            description: "B.Tech Computer Science Engineering at KIIT"
+        }
+    ],
 
     // ----------------------------------------------------------------------
     // RESUME CONFIGURATION (STEP 4H PROFESSIONAL RESUME SYSTEM)
@@ -62,7 +97,9 @@ const portfolioData = {
             "English",
             "Hindi"
         ],
-        available: true
+        available: true,
+        path: "assets/resume/Priyanshu_Karan_Resume.pdf",
+        file: "assets/resume/Priyanshu_Karan_Resume.pdf"
     },
 
     // ----------------------------------------------------------------------
@@ -135,6 +172,67 @@ const portfolioData = {
     //     featured: false
     // }
     projects: [
+        {
+            title: "FindIt — Smart Lost & Found Platform",
+            subtitle: "\"Don't lose hope. Find what matters.\"",
+            category: "Full Stack & Applied AI",
+            context: "Campus Platform",
+            status: "Completed",
+            statusType: "completed",
+            description: "An AI-powered Smart Lost & Found Platform that simplifies reporting, discovering, and recovering lost belongings through intelligent matching, secure ownership verification, and seamless communication.",
+            overview: "FindIt is a full-stack Smart Lost & Found Platform designed to simplify reporting, discovering, and recovering lost belongings. It helps users report lost or found items, discover potentially matching reports, submit ownership claims, and coordinate the recovery process.",
+            role: "Full Stack & Applied AI Developer",
+            roleDetail: "Designed and engineered the complete end-to-end platform architecture: built the high-performance FastAPI backend with SQLAlchemy 2.0 ORM and dual SQLite/PostgreSQL support, developed the modern React and TypeScript frontend, implemented the AI-powered semantic matching engine with multi-attribute similarity analysis and match explanations, integrated Cloudinary media handling and Google OAuth / JWT authentication, and deployed the full system across Vercel and Render.",
+            technologies: [
+                "React.js",
+                "TypeScript",
+                "Python",
+                "FastAPI",
+                "PostgreSQL",
+                "SQLAlchemy",
+                "SQLite",
+                "JWT Authentication",
+                "Cloudinary",
+                "Google Sign-In",
+                "AI-powered semantic matching",
+                "Vercel",
+                "Render"
+            ],
+            keyFeatures: [
+                "Lost and Found Reporting: Users can report lost and found belongings with descriptions, images, categories, and location details.",
+                "Browse, Search and Filtering: Users can browse reported items and search or filter listings based on relevant information.",
+                "AI-Powered Semantic Matching: The platform identifies potentially matching lost and found reports using semantic matching and provides match explanations.",
+                "Secure Authentication: JWT-based authentication, protected routes, and Google Sign-In.",
+                "Ownership Verification and Claims: Users can submit claims using confidential ownership information. Item owners can review and respond to claims.",
+                "In-Platform Messaging: Users can communicate through the platform during the recovery process.",
+                "Notifications: Users receive notifications about relevant activities and claim updates.",
+                "Secure Item Recovery: The platform supports a transparent handover and item recovery process."
+            ],
+            capabilities: [
+                "AI-powered semantic matching with intelligent match explanations",
+                "Lost and found item reporting with descriptions, images, categories & locations",
+                "Multi-criteria browsing, keyword search, and dynamic category filtering",
+                "Confidential ownership verification & protected claim submission",
+                "In-platform messaging between finders and claimants",
+                "Real-time notifications for item activity and claim updates",
+                "Secure item recovery and transparent physical handover tracking",
+                "JWT authentication, protected routes & Google Sign-In"
+            ],
+            securityConcepts: [
+                "Salted Bcrypt password hashing & stateless PyJWT Bearer authorization",
+                "Google Sign-In OAuth 2.0 integration & protected API endpoints",
+                "Confidential claim proof masking (403 Forbidden for third parties)",
+                "Cloudinary signed media uploads & MIME type validation",
+                "CORS origin restrictions & environment secret isolation"
+            ],
+            teamContext: "Engineered as a full-stack production platform with automated testing, deployed with a React/TypeScript frontend on Vercel and a FastAPI/PostgreSQL backend on Render.",
+            githubUrl: "https://github.com/karan-rajput872/findit-smart-lost-and-found",
+            liveUrl: "https://findit-production.vercel.app",
+            liveButtonText: "Live Demo",
+            githubButtonText: "GitHub Repository",
+            image: "",
+            featured: true
+        },
         {
             title: "CLICKBAIT",
             subtitle: "“Don’t Guess. Verify.”",
@@ -231,7 +329,7 @@ const portfolioData = {
     ],
 
     // ----------------------------------------------------------------------
-    // CERTIFICATIONS (ALL 10 VERIFIED CERTIFICATES - CONNECTED TO REAL FILES)
+    // CERTIFICATIONS (ALL 12 VERIFIED CERTIFICATES - CONNECTED TO REAL FILES)
     // ----------------------------------------------------------------------
     certifications: [
         {
@@ -342,6 +440,42 @@ const portfolioData = {
             credentialUrl: "",
             certificateFile: "assets/certificates/Priyanshu_Karan_TCS_Certificate.pdf",
             description: "Comprehensive professional program covering business communication, workplace thinking, IT foundational skills, business etiquette, and overview of AI."
+        },
+        {
+            name: "Adobe Express Crash Course",
+            title: "Adobe Express Crash Course",
+            organization: "",
+            issuer: "",
+            type: "Certificate of Completion",
+            issueDate: "28 September 2026",
+            date: "28 September 2026",
+            credentialId: "488148964977",
+            idLabel: "UDIN",
+            credentialUrl: "",
+            certificateFile: "assets/certificates/Adobe Express Crash Course_Certificate.pdf",
+            file: "assets/certificates/Adobe Express Crash Course_Certificate.pdf",
+            description: "Completed the Adobe Express Crash Course on 28 September 2026.",
+            skills: [
+                "Adobe Express"
+            ]
+        },
+        {
+            name: "AWS Certified AI Practitioner — Exam Prep Plan",
+            title: "AWS Certified AI Practitioner — Exam Prep Plan",
+            organization: "AWS Training & Certification",
+            issuer: "AWS Training & Certification",
+            type: "Completion Certificate",
+            issueDate: "September 28, 2026",
+            date: "September 28, 2026",
+            credentialId: "",
+            credentialUrl: "",
+            certificateFile: "assets/certificates/AWS Certified_Certificate.pdf",
+            file: "assets/certificates/AWS Certified_Certificate.pdf",
+            description: "Completed the Exam Prep Plan Overview for AWS Certified AI Practitioner (AIF-C01 - English). (Exam preparation plan completion, not certified status).",
+            skills: [
+                "Artificial Intelligence",
+                "AWS"
+            ]
         }
     ],
 
@@ -438,6 +572,8 @@ function renderHero() {
 
     // Hero Text Elements
     const heroName = document.getElementById('heroName');
+    const heroFirstName = document.getElementById('heroFirstName');
+    const heroLastName = document.getElementById('heroLastName');
     const heroRole = document.getElementById('heroRole');
     const heroTagline = document.getElementById('heroTagline');
     const heroStatusText = document.getElementById('heroStatusText');
@@ -445,10 +581,20 @@ function renderHero() {
     const heroInterests = document.getElementById('heroInterests');
     const heroTerminalBody = document.getElementById('heroTerminalBody');
 
-    if (heroName) heroName.textContent = dev.name || "Priyanshu Karan";
+    const fullName = dev.name || "Priyanshu Karan";
+    const nameParts = fullName.trim().split(/\s+/);
+    if (heroFirstName && heroLastName) {
+        heroFirstName.textContent = nameParts[0] || "Priyanshu";
+        heroLastName.textContent = nameParts.slice(1).join(' ') || "Karan";
+    } else if (heroName) {
+        heroName.textContent = fullName;
+    }
+
     if (heroRole) heroRole.textContent = dev.role || "Computer Science Engineering Student";
-    if (heroTagline) heroTagline.textContent = dev.tagline || "Building, Learning & Exploring Technology";
-    if (heroStatusText) heroStatusText.textContent = dev.currentStatus || "Learning by Building";
+    if (heroTagline) {
+        heroTagline.textContent = "Computer Science Engineering student at KIIT, passionate about programming, problem-solving, web development, and artificial intelligence. Learning by building projects and exploring emerging technologies.";
+    }
+    if (heroStatusText) heroStatusText.textContent = "Open to Opportunities";
     if (heroMetaText) {
         const instShort = dev.institution && dev.institution.includes('KIIT') ? 'KIIT' : (dev.institution || 'KIIT');
         heroMetaText.textContent = `${dev.year || '2nd Year'} • ${instShort}`;
@@ -463,6 +609,99 @@ function renderHero() {
             })
             .join('');
     }
+}
+
+/**
+ * Render Key Statistics Counter Section (Part 2)
+ */
+function renderStats() {
+    const container = document.getElementById('statsGrid');
+    if (!container) return;
+
+    const projectCount = (portfolioData.projects || []).length || 5;
+    const certCount = (portfolioData.certifications || []).length || 12;
+    const liveDeployments = (portfolioData.projects || []).filter(p => p.liveUrl && p.liveUrl.trim() !== '' && p.liveUrl !== '#').length || 2;
+    const academicCgpa = parseFloat(portfolioData.education && portfolioData.education[0] ? portfolioData.education[0].cgpa : 8.54) || 8.54;
+
+    const statsList = portfolioData.stats || [
+        { label: "PROJECTS BUILT", value: projectCount, displayValue: String(projectCount) },
+        { label: "CERTIFICATES EARNED", value: certCount, displayValue: String(certCount) },
+        { label: "LIVE DEPLOYMENTS", value: liveDeployments, displayValue: String(liveDeployments) },
+        { label: "1ST-YEAR CGPA", value: academicCgpa, displayValue: academicCgpa.toFixed(2), decimals: 2 }
+    ];
+
+    container.innerHTML = statsList.map(s => `
+        <div class="stat-col" data-target="${s.value}" ${s.decimals ? `data-decimals="${s.decimals}"` : ''}>
+            <div class="stat-number-box">
+                <span class="stat-number" data-value="${s.value}">${s.displayValue}</span>
+            </div>
+            <span class="stat-label">${escapeHTML(s.label)}</span>
+        </div>
+    `).join('');
+}
+
+/**
+ * Animate Statistics Counter Smoothly on Viewport Enter
+ */
+let statsAnimated = false;
+function initStatsAnimation() {
+    const statsSection = document.getElementById('stats');
+    if (!statsSection) return;
+
+    const statNumbers = statsSection.querySelectorAll('.stat-number');
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReduced) {
+        statNumbers.forEach(el => {
+            const val = el.getAttribute('data-value');
+            if (val) el.textContent = val;
+        });
+        return;
+    }
+
+    if (typeof IntersectionObserver !== 'function') {
+        return; // Fallback to initial display values
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !statsAnimated) {
+                statsAnimated = true;
+                observer.disconnect();
+
+                statNumbers.forEach(el => {
+                    const target = parseFloat(el.getAttribute('data-value') || el.textContent) || 0;
+                    const parentCol = el.closest('.stat-col');
+                    const decimals = parentCol && parentCol.hasAttribute('data-decimals') 
+                        ? parseInt(parentCol.getAttribute('data-decimals'), 10) 
+                        : 0;
+
+                    const duration = 1400; // ms
+                    const startTime = performance.now();
+
+                    function update(now) {
+                        const elapsed = now - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        // Ease-out cubic curve: 1 - (1 - p)^3
+                        const easeOut = 1 - Math.pow(1 - progress, 3);
+                        const current = easeOut * target;
+
+                        el.textContent = decimals > 0 ? current.toFixed(decimals) : Math.floor(current).toString();
+
+                        if (progress < 1) {
+                            requestAnimationFrame(update);
+                        } else {
+                            el.textContent = decimals > 0 ? target.toFixed(decimals) : target.toString();
+                        }
+                    }
+
+                    requestAnimationFrame(update);
+                });
+            }
+        });
+    }, { threshold: 0.25 });
+
+    observer.observe(statsSection);
 }
 
 /**
@@ -744,27 +983,29 @@ function renderProjects() {
         const buttons = [];
 
         if (project.liveUrl && project.liveUrl.trim() !== '') {
+            const liveLabel = project.liveButtonText || 'Live Demo';
             buttons.push(`
-                <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" aria-label="View live project: ${escapeHTML(project.title)}">
-                    <span>View Live</span>
+                <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" aria-label="${liveLabel} for ${escapeHTML(project.title)}">
+                    <span>${liveLabel}</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 </a>
             `);
         }
 
         if (project.githubUrl && project.githubUrl.trim() !== '') {
+            const githubLabel = project.githubButtonText || 'GitHub Repository';
             buttons.push(`
-                <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="View source code: ${escapeHTML(project.title)}">
-                    <span>Code</span>
+                <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="${githubLabel} for ${escapeHTML(project.title)}">
+                    <span>${githubLabel}</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                 </a>
             `);
         }
 
         // View Details button (only when roleDetail or additional info exists)
-        if (project.roleDetail || (project.subtitle && project.featured)) {
+        if (project.roleDetail || (project.subtitle && project.featured) || project.capabilities || project.keyFeatures) {
             buttons.push(`
-                <button type="button" class="btn btn-sm btn-outline project-details-btn" data-project-index="${index}" aria-label="View details: ${escapeHTML(project.title)}">
+                <button type="button" class="btn btn-sm btn-outline project-details-btn" data-project-index="${index}" data-project-title="${escapeHTML(project.title)}" aria-label="View details: ${escapeHTML(project.title)}">
                     <span>View Details</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </button>
@@ -922,7 +1163,7 @@ function renderCertifications() {
                         </div>
                     </div>
                     <div class="cert-content">
-                        <span class="cert-issuer">${cert.organization}</span>
+                        ${cert.organization ? `<span class="cert-issuer">${cert.organization}</span>` : ''}
                         <h3 class="cert-title">${cert.name}</h3>
                         <p class="cert-desc">${cert.description}</p>
                         ${metaHtml}
@@ -1084,7 +1325,7 @@ function renderAchievements() {
         }
         if (ach.project && ach.project.toUpperCase().includes('CLICKBAIT')) {
             buttons.push(`
-                <button type="button" class="btn btn-sm btn-outline project-details-btn" data-project-index="0" aria-label="View CLICKBAIT project details">
+                <button type="button" class="btn btn-sm btn-outline project-details-btn" data-project-title="CLICKBAIT" aria-label="View CLICKBAIT project details">
                     <span>View Details</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </button>
@@ -1450,7 +1691,9 @@ function renderResume() {
             bullets.push(escapeHTML(proj.role));
         }
 
-        if (isClickbait) {
+        if (proj.title.toLowerCase().includes('findit')) {
+            bullets.push("Engineered full-stack Smart Lost & Found platform with FastAPI backend, React/TypeScript frontend, AI-powered semantic matching, secure ownership claims, and Cloudinary media management.");
+        } else if (isClickbait) {
             bullets.push("Contributed to backend verification logic (Ed25519 signing/verification, SHA-256 hashing, public-key verification, expiry/revocation checking, and tamper detection) for digital communications.");
         } else if (proj.isCurrentSite) {
             bullets.push("Engineered modular, responsive web portfolio with custom Vanilla JS data architecture, accessible modal certificate viewer, and print-ready stylesheet.");
@@ -1482,14 +1725,14 @@ function renderResume() {
         `;
     }).join('');
 
-    // 4. Compact Certifications List (all 10 verified certificates)
+    // 4. Compact Certifications List
     const certsHtml = (certifications || []).map(cert => {
         const dateStr = cert.issueDate || 'Verified';
         return `
             <div class="resume-cert-item">
                 <div class="resume-cert-main">
                     <span class="resume-cert-name">${escapeHTML(cert.name)}</span>
-                    <span class="resume-cert-issuer">&mdash; ${escapeHTML(cert.organization)}</span>
+                    ${cert.organization ? `<span class="resume-cert-issuer">&mdash; ${escapeHTML(cert.organization)}</span>` : ''}
                     <span class="resume-cert-type">(${escapeHTML(cert.type || 'Certification')})</span>
                 </div>
                 <span class="resume-cert-date">${escapeHTML(dateStr)}</span>
@@ -1617,7 +1860,7 @@ function renderResume() {
 
             <!-- Certifications -->
             <section class="resume-block">
-                <h4 class="resume-block-title">Certifications (10 Verified Credentials)</h4>
+                <h4 class="resume-block-title">Certifications (${(certifications || []).length} Verified Credentials)</h4>
                 <div class="resume-certs-list">
                     ${certsHtml}
                 </div>
@@ -1647,7 +1890,26 @@ function renderResume() {
     };
 
     if (downloadBtn) {
-        downloadBtn.onclick = handleResumePrint;
+        downloadBtn.onclick = (e) => {
+            if (e) e.preventDefault();
+            const resumePath = (portfolioData.resume && (portfolioData.resume.path || portfolioData.resume.file)) 
+                || "assets/resume/Priyanshu_Karan_Resume.pdf";
+            const downloadLink = document.createElement('a');
+            downloadLink.href = resumePath;
+            downloadLink.download = "Priyanshu_Karan_Resume.pdf";
+            downloadLink.target = "_blank";
+            if (typeof downloadLink.click === 'function') {
+                if (document.body && document.body.appendChild) {
+                    document.body.appendChild(downloadLink);
+                }
+                downloadLink.click();
+                if (document.body && document.body.removeChild) {
+                    document.body.removeChild(downloadLink);
+                }
+            } else {
+                handleResumePrint(e);
+            }
+        };
     }
     if (printBtn) {
         printBtn.onclick = handleResumePrint;
@@ -1668,6 +1930,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Step A: Render All Content Dynamically
     // ----------------------------------------------------------------------
     renderHero();
+    renderStats();
+    initStatsAnimation();
     loadDeveloperData();
     initHeroReveal();
     renderAbout();
@@ -1790,7 +2054,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!cert || !certModal) return;
 
         if (modalCertName) modalCertName.textContent = cert.name;
-        if (modalCertIssuer) modalCertIssuer.textContent = `Issued by: ${cert.organization}`;
+        if (modalCertIssuer) modalCertIssuer.textContent = cert.organization ? `Issued by: ${cert.organization}` : '';
         if (modalCertType) modalCertType.textContent = cert.type || 'Certification';
 
         // Render actual visual certificate preview (Image or PDF)
@@ -1924,7 +2188,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
     };
 
-    const openProjectModal = (index) => {
+    const openProjectModal = (target) => {
         if (!projectModal) return;
 
         const sorted = [...portfolioData.projects].sort((a, b) => {
@@ -1933,7 +2197,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return 0;
         });
 
-        const project = sorted[index];
+        let project = null;
+        if (typeof target === 'number' || (typeof target === 'string' && /^\d+$/.test(target.trim()))) {
+            project = sorted[parseInt(target, 10)];
+        }
+        if (!project && typeof target === 'string') {
+            project = sorted.find(p => p.title.toLowerCase().includes(target.toLowerCase()));
+        }
         if (!project) return;
 
         if (projectModalCategory) {
@@ -1981,9 +2251,24 @@ document.addEventListener('DOMContentLoaded', () => {
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                         Project Overview
                     </h4>
-                    <p>${escapeHTML(project.description)}</p>
+                    <p>${escapeHTML(project.overview || project.description)}</p>
                 </div>
             `;
+
+            let keyFeaturesHtml = '';
+            if (project.keyFeatures && project.keyFeatures.length > 0) {
+                keyFeaturesHtml = `
+                    <div class="project-modal-section">
+                        <h4 class="project-modal-section-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            Key Features
+                        </h4>
+                        <ul class="project-modal-list">
+                            ${project.keyFeatures.map(feat => `<li>${escapeHTML(feat)}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
 
             let capabilitiesHtml = '';
             if (project.capabilities && project.capabilities.length > 0) {
@@ -2057,6 +2342,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                     ${overviewHtml}
+                    ${keyFeaturesHtml}
                     ${capabilitiesHtml}
                     ${teamContextHtml}
                     ${roleHtml}
@@ -2069,18 +2355,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const footerBtns = [];
 
             if (project.liveUrl && project.liveUrl.trim() !== '') {
+                const liveModalLabel = project.liveButtonText || 'Live Demo';
                 footerBtns.push(`
-                    <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" aria-label="Open live link for ${escapeHTML(project.title)}">
-                        <span>View Project</span>
+                    <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" aria-label="${liveModalLabel} for ${escapeHTML(project.title)}">
+                        <span>${liveModalLabel}</span>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     </a>
                 `);
             }
 
             if (project.githubUrl && project.githubUrl.trim() !== '') {
+                const githubModalLabel = project.githubButtonText || 'GitHub Repository';
                 footerBtns.push(`
-                    <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" aria-label="Open GitHub repository for ${escapeHTML(project.title)}">
-                        <span>View Code</span>
+                    <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" aria-label="${githubModalLabel} for ${escapeHTML(project.title)}">
+                        <span>${githubModalLabel}</span>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                     </a>
                 `);
@@ -2107,8 +2395,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (event) => {
         const targetBtn = event.target.closest('.project-details-btn');
         if (targetBtn) {
+            const title = targetBtn.getAttribute('data-project-title');
             const index = targetBtn.getAttribute('data-project-index');
-            if (index !== null) {
+            if (title) {
+                openProjectModal(title);
+            } else if (index !== null) {
                 openProjectModal(parseInt(index, 10));
             }
         }
