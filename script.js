@@ -66,8 +66,8 @@ const portfolioData = {
         {
             id: "certifications",
             label: "CERTIFICATES EARNED",
-            value: 12,
-            displayValue: "12",
+            value: 14,
+            displayValue: "14",
             description: "Official credentials across CS, AI, Cloud & Security"
         },
         {
@@ -329,7 +329,7 @@ const portfolioData = {
     ],
 
     // ----------------------------------------------------------------------
-    // CERTIFICATIONS (ALL 12 VERIFIED CERTIFICATES - CONNECTED TO REAL FILES)
+    // CERTIFICATIONS (ALL 14 VERIFIED CERTIFICATES - CONNECTED TO REAL FILES)
     // ----------------------------------------------------------------------
     certifications: [
         {
@@ -476,6 +476,48 @@ const portfolioData = {
                 "Artificial Intelligence",
                 "AWS"
             ]
+        },
+        {
+            name: "Basics of Data Structures and Algorithms",
+            title: "Basics of Data Structures and Algorithms",
+            organization: "Simplilearn SkillUp",
+            issuer: "Simplilearn SkillUp",
+            recipient: "Priyanshu Karan",
+            type: "Certificate of Completion",
+            issueDate: "7 October 2026",
+            date: "7 October 2026",
+            credentialId: "10854217",
+            idLabel: "Certificate Code",
+            credentialUrl: "",
+            certificateFile: "assets/certificates/basics-of-data-structures-and-algorithms.pdf",
+            file: "assets/certificates/basics-of-data-structures-and-algorithms.pdf",
+            description: "Fundamental concepts of data structures and algorithms including linear and non-linear data structures, searching and sorting techniques, and algorithmic problem-solving.",
+            skills: [
+                "Data Structures",
+                "Algorithms",
+                "Problem Solving"
+            ]
+        },
+        {
+            name: "SkillQuest - Generative AI Literacy",
+            title: "SkillQuest - Generative AI Literacy",
+            organization: "Simplilearn SkillUp",
+            issuer: "Simplilearn SkillUp",
+            recipient: "Priyanshu Karan",
+            type: "Certificate of Accomplishment",
+            issueDate: "20 October 2026",
+            date: "20 October 2026",
+            credentialId: "23301860",
+            idLabel: "Certificate Number",
+            credentialUrl: "",
+            certificateFile: "assets/certificates/skillquest-generative-ai-literacy.pdf",
+            file: "assets/certificates/skillquest-generative-ai-literacy.pdf",
+            description: "Comprehensive assessment evaluating practical understanding of generative AI fundamentals, large language models, prompt engineering, and ethical AI applications.",
+            skills: [
+                "Generative AI",
+                "Prompt Engineering",
+                "Artificial Intelligence"
+            ]
         }
     ],
 
@@ -617,7 +659,7 @@ function renderStats() {
     if (!container) return;
 
     const projectCount = (portfolioData.projects || []).length || 5;
-    const certCount = (portfolioData.certifications || []).length || 12;
+    const certCount = (portfolioData.certifications || []).length || 14;
     const liveDeployments = (portfolioData.projects || []).filter(p => p.liveUrl && p.liveUrl.trim() !== '' && p.liveUrl !== '#').length || 2;
     const repoCount = 5;
 
@@ -1056,7 +1098,7 @@ function renderProjects() {
 }
 
 /**
- * Render Certifications Section (All 10 Real Certificates)
+ * Render Certifications Section (All 14 Real Certificates)
  */
 function renderCertifications() {
     const container = document.getElementById('certificationsContainer');
@@ -1070,6 +1112,15 @@ function renderCertifications() {
     container.innerHTML = portfolioData.certifications.map((cert, index) => {
         // Build metadata rows (only render non-empty fields to avoid blank placeholders)
         const metaRows = [];
+
+        if (cert.recipient && cert.recipient.trim() !== '') {
+            metaRows.push(`
+                <div class="cert-meta-row">
+                    <span class="cert-meta-label">Recipient:</span>
+                    <span class="cert-meta-val">${escapeHTML(cert.recipient)}</span>
+                </div>
+            `);
+        }
 
         if (cert.issueDate && cert.issueDate.trim() !== '') {
             metaRows.push(`
@@ -2078,6 +2129,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Build verified extra details list dynamically
         const extraRows = [];
+        if (cert.recipient && cert.recipient.trim() !== '') {
+            extraRows.push(`<div><strong>Recipient:</strong> <span>${escapeHTML(cert.recipient)}</span></div>`);
+        }
         if (cert.issueDate && cert.issueDate.trim() !== '') {
             extraRows.push(`<div><strong>Issue Date:</strong> <span>${cert.issueDate}</span></div>`);
         }
