@@ -1,0 +1,20 @@
+# Environment variables & secrets
+.env
+.env.local
+.env.*.local
+
+# Dependency directories
+node_modules/
+
+# Vercel deployment metadata
+.vercel
+
+# Temporary and log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS metadata
+.DS_Store
+Thumbs.db

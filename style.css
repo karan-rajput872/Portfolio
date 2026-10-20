@@ -2520,6 +2520,34 @@ button {
     flex-wrap: wrap;
 }
 
+.form-feedback.info {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    color: #60a5fa;
+}
+
+.form-submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #ffffff;
+    animation: btn-spin 0.8s linear infinite;
+    vertical-align: middle;
+}
+
+@keyframes btn-spin {
+    to { transform: rotate(360deg); }
+}
+
+
 /* Fallback grid classes for backward compatibility */
 .contact-grid {
     display: grid;

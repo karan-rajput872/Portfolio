@@ -107,7 +107,6 @@ const portfolioData = {
     // ----------------------------------------------------------------------
     contact: {
         email: "priyanshukaran25@gmail.com",
-        phone: "9263964053",
         location: "Bhubaneswar, Odisha, India",
         linkedin: "https://www.linkedin.com/in/priyanshu-karan-417202390/",
         github: "https://github.com/karan-rajput872"
@@ -1415,22 +1414,28 @@ function escapeHTML(str) {
 }
 
 /**
- * Modular Contact Form Submission Handler (Step 4E)
- * Easily extensible for future backend or email service integration (e.g., EmailJS, Formspree, custom API).
+ * Fully Functional Contact Form Submission Handler (Vercel Serverless / Resend Integration)
  */
-function handleContactSubmit(event) {
+async function handleContactSubmit(event) {
     event.preventDefault();
 
     const nameInput = document.getElementById('contactName');
     const emailInput = document.getElementById('contactEmail');
     const subjectInput = document.getElementById('contactSubject');
     const messageInput = document.getElementById('contactMessage');
+    const gotchaInput = document.getElementById('contactGotcha');
+    const submitBtn = document.getElementById('contactSubmitBtn');
     const feedbackBox = document.getElementById('contactFeedback');
 
     const nameError = document.getElementById('nameError');
     const emailError = document.getElementById('emailError');
     const subjectError = document.getElementById('subjectError');
     const messageError = document.getElementById('messageError');
+
+    // Prevent duplicate submissions if already pending
+    if (submitBtn && submitBtn.disabled) {
+        return;
+    }
 
     // Reset previous feedback and field errors
     [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
@@ -1451,6 +1456,7 @@ function handleContactSubmit(event) {
     const email = emailInput ? emailInput.value.trim() : '';
     const subject = subjectInput ? subjectInput.value.trim() : '';
     const message = messageInput ? messageInput.value.trim() : '';
+    const _gotcha = gotchaInput ? gotchaInput.value.trim() : '';
 
     let isValid = true;
     let firstInvalidInput = null;
@@ -1460,6 +1466,14 @@ function handleContactSubmit(event) {
         isValid = false;
         if (nameError) {
             nameError.textContent = 'Please enter your name.';
+            nameError.classList.add('visible');
+        }
+        if (nameInput) nameInput.classList.add('input-error');
+        if (!firstInvalidInput) firstInvalidInput = nameInput;
+    } else if (name.length < 2) {
+        isValid = false;
+        if (nameError) {
+            nameError.textContent = 'Name must be at least 2 characters long.';
             nameError.classList.add('visible');
         }
         if (nameInput) nameInput.classList.add('input-error');
@@ -1495,6 +1509,14 @@ function handleContactSubmit(event) {
         }
         if (subjectInput) subjectInput.classList.add('input-error');
         if (!firstInvalidInput) firstInvalidInput = subjectInput;
+    } else if (subject.length < 2) {
+        isValid = false;
+        if (subjectError) {
+            subjectError.textContent = 'Subject must be at least 2 characters long.';
+            subjectError.classList.add('visible');
+        }
+        if (subjectInput) subjectInput.classList.add('input-error');
+        if (!firstInvalidInput) firstInvalidInput = subjectInput;
     }
 
     // Validate Message
@@ -1506,44 +1528,99 @@ function handleContactSubmit(event) {
         }
         if (messageInput) messageInput.classList.add('input-error');
         if (!firstInvalidInput) firstInvalidInput = messageInput;
+    } else if (message.length < 5) {
+        isValid = false;
+        if (messageError) {
+            messageError.textContent = 'Message must be at least 5 characters long.';
+            messageError.classList.add('visible');
+        }
+        if (messageInput) messageInput.classList.add('input-error');
+        if (!firstInvalidInput) firstInvalidInput = messageInput;
     }
 
     if (!isValid) {
         if (firstInvalidInput) firstInvalidInput.focus();
         if (feedbackBox) {
             feedbackBox.className = 'form-feedback error visible';
-            feedbackBox.innerHTML = '<strong>Please correct the highlighted fields above.</strong>';
+            feedbackBox.innerHTML = '<strong>Please correct the highlighted fields above before submitting.</strong>';
         }
         return;
     }
 
-    // Frontend-only safe submission handling (No false "Message sent" claim)
-    const encodedSubject = encodeURIComponent(`[Portfolio Contact] ${subject}`);
-    const encodedBody = encodeURIComponent(`Hello Priyanshu,\n\n${message}\n\n---\nFrom: ${name}\nEmail: ${email}`);
-    const mailtoUrl = `mailto:${portfolioData.contact.email}?subject=${encodedSubject}&body=${encodedBody}`;
-
-    if (feedbackBox) {
-        feedbackBox.className = 'form-feedback success visible';
-        feedbackBox.innerHTML = `
-            <strong>Thanks, ${escapeHTML(name)}! Your message has been prepared.</strong>
-            <p style="margin-top: 6px;">A direct backend email service is not yet connected. You can launch your email client immediately with your message prefilled, or email me directly at <strong>${portfolioData.contact.email}</strong>.</p>
-            <div class="form-feedback-actions">
-                <a href="${mailtoUrl}" class="btn btn-sm btn-primary">
-                    <span>Open in Email Client</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                </a>
-                <button type="button" class="btn btn-sm btn-outline" id="clearContactFormBtn">Clear Form</button>
-            </div>
+    // Enter loading state & prevent duplicate submissions
+    const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+            <span class="spinner" aria-hidden="true"></span>
+            <span>Sending Message...</span>
         `;
+    }
+    if (feedbackBox) {
+        feedbackBox.className = 'form-feedback info visible';
+        feedbackBox.innerHTML = '<span>Delivering your message to Priyanshu, please wait...</span>';
+    }
 
-        const clearBtn = document.getElementById('clearContactFormBtn');
-        if (clearBtn) {
-            clearBtn.addEventListener('click', () => {
-                const form = document.getElementById('contactForm');
-                if (form) form.reset();
-                feedbackBox.className = 'form-feedback';
-                feedbackBox.innerHTML = '';
-            });
+    try {
+        const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                subject,
+                message,
+                _gotcha
+            })
+        });
+
+        let data = {};
+        try {
+            data = await response.json();
+        } catch (e) {
+            data = {};
+        }
+
+        if (response.ok && data.success) {
+            // Form delivery confirmed by server!
+            const form = document.getElementById('contactForm');
+            if (form) form.reset();
+
+            if (feedbackBox) {
+                feedbackBox.className = 'form-feedback success visible';
+                feedbackBox.innerHTML = `
+                    <strong>Message Sent Successfully!</strong>
+                    <p style="margin-top: 6px;">Thank you, ${escapeHTML(name)}. Your message has been delivered directly to my inbox. I will reply to you at <strong>${escapeHTML(email)}</strong> soon.</p>
+                `;
+            }
+        } else {
+            // Delivery failed or service unconfigured: PRESERVE user input in form fields
+            const errorMsg = (data && data.error) || 'Failed to send message. Please try again.';
+            if (feedbackBox) {
+                feedbackBox.className = 'form-feedback error visible';
+                feedbackBox.innerHTML = `
+                    <strong>Delivery Issue</strong>
+                    <p style="margin-top: 6px;">${escapeHTML(errorMsg)}</p>
+                    <p style="margin-top: 6px; font-size: 0.85rem; color: var(--text-secondary);">Your entered information has been preserved. You can also contact me directly at <a href="mailto:${portfolioData.contact.email}" style="color: var(--accent); text-decoration: underline;">${portfolioData.contact.email}</a>.</p>
+                `;
+            }
+        }
+    } catch (err) {
+        // Network or offline error: PRESERVE user input
+        if (feedbackBox) {
+            feedbackBox.className = 'form-feedback error visible';
+            feedbackBox.innerHTML = `
+                <strong>Network Error</strong>
+                <p style="margin-top: 6px;">Unable to reach the server. Please check your internet connection or email me directly at <a href="mailto:${portfolioData.contact.email}" style="color: var(--accent); text-decoration: underline;">${portfolioData.contact.email}</a>.</p>
+            `;
+        }
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnContent;
         }
     }
 }
@@ -1580,17 +1657,6 @@ function renderSocialAndContact() {
                             <div class="contact-item-body">
                                 <span class="contact-item-label">Email</span>
                                 <a href="mailto:${contact.email}" class="contact-item-val contact-item-link">${contact.email}</a>
-                            </div>
-                        </div>
-
-                        <!-- Phone -->
-                        <div class="contact-item">
-                            <div class="contact-item-icon" aria-hidden="true">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                            </div>
-                            <div class="contact-item-body">
-                                <span class="contact-item-label">Phone</span>
-                                <a href="tel:${contact.phone}" class="contact-item-val contact-item-link">${contact.phone}</a>
                             </div>
                         </div>
 
@@ -1648,6 +1714,12 @@ function renderSocialAndContact() {
                 <p class="form-subtitle">Have a question or want to collaborate? Fill in the details below.</p>
                 
                 <form id="contactForm" class="contact-form" novalidate>
+                    <!-- Honeypot spam trap -->
+                    <div style="display:none;" aria-hidden="true">
+                        <label for="contactGotcha">Leave this field blank</label>
+                        <input type="text" id="contactGotcha" name="_gotcha" tabindex="-1" autocomplete="off">
+                    </div>
+
                     <div class="form-group">
                         <label for="contactName" class="form-label">Your Name <span class="req" aria-hidden="true">*</span></label>
                         <input type="text" id="contactName" name="name" class="form-input" placeholder="Your Name" required autocomplete="name">
@@ -1806,8 +1878,6 @@ function renderResume() {
                 <p class="resume-headline">${escapeHTML(resume.headline || 'Computer Science Engineering Student | AI & ML Enthusiast')}</p>
                 <div class="resume-contact-row">
                     <span><a href="mailto:${contact.email}">${contact.email}</a></span>
-                    <span class="resume-dot">&bull;</span>
-                    <span><a href="tel:${contact.phone}">+91 ${contact.phone}</a></span>
                     <span class="resume-dot">&bull;</span>
                     <span>${contact.location}</span>
                 </div>

@@ -145,7 +145,7 @@ const checks = [
     { name: "Name (Priyanshu Karan)", pass: resumeHtml.includes("Priyanshu Karan") },
     { name: "Headline (AI & ML Enthusiast)", pass: resumeHtml.includes("Computer Science Engineering Student | AI &amp; ML Enthusiast") || resumeHtml.includes("AI & ML Enthusiast") },
     { name: "Email (priyanshukaran25@gmail.com)", pass: resumeHtml.includes("priyanshukaran25@gmail.com") },
-    { name: "Phone (9263964053)", pass: resumeHtml.includes("9263964053") },
+    { name: "Phone removed", pass: !resumeHtml.includes("9263964053") },
     { name: "Location (Bhubaneswar, Odisha, India)", pass: resumeHtml.includes("Bhubaneswar, Odisha, India") },
     { name: "LinkedIn profile", pass: resumeHtml.includes("linkedin.com/in/priyanshu-karan-417202390") },
     { name: "GitHub profile", pass: resumeHtml.includes("github.com/karan-rajput872") },
