@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planet Hunters: Find New Worlds in Starlight | Machine Learning Case Study — Priyanshu Karan</title>
+    
+    <!-- Meta Description & SEO -->
+    <meta name="description" content="Technical case study of Planet Hunters: an end-to-end Machine Learning solution for Hack4Hack 2026 classifying 25,000 space telescope stellar lightcurves into 8 astrophysical phenomena using astro-cotrending, 88 domain features, and a tri-architecture gradient-boosted ensemble.">
+    <meta name="keywords" content="Planet Hunters, Machine Learning, Hack4Hack 2026, LightGBM, HistGradientBoosting, CatBoost, Exoplanets, Astronomy, Time-Series Classification, Priyanshu Karan">
+    <meta name="author" content="Priyanshu Karan">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Planet Hunters: Find New Worlds in Starlight — ML Case Study">
+    <meta property="og:description" content="Astronomy-focused Machine Learning pipeline for Hack4Hack 2026: Astro-cotrending, 88 domain features, and tri-architecture ensembling for multiclass space telescope lightcurve classification.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="assets/images/planet-hunters/project_architecture.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Core Portfolio Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Astronomy Case Study Custom Stylesheet -->
+    <style>
+        /* Celestial & Astronomy Case Study Theme Enhancements */
+        :root {
+            --cosmic-navy: #05060b;
+            --cosmic-deep: #080a14;
+            --cosmic-surface: rgba(14, 18, 32, 0.82);
+            --cosmic-card: rgba(17, 23, 41, 0.75);
+            --cosmic-card-hover: rgba(26, 35, 62, 0.9);
+            --cosmic-border: rgba(99, 102, 241, 0.16);
+            --cosmic-border-hover: rgba(249, 115, 22, 0.5);
+            --cosmic-cyan: #38bdf8;
+            --cosmic-indigo: #818cf8;
+            --cosmic-violet: #a855f7;
+            --cosmic-glow-cyan: rgba(56, 189, 248, 0.15);
+            --cosmic-glow-indigo: rgba(129, 140, 248, 0.18);
+        }
+
+        body.astronomy-case-study {
+            background-color: var(--cosmic-navy);
+            background-image: 
+                radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.06) 0%, transparent 45%),
+                radial-gradient(circle at 50% 75%, rgba(249, 115, 22, 0.04) 0%, transparent 50%),
+                radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.25), transparent),
+                radial-gradient(1px 1px at 120px 80px, rgba(255, 255, 255, 0.2), transparent),
+                radial-gradient(1.5px 1.5px at 260px 180px, rgba(56, 189, 248, 0.35), transparent),
+                radial-gradient(1px 1px at 380px 240px, rgba(255, 255, 255, 0.2), transparent),
+                radial-gradient(1px 1px at 520px 120px, rgba(249, 115, 22, 0.25), transparent);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 400px 400px, 500px 500px, 600px 600px, 450px 450px, 550px 550px;
+            color: var(--text-primary);
+        }
+
+        /* Astronomy Navigation Header */
+        .case-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            background: rgba(5, 6, 11, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--cosmic-border);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .case-nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .case-nav-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .case-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            transition: all var(--transition-fast);
+        }
+
+        .case-back-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: var(--accent-muted);
+            transform: translateX(-3px);
+        }
+
+        .case-nav-brand {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+
+        .case-nav-brand span {
+            color: var(--accent);
+        }
+
+        .case-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .case-nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .case-nav-links a:hover {
+            color: var(--cosmic-cyan);
+        }
+
+        /* Astronomy Hero Section */
+        .case-hero {
+            padding: calc(var(--nav-height) + 48px) 0 60px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--cosmic-border);
+        }
+
+        .case-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px;
+            height: 400px;
+            background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.15), rgba(56, 189, 248, 0.06), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .case-hero-container {
+            position: relative;
+            z-index: 1;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .case-pill-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .case-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: var(--radius-full);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .case-pill-competition {
+            background: rgba(249, 115, 22, 0.15);
+            color: var(--accent-light);
+            border: 1px solid rgba(249, 115, 22, 0.35);
+        }
+
+        .case-pill-category {
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--cosmic-indigo);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .case-pill-status {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .case-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .case-title .gradient-text {
+            background: linear-gradient(135deg, #ffffff 30%, var(--cosmic-cyan) 80%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .case-tagline {
+            font-size: clamp(1.15rem, 2vw, 1.45rem);
+            font-weight: 500;
+            color: var(--cosmic-cyan);
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+        }
+
+        .case-lead {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            max-width: 860px;
+            margin-bottom: 32px;
+        }
+
+        /* Telemetry KPI Strip */
+        .telemetry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 16px;
+            margin: 32px 0 36px;
+        }
+
+        .telemetry-card {
+            background: var(--cosmic-surface);
+            border: 1px solid var(--cosmic-border);
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+
+        .telemetry-card:hover {
+            border-color: var(--cosmic-cyan);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--cosmic-glow-cyan);
+        }
+
+        .telemetry-label {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .telemetry-val {
+            font-family: var(--font-display);
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+        .telemetry-val.highlight-val {
+            color: var(--accent);
+        }
+
+        .telemetry-val.cyan-val {
+            color: var(--cosmic-cyan);
+        }
+
+        .telemetry-sub {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Action Buttons */
+        .case-hero-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        /* Case Section Layout */
+        .case-section {
+            padding: 72px 0;
+            border-bottom: 1px solid var(--cosmic-border);
+            position: relative;
+        }
+
+        .case-section-header {
+            margin-bottom: 36px;
+        }
+
+        .case-section-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .case-section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3vw, 2.3rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+            margin-bottom: 12px;
+        }
+
+        .case-section-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 760px;
+            line-height: 1.65;
+        }
+
+        /* Content Blocks & Grids */
+        .case-card {
+            background: var(--cosmic-card);
+            border: 1px solid var(--cosmic-border);
+            border-radius: var(--radius-md);
+            padding: 28px;
+            transition: all var(--transition-normal);
+        }
+
+        .case-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-md);
+        }
+
+        .case-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .case-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .case-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        /* Astrophysics Taxonomy Cards */
+        .astro-class-card {
+            background: var(--cosmic-surface);
+            border: 1px solid var(--cosmic-border);
+            border-radius: var(--radius-md);
+            padding: 22px;
+            transition: all var(--transition-normal);
+            position: relative;
+        }
+
+        .astro-class-card:hover {
+            border-color: var(--cosmic-cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+        }
+
+        .astro-class-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .astro-class-name {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--cosmic-cyan);
+        }
+
+        .astro-class-badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+        }
+
+        .astro-class-phenomenon {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .astro-class-desc {
+            font-size: 0.86rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            margin-bottom: 12px;
+        }
+
+        .astro-class-meta {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 10px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .astro-class-meta strong {
+            color: var(--text-secondary);
+        }
+
+        /* Pipeline Stepper */
+        .pipeline-stepper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            position: relative;
+        }
+
+        .pipeline-step-card {
+            background: var(--cosmic-surface);
+            border: 1px solid var(--cosmic-border);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            position: relative;
+            transition: all var(--transition-normal);
+        }
+
+        .pipeline-step-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px var(--accent-glow);
+        }
+
+        .pipeline-step-number {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            background: var(--accent-muted);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .pipeline-step-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .pipeline-step-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Data Tables */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--cosmic-border);
+            background: var(--cosmic-surface);
+            box-shadow: var(--shadow-sm);
+            margin: 20px 0;
+        }
+
+        .case-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            text-align: left;
+        }
+
+        .case-table th {
+            background: rgba(14, 18, 32, 0.95);
+            color: var(--cosmic-cyan);
+            font-family: var(--font-mono);
+            font-size: 0.76rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--cosmic-border);
+            white-space: nowrap;
+        }
+
+        .case-table td {
+            padding: 14px 18px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            line-height: 1.5;
+        }
+
+        .case-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-primary);
+        }
+
+        .case-table tr.highlight-row td {
+            background: rgba(249, 115, 22, 0.06);
+            color: var(--text-primary);
+            font-weight: 600;
+            border-top: 1px solid rgba(249, 115, 22, 0.2);
+            border-bottom: 1px solid rgba(249, 115, 22, 0.2);
+        }
+
+        .case-table .tag-champion {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent);
+            background: var(--accent-muted);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Disclaimer & Transparent Alerts */
+        .case-alert {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: rgba(15, 23, 42, 0.85);
+            border-left: 3px solid var(--cosmic-cyan);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: 20px 24px;
+            margin: 28px 0;
+        }
+
+        .case-alert-icon {
+            color: var(--cosmic-cyan);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .case-alert-content {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        .case-alert-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        /* Gallery Grid & Lightbox */
+        .case-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .gallery-card {
+            background: var(--cosmic-surface);
+            border: 1px solid var(--cosmic-border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .gallery-img-wrapper {
+            width: 100%;
+            height: 220px;
+            background: #000000;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-normal);
+        }
+
+        .gallery-card:hover .gallery-img-wrapper img {
+            transform: scale(1.04);
+        }
+
+        .gallery-overlay-hint {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.75);
+            color: var(--cosmic-cyan);
+            font-size: 0.72rem;
+            font-family: var(--font-mono);
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            pointer-events: none;
+        }
+
+        .gallery-caption {
+            padding: 16px 20px;
+            background: var(--cosmic-card);
+        }
+
+        .gallery-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .gallery-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+        }
+
+        /* Checksum & Artifact Box */
+        .checksum-box {
+            background: rgba(5, 6, 11, 0.9);
+            border: 1px solid var(--cosmic-border);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin: 24px 0;
+            font-family: var(--font-mono);
+        }
+
+        .checksum-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .checksum-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .checksum-copy-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            color: var(--cosmic-cyan);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .checksum-copy-btn:hover {
+            background: var(--accent-muted);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .checksum-hash {
+            font-size: 0.85rem;
+            color: var(--accent-light);
+            word-break: break-all;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            user-select: all;
+        }
+
+        /* Lightbox Modal */
+        .case-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(5, 6, 11, 0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .case-lightbox.open {
+            display: flex;
+        }
+
+        .case-lightbox-content {
+            max-width: 95vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .case-lightbox-img {
+            max-width: 90vw;
+            max-height: 78vh;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--cosmic-border);
+            box-shadow: var(--shadow-lg);
+            object-fit: contain;
+        }
+
+        .case-lightbox-caption {
+            margin-top: 14px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            text-align: center;
+            max-width: 700px;
+        }
+
+        .case-lightbox-close {
+            position: absolute;
+            top: -44px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-primary);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+
+        .case-lightbox-close:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .case-nav-links {
+                display: none;
+            }
+            .case-hero {
+                padding: calc(var(--nav-height) + 24px) 0 40px;
+            }
+            .telemetry-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .case-section {
+                padding: 48px 0;
+            }
+            .case-grid-2, .case-grid-3, .case-grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="astronomy-case-study">
+
+    <!-- Top Sticky Case Study Navigation -->
+    <header class="case-nav">
+        <div class="case-nav-container">
+            <div class="case-nav-left">
+                <a href="index.html#projects" class="case-back-link" aria-label="Return to portfolio projects">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    <span>Back to Portfolio</span>
+                </a>
+                <span class="case-nav-brand">Priyanshu<span>.Karan</span></span>
+            </div>
+            <nav class="case-nav-links" aria-label="Case Study Navigation">
+                <a href="#overview">Overview</a>
+                <a href="#problem">Problem & Data</a>
+                <a href="#pipeline">Approach</a>
+                <a href="#experiments">Experiments</a>
+                <a href="#results">Results</a>
+                <a href="#gallery">Visualizations</a>
+                <a href="#artifact">Submission Artifact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="mainContent">
+
+        <!-- Hero Section (Section A) -->
+        <section class="case-hero" aria-labelledby="heroTitle">
+            <div class="case-hero-container">
+                <div class="case-pill-row">
+                    <span class="case-pill case-pill-competition">Hack4Hack 2026 — ML Challenge</span>
+                    <span class="case-pill case-pill-category">Machine Learning / AI</span>
+                    <span class="case-pill case-pill-status">Bitwise Verified • 100% Deterministic</span>
+                </div>
+
+                <h1 class="case-title" id="heroTitle">
+                    Planet Hunters: <br>
+                    <span class="gradient-text">Find New Worlds in Starlight</span>
+                </h1>
+
+                <p class="case-tagline">Exploring Stellar Signals Through Machine Learning.</p>
+
+                <p class="case-lead">
+                    An astronomy-focused Machine Learning solution engineered for Hack4Hack 2026. Operating on 1,315-cadence space telescope light curves across 25,000 stars, the pipeline introduces <strong>astro-cotrending</strong> to eliminate detector-level systematic drift, extracts 88 domain-informed features, and deploys a 5-fold tri-architecture ensemble (LightGBM, HistGradientBoosting, and CatBoost) achieving <strong>0.6455 Out-of-Fold Macro F1</strong> and <strong>0.6336 Out-of-Detector Generalization</strong>.
+                </p>
+
+                <!-- Key Telemetry KPI Cards -->
+                <div class="telemetry-grid">
+                    <div class="telemetry-card">
+                        <span class="telemetry-label">Dataset Volume</span>
+                        <div class="telemetry-val">25,000</div>
+                        <div class="telemetry-sub">18k Train + 7k Test Stars</div>
+                    </div>
+                    <div class="telemetry-card">
+                        <span class="telemetry-label">Time-Series Depth</span>
+                        <div class="telemetry-val">1,315</div>
+                        <div class="telemetry-sub">Flux Cadences per Star</div>
+                    </div>
+                    <div class="telemetry-card">
+                        <span class="telemetry-label">Classification Classes</span>
+                        <div class="telemetry-val">8</div>
+                        <div class="telemetry-sub">Astrophysical & Instrumental</div>
+                    </div>
+                    <div class="telemetry-card">
+                        <span class="telemetry-label">Stratified OOF Score</span>
+                        <div class="telemetry-val highlight-val">0.6455</div>
+                        <div class="telemetry-sub">5-Fold Macro F1 (+0.0540)</div>
+                    </div>
+                    <div class="telemetry-card">
+                        <span class="telemetry-label">Detector Generalization</span>
+                        <div class="telemetry-val cyan-val">0.6336</div>
+                        <div class="telemetry-sub">Holdout Detector Channel F1</div>
+                    </div>
+                    <div class="telemetry-card">
+                        <span class="telemetry-label">Systematic Drift Drop</span>
+                        <div class="telemetry-val highlight-val">-60.3%</div>
+                        <div class="telemetry-sub">Mean Kolmogorov-Smirnov</div>
+                    </div>
+                </div>
+
+                <!-- Hero Banner Image -->
+                <div class="case-hero-banner" style="margin: 28px 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(99, 102, 241, 0.25); box-shadow: 0 16px 40px rgba(0,0,0,0.6);">
+                    <img src="assets/images/planet-hunters/project_cover.png" alt="Planet Hunters: Find New Worlds in Starlight - Project Cover" style="width: 100%; height: auto; display: block;" loading="eager">
+                </div>
+
+                <!-- Action CTAs -->
+                <div class="case-hero-actions">
+                    <a href="#overview" class="btn btn-primary" aria-label="Explore the case study methodology">
+                        <span>Explore Case Study</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+                    </a>
+                    <a href="https://github.com/karan-rajput872/Planet-Hunters-Round1" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Open verified GitHub repository in new tab">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        <span>GitHub Repository</span>
+                    </a>
+                    <a href="index.html#projects" class="btn btn-secondary" aria-label="Navigate back to portfolio projects">
+                        <span>All Portfolio Projects</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Overview (Section B) -->
+        <section id="overview" class="case-section" aria-labelledby="overviewTitle">
+            <div class="container">
+                <div class="case-section-header">
+                    <span class="case-section-eyebrow">Section B</span>
+                    <h2 class="case-section-title" id="overviewTitle">Project Overview</h2>
+                    <p class="case-section-subtitle">
+                        Transforming space telescope photometric time-series into actionable astrophysical intelligence using robust feature engineering and heterogeneous gradient boosting.
+                    </p>
+                </div>
+
+                <div class="case-grid-2">
+                    <div class="case-card">
+                        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 14px; color: var(--text-primary);">
+                            What the Project Accomplishes
+                        </h3>
+                        <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 14px;">
+                            Modern space telescopes capture millions of photometric measurements per observation sector. Genuine planetary transits cause subtle, recurring geometric dips (&lt; 1% flux attenuation) as an orbiting planet temporarily blocks a fraction of its host star's light.
+                        </p>
+                        <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7;">
+                            This project implements a fully autonomous Machine Learning pipeline for the <strong>Hack4Hack 2026 ML Challenge</strong> to distinguish true exoplanet signals from stellar phenomena (eclipsing binaries, starspots, pulsators, energetic flares) and spacecraft detector artifacts (momentum dumps, thermal breathing, pointing jitter).
+                        </p>
+                    </div>
+
+                    <div class="case-card">
+                        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 14px; color: var(--text-primary);">
+                            Why Classifying Stellar Observations is Challenging
+                        </h3>
+                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.92rem; color: var(--text-secondary);">
+                            <li style="display: flex; gap: 10px;">
+                                <span style="color: var(--accent); font-weight: bold;">•</span>
+                                <div><strong style="color: var(--text-primary);">Severe Signal-to-Noise Ratio:</strong> Transit signals are shallow and frequently drowned out by rotational starspot waves or Gaussian photon shot noise.</div>
+                            </li>
+                            <li style="display: flex; gap: 10px;">
+                                <span style="color: var(--accent); font-weight: bold;">•</span>
+                                <div><strong style="color: var(--text-primary);">Astrophysical Mimics:</strong> Unresolved background eclipsing binaries blended within the same telescope aperture generate false-positive dips nearly identical to transit depths.</div>
+                            </li>
+                            <li style="display: flex; gap: 10px;">
+                                <span style="color: var(--accent); font-weight: bold;">•</span>
+                                <div><strong style="color: var(--text-primary);">Detector Systematic Drift:</strong> Spacecraft momentum dumps and camera/CCD thermal expansions induce artificial trends that cause baseline models to hallucinate pulsations and glitches.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem Statement & Eight-Class Taxonomy (Section C) -->
+        <section id="problem" class="case-section" aria-labelledby="problemTitle">
+            <div class="container">
+                <div class="case-section-header">
+                    <span class="case-section-eyebrow">Section C</span>
+                    <h2 class="case-section-title" id="problemTitle">Problem Statement & Dataset Dimensions</h2>
+                    <p class="case-section-subtitle">
+                        An unweighted multiclass classification task evaluated under unweighted Macro F1 Score across 8 mutually exclusive astrophysical and instrumental categories.
+                    </p>
+                </div>
+
+                <!-- Dataset Dimensions Summary -->
+                <div class="case-grid-4" style="margin-bottom: 36px;">
+                    <div class="case-card" style="padding: 20px;">
+                        <span class="telemetry-label">Training Set</span>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--text-primary);">18,000 Stars</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">With Ground Truth Labels</div>
+                    </div>
+                    <div class="case-card" style="padding: 20px;">
+                        <span class="telemetry-label">Test Set</span>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--text-primary);">7,000 Stars</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Unseen Competition Test</div>
+                    </div>
+                    <div class="case-card" style="padding: 20px;">
+                        <span class="telemetry-label">Cadence Sequence</span>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--text-primary);">1,315 Points</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Flux & 2D Centroid Offsets</div>
+                    </div>
+                    <div class="case-card" style="padding: 20px;">
+                        <span class="telemetry-label">Evaluation Metric</span>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--cosmic-cyan);">Macro F1</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Unweighted Mean of 8 Classes</div>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 18px; color: var(--text-primary);">
+                    The Eight Mutually Exclusive Astrophysical Classes
+                </h3>
+
+                <!-- 8 Classes Grid -->
+                <div class="case-grid-4">
+                    <!-- 1. planet -->
+                    <div class="astro-class-card">
+                        <div class="astro-class-header">
+                            <span class="astro-class-name">planet</span>
+                            <span class="astro-class-badge">Exoplanet</span>
+                        </div>
+                        <div class="astro-class-phenomenon">Exoplanetary Transit</div>
+                        <p class="astro-class-desc">
+                            Shallow, regular, flat-bottomed (U-shaped) transit dips with equal odd-even depths; detrended SNR &gt; 3.
+                        </p>
+                        <div class="astro-class-meta">
+                            <span><strong>Astrometry:</strong> Stable (no centroid shift during transit)</span>
+                            <span><strong>Training Support:</strong> 2,145 stars (11.9%)</span>
+                        </div>
+                    </div>
+
+                    <!-- 2. eclipsing_binary -->
+                    <div class="astro-class-card">
+                        <div class="astro-class-header">
+                            <span class="astro-class-name">eclipsing_binary</span>
+                            <span class="astro-class-badge">Binary Star</span>
+                        </div>
+                        <div class="astro-class-phenomenon">Gravitational Binary System</div>
+                        <p class="astro-class-desc">
+                            Deep geometric V-shaped eclipses with alternating primary and secondary dip depths governed by orbital geometry.
+                        </p>
+                        <div class="astro-class-meta">
+                            <span><strong>Astrometry:</strong> Stable or barycentric orbital wobble</span>
+                            <span><strong>Training Support:</strong> 2,247 stars (12.5%)</span>
+                        </div>
+                    </div>
+
+                    <!-- 3. background_binary -->
+                    <div class="astro-class-card">
+                        <div class="astro-class-header">
+                            <span class="astro-class-name">background_binary</span>
+                            <span class="astro-class-badge">Blend Mimic</span>
+                        </div>
+                        <div class="astro-class-phenomenon">Blended Background Binary</div>
+                        <p class="astro-class-desc">
+                            Faint background binary blended into the star's pixel aperture; creates shallow planet-sized false-positive dips.
+                        </p>
+                        <div class="astro-class-meta">
+                            <span><strong>Astrometry:</strong> Significant centroid shift during dip</span>
+                            <span><strong>Training Support:</strong> 1,604 stars (8.9%)</span>
+                        </div>
+                    </div>
+
+                    <!-- 4. starspots -->
+                    <div class="astro-class-card">
+                        <div class="astro-class-header">
+                            <span class="astro-class-name">starspots</span>
+                            <span class="astro-class-badge">Magnetic Activity</span>
+                        </div>
+                        <div class="astro-class-phenomenon">Rotating Magnetic Regions</div>
+                        <p class="astro-class-desc">
+                            Smooth, quasi-periodic sinusoidal brightness modulation over 10 to 25 day stellar rotation cycles.
+                        </p>
+                        <div class="astro-class-meta">
+                            <span><strong>Astrometry:</strong> Stable centroid position</span>
+                            <span><strong>Training Support:</strong> 2,882 stars (16.0%)</span>
+                        </div>
+                    </div>
+
+                    <!-- 5. pulsating_star -->
+                    <div class="astro-class-card">
+                        <div class="astro-class-header">
+                            <span class="astro-class-name">pulsating_star</span>
+                            <span class="astro-class-badge">Oscillator</span>
+                        </div>
+                        <div class="astro-class-phenomenon">Acoustic Stellar Pulsations</div>
+                        <p class="astro-class-desc">
+                            High-frequency coherent sinusoidal oscillations (&delta; Scuti, &gamma; Doradus) with discrete Fourier power harmonics.
+                        </p>
+                        <div class="astro-class-meta">
+                            <span><strong>Astrometry:</strong> Photometrically stable astrometry</span>
+                            <span><strong>Training Support:</strong> 1,973 stars (11.0%)</span>
+                        </div>
+                    </div>
+
+                    <!-- 6. flare_star -->
+                    <div class="astro-class-card">
+                        <div class="astro-class-header">
+                            <span class="astro-class-name">flare_star</span>
+                            <span class="astro-class-badge">Reconnection</span>
+                        </div>
+                        <div class="astro-class-phenomenon">Magnetic Reconnection Flares</div>
+                        <p class="astro-class-desc">
+                            Impulsive sharp rise followed by a slower, distinctive exponential cooling decay profile.
+                        </p>
+                        <div class="astro-class-meta">
+                            <span><strong>Astrometry:</strong> Spatially coherent during event</span>
+                            <span><strong>Training Support:</strong> 1,804 stars (10.0%)</span>
+                        </div>
+                    </div>
+
+                    <!-- 7. instrument_glitch -->
+                    <div class="astro-class-card">
+                        <div class="astro-class-header">
+                            <span class="astro-class-name">instrument_glitch</span>
+                            <span class="astro-class-badge">Systematic</span>
+                        </div>
+                        <div class="astro-class-phenomenon">Detector / Telescope Glitches</div>
+                        <p class="astro-class-desc">
+                            Single-cadence drops/jumps, momentum dumps, reaction wheel desaturation, and orbital thermal ramps.
+                        </p>
+                        <div class="astro-class-meta">
+                            <span><strong>Astrometry:</strong> Large discontinuous centroid jumps</span>
+                            <span><strong>Training Support:</strong> 1,721 stars (9.6%)</span>
+                        </div>
+                    </div>
+
+                    <!-- 8. quiet_star -->
+                    <div class="astro-class-card">
+                        <div class="astro-class-header">
+                            <span class="astro-class-name">quiet_star</span>
+                            <span class="astro-class-badge">Reference</span>
+                        </div>
+                        <div class="astro-class-phenomenon">Non-Variable Reference Star</div>
+                        <p class="astro-class-desc">
+                            Flat, stationary baseline governed purely by Poisson photon counting statistics and Gaussian white noise.
+                        </p>
+                        <div class="astro-class-meta">
+                            <span><strong>Astrometry:</strong> Pure detector centroid jitter</span>
+                            <span><strong>Training Support:</strong> 3,624 stars (20.1%)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Approach (Section D) -->
+        <section id="pipeline" class="case-section" aria-labelledby="pipelineTitle">
+            <div class="container">
+                <div class="case-section-header">
+                    <span class="case-section-eyebrow">Section D</span>
+                    <h2 class="case-section-title" id="pipelineTitle">Technical Approach & Engineering Pipeline</h2>
+                    <p class="case-section-subtitle">
+                        An eight-stage sequence spanning scientific signal detrending, astro-cotrending, multi-architecture tree training, and automated verification.
+                    </p>
+                </div>
+
+                <div class="pipeline-stepper">
+                    <div class="pipeline-step-card">
+                        <span class="pipeline-step-number">Stage 01</span>
+                        <h4 class="pipeline-step-title">Dataset Inspection</h4>
+                        <p class="pipeline-step-desc">
+                            Exploratory time-series profiling of 1,315 flux cadences, centroid coordinates, and 5 astrophysical parameters (Tmag, Teff, logg, Radius, Contamination).
+                        </p>
+                    </div>
+
+                    <div class="pipeline-step-card">
+                        <span class="pipeline-step-number">Stage 02</span>
+                        <h4 class="pipeline-step-title">Data Preprocessing</h4>
+                        <p class="pipeline-step-desc">
+                            Normalization of relative flux, robust NaN-safe aggregations, MAD outlier clipping, and astrometric 2D coordinate stabilization.
+                        </p>
+                    </div>
+
+                    <div class="pipeline-step-card">
+                        <span class="pipeline-step-number">Stage 03</span>
+                        <h4 class="pipeline-step-title">Astro-Cotrending & Features</h4>
+                        <p class="pipeline-step-desc">
+                            88 vectorized domain features: 1-day rolling median detrending, transit dip SNR, 2D centroid in/out-of-dip shift, flare asymmetry, and camera/CCD cotrending.
+                        </p>
+                    </div>
+
+                    <div class="pipeline-step-card">
+                        <span class="pipeline-step-number">Stage 04</span>
+                        <h4 class="pipeline-step-title">Model Experimentation</h4>
+                        <p class="pipeline-step-desc">
+                            Benchmarking diverse boosting paradigms: leaf-wise LightGBM (63 leaves), depth-wise regularized HistGradientBoosting (450 trees), and CatBoost oblivious trees.
+                        </p>
+                    </div>
+
+                    <div class="pipeline-step-card">
+                        <span class="pipeline-step-number">Stage 05</span>
+                        <h4 class="pipeline-step-title">Cross-Validation Rigor</h4>
+                        <p class="pipeline-step-desc">
+                            Dual cross-validation: 5-Fold Stratified OOF (0.6455 Macro F1) and Stratified Detector-Channel CV (0.6336 Macro F1 holding out entire camera/CCD channels).
+                        </p>
+                    </div>
+
+                    <div class="pipeline-step-card">
+                        <span class="pipeline-step-number">Stage 06</span>
+                        <h4 class="pipeline-step-title">Ensemble Development</h4>
+                        <p class="pipeline-step-desc">
+                            Tri-architecture probability soft-blending: 50% LightGBM + 40% HistGradientBoosting + 10% CatBoost, combining complementary decision geometries.
+                        </p>
+                    </div>
+
+                    <div class="pipeline-step-card">
+                        <span class="pipeline-step-number">Stage 07</span>
+                        <h4 class="pipeline-step-title">Prediction Generation</h4>
+                        <p class="pipeline-step-desc">
+                            Bitwise deterministic argmax label extraction, validated across CPU platforms in ~6 seconds inference runtime without distribution collapse.
+                        </p>
+                    </div>
+
+                    <div class="pipeline-step-card">
+                        <span class="pipeline-step-number">Stage 08</span>
+                        <h4 class="pipeline-step-title">Automated Validation</h4>
+                        <p class="pipeline-step-desc">
+                            14-point schema validator (exact 7,000 rows, id,label header, no nulls, 8 valid string enums, realistic astrophysical class frequencies).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Forensic Cotrending Breakthrough Box -->
+                <div class="case-card" style="margin-top: 36px; border-color: rgba(56, 189, 248, 0.3); background: rgba(8, 14, 28, 0.85);">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--cosmic-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--cosmic-cyan); margin: 0;">
+                            The Astronomical Cotrending Breakthrough (Phase 5)
+                        </h3>
+                    </div>
+                    <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 14px;">
+                        Initial submissions achieved <strong>0.5915 internal CV</strong>, but scored <strong>0.4214</strong> on the public leaderboard. A forensic audit revealed the astronomical root cause: test sector stars experienced strong physical camera/CCD pointing jitter and thermal drift (Cam 4 CCD 2 common trend std = 0.002627, or 161% of a quiet star's flux variation). Without correction, models hallucinated <code style="color: var(--cosmic-cyan);">pulsating_star</code> (27.2% vs 10.9% train) and <code style="color: var(--cosmic-cyan);">instrument_glitch</code> (19.6% vs 9.5% train) for 46.8% of the test set.
+                    </p>
+                    <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7;">
+                        By computing and subtracting the instantaneous median flux and centroid vectors per <code style="color: var(--accent);">(camera, ccd)</code> hardware channel, Kolmogorov-Smirnov feature drift plummeted by <strong>60.3%</strong>, and out-of-detector cross-validation surged from <strong>0.5161 to 0.6336 Macro F1 (+22.8% relative improvement)</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Models & Experiments (Section E) -->
+        <section id="experiments" class="case-section" aria-labelledby="experimentsTitle">
+            <div class="container">
+                <div class="case-section-header">
+                    <span class="case-section-eyebrow">Section E</span>
+                    <h2 class="case-section-title" id="experimentsTitle">Models, Experiments & Candidates</h2>
+                    <p class="case-section-subtitle">
+                        Iterative experimental records documented transparently from initial baseline trees to the certified final tri-ensemble submission.
+                    </p>
+                </div>
+
+                <!-- Experiment Comparison Table -->
+                <div class="table-responsive">
+                    <table class="case-table">
+                        <thead>
+                            <tr>
+                                <th>Candidate / Experiment</th>
+                                <th>Model Architecture</th>
+                                <th>Feature Engineering</th>
+                                <th>Detector CV F1</th>
+                                <th>5-Fold OOF F1</th>
+                                <th>Holdout F1</th>
+                                <th>Artifact Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Phase 1 Single Best LGBM</td>
+                                <td>Single LightGBM (Leaf-wise, 63 lvs)</td>
+                                <td>85 Baseline Features</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>0.5914</td>
+                                <td>`submission.csv`</td>
+                            </tr>
+                            <tr>
+                                <td>Phase 2 5-Fold Tuned LGBM</td>
+                                <td>5-Fold Stratified LightGBM</td>
+                                <td>85 Baseline Features</td>
+                                <td>—</td>
+                                <td>0.5890</td>
+                                <td>—</td>
+                                <td>`submission_v2.csv`</td>
+                            </tr>
+                            <tr>
+                                <td>Phase 3 Dual 5-Fold Champion</td>
+                                <td>75% LightGBM + 25% HistGradBoost</td>
+                                <td>85 Baseline Features</td>
+                                <td>0.5161</td>
+                                <td>0.5915</td>
+                                <td>0.5956</td>
+                                <td>`submission_FINAL_PHASE4_BACKUP.csv`</td>
+                            </tr>
+                            <tr>
+                                <td>Phase 5 Cotrended Candidate 01</td>
+                                <td>75% LightGBM + 25% HistGradBoost</td>
+                                <td>88 Cotrended Features</td>
+                                <td>0.6322</td>
+                                <td>0.6438</td>
+                                <td>—</td>
+                                <td>`submission_PHASE5_candidate_01.csv`</td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td>
+                                    <strong>Phase 5 Tri-Ensemble (Approved Final)</strong>
+                                    <span class="tag-champion">OFFICIAL</span>
+                                </td>
+                                <td><strong>50% LGB + 40% HGB + 10% CB</strong></td>
+                                <td><strong>88 Cotrended Features</strong></td>
+                                <td><strong style="color: var(--cosmic-cyan);">0.6336</strong></td>
+                                <td><strong style="color: var(--accent);">0.6455</strong></td>
+                                <td>—</td>
+                                <td><strong>`submissions/submission_FINAL.csv`</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Phase 6/7 Diversity Grid</td>
+                                <td>45% LGB + 45% HGB + 10% CB</td>
+                                <td>88 Cotrended Features</td>
+                                <td>0.6338</td>
+                                <td>0.6461</td>
+                                <td>—</td>
+                                <td>Experimental (Within CV error &plusmn;0.0139)</td>
+                            </tr>
+                            <tr>
+                                <td>Phase 8 Power Scaled Ensemble</td>
+                                <td>Power Scaled (p=1.5 on 45/45/10)</td>
+                                <td>88 Cotrended Features</td>
+                                <td>0.6341</td>
+                                <td>0.6462</td>
+                                <td>—</td>
+                                <td>Experimental Artifact (`7597c8...`)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Why Ensemble Learning Was Explored -->
+                <div class="case-grid-3" style="margin-top: 24px;">
+                    <div class="case-card">
+                        <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">
+                            Leaf-Wise Trees (LightGBM)
+                        </h4>
+                        <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
+                            Best-first leaf-wise growth (63 leaves) captures sharp non-linear transit depth thresholds and complex higher-order Fourier harmonics that shallow trees miss.
+                        </p>
+                    </div>
+                    <div class="case-card">
+                        <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">
+                            Depth-Wise Trees (HistGradientBoosting)
+                        </h4>
+                        <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
+                            Depth-wise regularized growth (450 trees, max depth 8) ensures uniform branching, preventing single aberrant cadences from overpowering classification boundaries.
+                        </p>
+                    </div>
+                    <div class="case-card">
+                        <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">
+                            Oblivious Trees (CatBoost)
+                        </h4>
+                        <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
+                            Symmetric decision trees act as natural regularizers against overfitting on subtle astrometric centroid vectors and stellar temperature distributions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results & Evaluation (Section F) -->
+        <section id="results" class="case-section" aria-labelledby="resultsTitle">
+            <div class="container">
+                <div class="case-section-header">
+                    <span class="case-section-eyebrow">Section F</span>
+                    <h2 class="case-section-title" id="resultsTitle">Results & Transparent Model Evaluation</h2>
+                    <p class="case-section-subtitle">
+                        Rigorous metrics evaluated across all 18,000 out-of-fold stars and detector holdout splits, presented with scientific transparency.
+                    </p>
+                </div>
+
+                <!-- Class-Wise Performance Table -->
+                <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 14px; color: var(--text-primary);">
+                    Class-Wise Out-of-Fold Performance (18,000 Training Stars)
+                </h3>
+
+                <div class="table-responsive">
+                    <table class="case-table">
+                        <thead>
+                            <tr>
+                                <th>Target Class</th>
+                                <th>Precision</th>
+                                <th>Recall</th>
+                                <th>F1-Score</th>
+                                <th>Training Support</th>
+                                <th>Primary Signal Discriminator</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code style="color: var(--cosmic-cyan);">instrument_glitch</code></td>
+                                <td><strong>0.8159</strong></td>
+                                <td>0.6851</td>
+                                <td><strong>0.7448</strong></td>
+                                <td>1,721</td>
+                                <td>Single-cadence spikes, thruster momentum dumps</td>
+                            </tr>
+                            <tr>
+                                <td><code style="color: var(--cosmic-cyan);">eclipsing_binary</code></td>
+                                <td><strong>0.8463</strong></td>
+                                <td>0.6422</td>
+                                <td><strong>0.7303</strong></td>
+                                <td>2,247</td>
+                                <td>Deep geometric V-shaped eclipses; high SNR</td>
+                            </tr>
+                            <tr>
+                                <td><code style="color: var(--cosmic-cyan);">pulsating_star</code></td>
+                                <td><strong>0.7136</strong></td>
+                                <td>0.6214</td>
+                                <td><strong>0.6643</strong></td>
+                                <td>1,973</td>
+                                <td>Discrete Fourier harmonics; high power ratio</td>
+                            </tr>
+                            <tr>
+                                <td><code style="color: var(--cosmic-cyan);">quiet_star</code></td>
+                                <td>0.4785</td>
+                                <td><strong>0.7762</strong></td>
+                                <td><strong>0.5920</strong></td>
+                                <td>3,624</td>
+                                <td>Flat baseline; Gaussian photon noise</td>
+                            </tr>
+                            <tr>
+                                <td><code style="color: var(--cosmic-cyan);">background_binary</code></td>
+                                <td><strong>0.6396</strong></td>
+                                <td>0.4813</td>
+                                <td><strong>0.5493</strong></td>
+                                <td>1,604</td>
+                                <td>Flux dip correlated with centroid displacement</td>
+                            </tr>
+                            <tr>
+                                <td><code style="color: var(--cosmic-cyan);">flare_star</code></td>
+                                <td><strong>0.6478</strong></td>
+                                <td>0.4446</td>
+                                <td><strong>0.5273</strong></td>
+                                <td>1,804</td>
+                                <td>Impulsive rise, exponential decay asymmetry</td>
+                            </tr>
+                            <tr>
+                                <td><code style="color: var(--cosmic-cyan);">planet</code></td>
+                                <td><strong>0.5068</strong></td>
+                                <td>0.4345</td>
+                                <td><strong>0.4679</strong></td>
+                                <td>2,145</td>
+                                <td>Detrended U-shaped dip; stable centroid</td>
+                            </tr>
+                            <tr>
+                                <td><code style="color: var(--cosmic-cyan);">starspots</code></td>
+                                <td>0.4493</td>
+                                <td>0.4629</td>
+                                <td><strong>0.4560</strong></td>
+                                <td>2,882</td>
+                                <td>Quasi-periodic 10–25 day sinusoidal modulation</td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td><strong>Unweighted Macro Average</strong></td>
+                                <td><strong>0.6372</strong></td>
+                                <td><strong>0.5685</strong></td>
+                                <td><strong style="color: var(--accent);">0.5915 &rarr; 0.6455*</strong></td>
+                                <td><strong>18,000</strong></td>
+                                <td><strong>*Phase 5 Cotrended Tri-Ensemble Peak</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Transparent Metrics Evaluation Notice -->
+                <div class="case-alert">
+                    <svg class="case-alert-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <div class="case-alert-content">
+                        <div class="case-alert-title">Evaluation Transparency & Competition Context</div>
+                        <p>
+                            All metrics displayed are genuine, verified cross-validation scores computed across 18,000 ground-truth stars and holdout detector channels. The earlier un-cotrended Phase 4 submission achieved <strong>0.4214</strong> on the public leaderboard due to test detector thermal breathing and spacecraft pointing jitter. The promoted Phase 5 champion (<code style="color: var(--accent);">submission_FINAL.csv</code>) resolves this detector systematic drift, elevating out-of-detector cross-validation to <strong>0.6336 Macro F1 (+0.2122 jump)</strong>.
+                        </p>
+                        <p style="margin-top: 6px; font-size: 0.85rem; color: var(--text-muted);">
+                            Note: The final Phase 5 candidate artifact is packaged and ready for official upload. In adherence to strict scientific integrity, no public leaderboard rank or unverified official standing is claimed.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Learning Outcomes (Section G) -->
+        <section id="outcomes" class="case-section" aria-labelledby="outcomesTitle">
+            <div class="container">
+                <div class="case-section-header">
+                    <span class="case-section-eyebrow">Section G</span>
+                    <h2 class="case-section-title" id="outcomesTitle">Key Learning Outcomes & Competencies</h2>
+                    <p class="case-section-subtitle">
+                        Practical skills gained and demonstrated through high-stakes competitive machine learning and scientific time-series signal processing.
+                    </p>
+                </div>
+
+                <div class="case-grid-4">
+                    <div class="case-card">
+                        <div style="color: var(--accent); margin-bottom: 10px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                        </div>
+                        <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Time-Series Engineering</h4>
+                        <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
+                            Vectorized 88 features across 1,315-cadence observations: rolling median detrending, transit SNR, Fourier harmonics, and astrometry.
+                        </p>
+                    </div>
+
+                    <div class="case-card">
+                        <div style="color: var(--cosmic-cyan); margin-bottom: 10px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M4.93 4.93l4.24 4.24"></path><path d="M14.83 14.83l4.24 4.24"></path><path d="M14.83 9.17l4.24-4.24"></path><path d="M4.93 19.07l4.24-4.24"></path></svg>
+                        </div>
+                        <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Astro-Cotrending</h4>
+                        <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
+                            Diagnosed physical sensor distribution shift and eliminated common-mode spacecraft pointing jitter, reducing KS drift by 60.3%.
+                        </p>
+                    </div>
+
+                    <div class="case-card">
+                        <div style="color: var(--cosmic-indigo); margin-bottom: 10px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        </div>
+                        <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Multi-Architecture Ensembling</h4>
+                        <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
+                            Blended heterogeneous gradient-boosted trees (leaf-wise LightGBM, depth-wise HistGradientBoosting, symmetric CatBoost).
+                        </p>
+                    </div>
+
+                    <div class="case-card">
+                        <div style="color: #34d399; margin-bottom: 10px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Deterministic Validation</h4>
+                        <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
+                            Built automated 14-point schema validator guaranteeing bitwise reproducible predictions and 100% submission compliance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Visualizations Gallery (Section H) -->
+        <section id="gallery" class="case-section" aria-labelledby="galleryTitle">
+            <div class="container">
+                <div class="case-section-header">
+                    <span class="case-section-eyebrow">Section H</span>
+                    <h2 class="case-section-title" id="galleryTitle">Project Gallery & Diagnostic Visualizations</h2>
+                    <p class="case-section-subtitle">
+                        High-resolution analytical diagrams, cross-validation charts, and confusion matrices generated from the real competition models. Click any graphic to expand.
+                    </p>
+                </div>
+
+                <div class="case-gallery-grid">
+                    <!-- 1. System Architecture -->
+                    <div class="gallery-card" data-img="assets/images/planet-hunters/project_architecture.png" data-title="System Architecture Diagram" data-desc="Complete data pipeline from space telescope inputs to 88-feature extraction and 5-fold tri-ensemble prediction.">
+                        <div class="gallery-img-wrapper">
+                            <img src="assets/images/planet-hunters/project_architecture.png" alt="Planet Hunters System Architecture Flowchart" loading="lazy">
+                            <div class="gallery-overlay-hint">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                <span>Expand</span>
+                            </div>
+                        </div>
+                        <div class="gallery-caption">
+                            <h4 class="gallery-title">System Architecture Flowchart</h4>
+                            <p class="gallery-desc">End-to-end pipeline: normalized flux, astrometric vetting, feature engineering, and ensembling.</p>
+                        </div>
+                    </div>
+
+                    <!-- 2. Class-Wise F1 Scores -->
+                    <div class="gallery-card" data-img="assets/images/planet-hunters/classwise_f1.png" data-title="Class-Wise F1-Score Breakdown" data-desc="Macro F1 distribution across all 8 classes on 18,000 out-of-fold stars, showing strongest signal separation on glitches and binaries.">
+                        <div class="gallery-img-wrapper">
+                            <img src="assets/images/planet-hunters/classwise_f1.png" alt="Class-wise Macro F1-Score breakdown bar chart" loading="lazy">
+                            <div class="gallery-overlay-hint">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                <span>Expand</span>
+                            </div>
+                        </div>
+                        <div class="gallery-caption">
+                            <h4 class="gallery-title">Class-Wise F1 Performance</h4>
+                            <p class="gallery-desc">Evaluation across all 8 target phenomena on the full 18,000 out-of-fold stars.</p>
+                        </div>
+                    </div>
+
+                    <!-- 3. Confusion Matrix -->
+                    <div class="gallery-card" data-img="assets/images/planet-hunters/confusion_matrix.png" data-title="Normalized Confusion Matrix" data-desc="Confusion matrix showing decision boundaries and separating background binary false positives from true exoplanet transits.">
+                        <div class="gallery-img-wrapper">
+                            <img src="assets/images/planet-hunters/confusion_matrix.png" alt="Normalized confusion matrix heatmap" loading="lazy">
+                            <div class="gallery-overlay-hint">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                <span>Expand</span>
+                            </div>
+                        </div>
+                        <div class="gallery-caption">
+                            <h4 class="gallery-title">Multiclass Confusion Matrix</h4>
+                            <p class="gallery-desc">Normalized heatmap highlighting inter-class separation and false-positive vetting.</p>
+                        </div>
+                    </div>
+
+                    <!-- 4. Cross-Validation Stability -->
+                    <div class="gallery-card" data-img="assets/images/planet-hunters/cross_validation.png" data-title="Cross-Validation Fold Stability" data-desc="Stability comparison across all 5 stratified cross-validation folds demonstrating zero fold variance or leakage.">
+                        <div class="gallery-img-wrapper">
+                            <img src="assets/images/planet-hunters/cross_validation.png" alt="5-fold cross validation score stability plot" loading="lazy">
+                            <div class="gallery-overlay-hint">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                <span>Expand</span>
+                            </div>
+                        </div>
+                        <div class="gallery-caption">
+                            <h4 class="gallery-title">Cross-Validation Stability</h4>
+                            <p class="gallery-desc">5-Fold Stratified out-of-fold consistency across all model architectures.</p>
+                        </div>
+                    </div>
+
+                    <!-- 5. Feature Importance & Ablation -->
+                    <div class="gallery-card" data-img="assets/images/planet-hunters/feature_ablation.png" data-title="Feature Importance & Ablation" data-desc="Feature contribution ranking highlighting transit dip SNR, 2D centroid displacement, and cotrended flux statistics.">
+                        <div class="gallery-img-wrapper">
+                            <img src="assets/images/planet-hunters/feature_ablation.png" alt="Feature importance and ablation ranking" loading="lazy">
+                            <div class="gallery-overlay-hint">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                <span>Expand</span>
+                            </div>
+                        </div>
+                        <div class="gallery-caption">
+                            <h4 class="gallery-title">Feature Importance & Ablation</h4>
+                            <p class="gallery-desc">Relative predictive power of transit depth SNR, astrometric centroid drift, and Fourier metrics.</p>
+                        </div>
+                    </div>
+
+                    <!-- 6. Model Benchmark Progression -->
+                    <div class="gallery-card" data-img="assets/images/planet-hunters/model_performance.png" data-title="Model Benchmark Progression" data-desc="Macro F1 progression from baseline ExtraTrees (0.5234) and LightGBM (0.5914) to the cotrended Tri-Ensemble (0.6455).">
+                        <div class="gallery-img-wrapper">
+                            <img src="assets/images/planet-hunters/model_performance.png" alt="Model benchmark progression across phases" loading="lazy">
+                            <div class="gallery-overlay-hint">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                <span>Expand</span>
+                            </div>
+                        </div>
+                        <div class="gallery-caption">
+                            <h4 class="gallery-title">Model Benchmark Progression</h4>
+                            <p class="gallery-desc">Iterative Macro F1 improvements tracked across baseline models and ensemble iterations.</p>
+                        </div>
+                    </div>
+
+                    <!-- 7. Prediction Distribution -->
+                    <div class="gallery-card" data-img="assets/images/planet-hunters/prediction_distribution.png" data-title="Test Set Prediction Distribution" data-desc="Astrophysically sound test class distribution verifying elimination of artificial pulsator/glitch inflation.">
+                        <div class="gallery-img-wrapper">
+                            <img src="assets/images/planet-hunters/prediction_distribution.png" alt="Test set prediction class distribution" loading="lazy">
+                            <div class="gallery-overlay-hint">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                <span>Expand</span>
+                            </div>
+                        </div>
+                        <div class="gallery-caption">
+                            <h4 class="gallery-title">Test Set Prediction Distribution</h4>
+                            <p class="gallery-desc">Class breakdown across 7,000 unseen test stars conforming to stellar astrophysics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Submission Artifact Certification (Section I) -->
+        <section id="artifact" class="case-section" aria-labelledby="artifactTitle">
+            <div class="container">
+                <div class="case-section-header">
+                    <span class="case-section-eyebrow">Section I</span>
+                    <h2 class="case-section-title" id="artifactTitle">Final Submission Artifact Certification</h2>
+                    <p class="case-section-subtitle">
+                        Rigorous verification and bitwise parity certification for the competition submission candidate.
+                    </p>
+                </div>
+
+                <div class="case-card">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-bottom: 20px;">
+                        <div>
+                            <span class="case-pill case-pill-status">14 / 14 Automated Checks Passed</span>
+                            <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--text-primary); margin-top: 10px;">
+                                submissions/submission_FINAL.csv
+                            </h3>
+                            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 4px;">
+                                Promoted Phase 5 Tri-Architecture Ensemble (50% LightGBM + 40% HistGradientBoosting + 10% CatBoost)
+                            </p>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--cosmic-cyan); font-weight: 600;">7,000 Test Predictions</span>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">2 Columns: id,label</div>
+                        </div>
+                    </div>
+
+                    <!-- Verified SHA-256 Checksum Box -->
+                    <div class="checksum-box">
+                        <div class="checksum-header">
+                            <span class="checksum-label">Verified SHA-256 Bitwise Checksum</span>
+                            <button type="button" class="checksum-copy-btn" id="copyChecksumBtn" aria-label="Copy SHA-256 Checksum to Clipboard">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                <span id="copyChecksumText">Copy Checksum</span>
+                            </button>
+                        </div>
+                        <div class="checksum-hash" id="checksumValue">6a378eae06765a28a39d41a322f47ff25512a43a47827ff4576940282b74330e</div>
+                    </div>
+
+                    <!-- 14-Point Validator Summary -->
+                    <div class="case-grid-2" style="margin-top: 24px;">
+                        <div>
+                            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 10px;">
+                                Schema & Integrity Checks
+                            </h4>
+                            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.86rem; color: var(--text-secondary);">
+                                <li><span style="color: #34d399;">✔</span> Exactly 7,001 lines (1 header + 7,000 test observations)</li>
+                                <li><span style="color: #34d399;">✔</span> Header exactly matches expected format (<code style="color: var(--cosmic-cyan);">id,label</code>)</li>
+                                <li><span style="color: #34d399;">✔</span> Zero null, NaN, or empty values across all rows</li>
+                                <li><span style="color: #34d399;">✔</span> 100% test ID preservation with zero duplicates</li>
+                                <li><span style="color: #34d399;">✔</span> All predictions belong to the 8 valid string enums</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 10px;">
+                                Predicted Test Class Breakdown
+                            </h4>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; font-size: 0.84rem; font-family: var(--font-mono);">
+                                <div>quiet_star: <strong style="color: var(--text-primary);">1,912 (27.3%)</strong></div>
+                                <div>starspots: <strong style="color: var(--text-primary);">1,122 (16.0%)</strong></div>
+                                <div>eclipsing_binary: <strong style="color: var(--text-primary);">861 (12.3%)</strong></div>
+                                <div>planet: <strong style="color: var(--cosmic-cyan);">791 (11.3%)</strong></div>
+                                <div>pulsating_star: <strong style="color: var(--text-primary);">784 (11.2%)</strong></div>
+                                <div>instrument_glitch: <strong style="color: var(--text-primary);">777 (11.1%)</strong></div>
+                                <div>flare_star: <strong style="color: var(--text-primary);">392 (5.6%)</strong></div>
+                                <div>background_binary: <strong style="color: var(--text-primary);">361 (5.2%)</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scientific Intelligence Dashboard (Section J) -->
+        <section class="case-section" aria-labelledby="dashboardTitle">
+            <div class="container">
+                <div class="case-section-header">
+                    <span class="case-section-eyebrow">Interactive Telemetry</span>
+                    <h2 class="case-section-title" id="dashboardTitle">Scientific Intelligence Mission Control</h2>
+                    <p class="case-section-subtitle">
+                        An interactive Streamlit + Plotly diagnostic dashboard featuring 8 mission telemetry stations, lightcurve inspection, and live submission verification.
+                    </p>
+                </div>
+
+                <div class="case-grid-4">
+                    <div class="case-card" style="padding: 20px;">
+                        <span class="telemetry-label">Station 01</span>
+                        <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin: 6px 0;">Mission Overview</h4>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">Telemetry KPI cards, dataset dimensions, target class descriptions, and metric definitions.</p>
+                    </div>
+                    <div class="case-card" style="padding: 20px;">
+                        <span class="telemetry-label">Station 02</span>
+                        <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin: 6px 0;">Performance Intelligence</h4>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">Interactive Plotly benchmark progression, 5-fold cross-validation stability, and ROC/PR distributions.</p>
+                    </div>
+                    <div class="case-card" style="padding: 20px;">
+                        <span class="telemetry-label">Station 03</span>
+                        <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin: 6px 0;">Classification Taxa</h4>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">Interactive class distribution donut/bar charts and astrophysical taxonomic cards.</p>
+                    </div>
+                    <div class="case-card" style="padding: 20px;">
+                        <span class="telemetry-label">Station 04</span>
+                        <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin: 6px 0;">Model Architecture</h4>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">Visual flowcharts detailing tree hyperparameters and probability soft-blending mathematics.</p>
+                    </div>
+                    <div class="case-card" style="padding: 20px;">
+                        <span class="telemetry-label">Station 05</span>
+                        <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin: 6px 0;">Scientific Features</h4>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">Deep dive into rolling median detrending, BLS search, centroid vetting, and simulated light curves.</p>
+                    </div>
+                    <div class="case-card" style="padding: 20px;">
+                        <span class="telemetry-label">Station 06</span>
+                        <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin: 6px 0;">Verification Center</h4>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">Live execution of the 14-point schema and physics validator directly from the browser UI.</p>
+                    </div>
+                    <div class="case-card" style="padding: 20px;">
+                        <span class="telemetry-label">Station 07</span>
+                        <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin: 6px 0;">Prediction Explorer</h4>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">Real-time star ID search, class filters, multi-column sorting, and filtered subset CSV export.</p>
+                    </div>
+                    <div class="case-card" style="padding: 20px;">
+                        <span class="telemetry-label">Station 08</span>
+                        <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin: 6px 0;">Documentation Hub</h4>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">In-app access to architecture guides, interview preparation, and technical documentation.</p>
+                    </div>
+                </div>
+
+                <!-- Launch instructions box -->
+                <div class="case-card" style="margin-top: 24px; font-family: var(--font-mono); font-size: 0.84rem; background: rgba(5, 6, 11, 0.8);">
+                    <span style="color: var(--text-muted); display: block; margin-bottom: 6px;">// Local CLI launcher from repository root:</span>
+                    <span style="color: var(--accent);">$</span> streamlit run dashboard/app.py &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: var(--text-muted);"># Or execute .\START_DASHBOARD.ps1 on Windows</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Case Study Footer -->
+    <footer class="footer" style="margin-top: 0; border-top: 1px solid var(--cosmic-border); background: var(--cosmic-navy);">
+        <div class="container footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="footer-logo">PK</span>
+                    <div>
+                        <h3 class="footer-name">Priyanshu Karan</h3>
+                        <p class="footer-role">Computer Science Engineering Student • KIIT</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link">Portfolio Home</a>
+                    <a href="index.html#projects" class="footer-link">All Projects</a>
+                    <a href="index.html#resume" class="footer-link">Resume</a>
+                    <a href="index.html#contact" class="footer-link">Get In Touch</a>
+                    <a href="https://github.com/karan-rajput872/Planet-Hunters-Round1" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub Repository</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2026 Priyanshu Karan. All rights reserved. Planet Hunters ML Challenge — Hack4Hack 2026.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Lightbox Modal -->
+    <div class="case-lightbox" id="caseLightbox" role="dialog" aria-modal="true" aria-label="Analytical Image Lightbox">
+        <div class="case-lightbox-content">
+            <button type="button" class="case-lightbox-close" id="lightboxCloseBtn" aria-label="Close image lightbox">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <img src="" alt="" class="case-lightbox-img" id="lightboxImg">
+            <div class="case-lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- Case Study JavaScript Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lightbox functionality
+            const lightbox = document.getElementById('caseLightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+            const lightboxClose = document.getElementById('lightboxCloseBtn');
+
+            const openLightbox = (src, title, desc) => {
+                if (!lightbox || !lightboxImg) return;
+                lightboxImg.src = src;
+                lightboxImg.alt = title;
+                lightboxCaption.innerHTML = `<strong>${title}</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">${desc}</span>`;
+                lightbox.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeLightbox = () => {
+                if (!lightbox) return;
+                lightbox.classList.remove('open');
+                document.body.style.overflow = '';
+            };
+
+            document.querySelectorAll('.gallery-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const src = card.getAttribute('data-img');
+                    const title = card.getAttribute('data-title') || '';
+                    const desc = card.getAttribute('data-desc') || '';
+                    if (src) openLightbox(src, title, desc);
+                });
+            });
+
+            if (lightboxClose) {
+                lightboxClose.addEventListener('click', closeLightbox);
+            }
+
+            if (lightbox) {
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) closeLightbox();
+                });
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox && lightbox.classList.contains('open')) {
+                    closeLightbox();
+                }
+            });
+
+            // Copy Checksum button
+            const copyBtn = document.getElementById('copyChecksumBtn');
+            const copyText = document.getElementById('copyChecksumText');
+            const checksumValue = document.getElementById('checksumValue');
+
+            if (copyBtn && checksumValue) {
+                copyBtn.addEventListener('click', () => {
+                    const hash = checksumValue.textContent.trim();
+                    navigator.clipboard.writeText(hash).then(() => {
+                        if (copyText) copyText.textContent = 'Copied to Clipboard!';
+                        copyBtn.style.borderColor = 'var(--accent)';
+                        setTimeout(() => {
+                            if (copyText) copyText.textContent = 'Copy Checksum';
+                            copyBtn.style.borderColor = '';
+                        }, 2500);
+                    }).catch(err => {
+                        console.error('Failed to copy checksum: ', err);
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

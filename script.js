@@ -59,8 +59,8 @@ const portfolioData = {
         {
             id: "projects",
             label: "PROJECTS BUILT",
-            value: 5,
-            displayValue: "5",
+            value: 6,
+            displayValue: "6",
             description: "Verified academic and hackathon projects"
         },
         {
@@ -230,6 +230,61 @@ const portfolioData = {
             liveButtonText: "Live Demo",
             githubButtonText: "GitHub Repository",
             image: "",
+            featured: true
+        },
+        {
+            title: "Planet Hunters: Find New Worlds in Starlight",
+            subtitle: "“Exploring Stellar Signals Through Machine Learning”",
+            category: "Machine Learning / AI",
+            context: "Hack4Hack 2026 — ML Challenge",
+            status: "Competition Project — Hack4Hack 2026",
+            statusType: "completed",
+            description: "An astronomy-focused Machine Learning project developed for Hack4Hack 2026, exploring stellar observation data through feature engineering, model experimentation, and ensemble learning to classify potential planetary signals.",
+            overview: "Planet Hunters is an end-to-end Machine Learning solution developed for Hack4Hack 2026 that classifies space telescope stellar light curves into eight astrophysical and instrumental categories. Operating on 1,315-cadence time-series across 25,000 stars, the pipeline implements astronomical cotrending to eliminate camera/CCD systematic drift, extracts 88 domain-informed features, and trains a 5-fold tri-architecture ensemble (LightGBM, HistGradientBoosting, and CatBoost) achieving 0.6455 Out-of-Fold Macro F1 and 0.6336 Out-of-Detector Generalization with 100% bitwise-reproducible inference.",
+            role: "Machine Learning Engineer / Competition Participant",
+            roleDetail: "Designed and engineered the full competition pipeline: extracted 88 domain-informed statistical, Fourier, and astrometric centroid features; implemented Camera/CCD astro-cotrending that dropped feature drift by 60.3% and boosted detector generalization by +22.8%; trained multi-architecture gradient boosted models (leaf-wise LightGBM, depth-wise HistGradientBoosting, CatBoost); evaluated candidates through leak-free 5-fold stratified cross-validation; built an interactive Streamlit + Plotly mission control dashboard; and engineered an automated 14-point schema validator guaranteeing deterministic, bitwise-reproducible test predictions.",
+            technologies: [
+                "Python",
+                "Machine Learning",
+                "LightGBM",
+                "HistGradientBoosting",
+                "CatBoost",
+                "Feature Engineering",
+                "Ensemble Learning",
+                "Data Analysis",
+                "Model Evaluation"
+            ],
+            keyFeatures: [
+                "Astro-Cotrending: Subtracted instantaneous median flux and centroid vectors per (camera, ccd) channel, eliminating thermal breathing and spacecraft pointing jitter.",
+                "Domain-Informed Feature Engineering: Extracted 88 features including 1-day rolling median detrending, transit dip SNR, 2D centroid displacement in/out-of-dip, flare rise-decay asymmetry, and Fourier harmonic energy ratios.",
+                "Tri-Architecture Ensemble: Blended leaf-wise LightGBM (50%), depth-wise regularized HistGradientBoosting (40%), and CatBoost oblivious trees (10%).",
+                "Dual Cross-Validation Rigor: Evaluated using both 5-Fold Stratified OOF (0.6455 Macro F1) and Stratified Detector-Channel CV (0.6336 Macro F1).",
+                "Automated Schema Validator: 14 automated schema and physics checks validating formatting, bounds, non-null values, and astronomical class distribution.",
+                "Interactive Mission Control Dashboard: Streamlit + Plotly telemetry suite with 8 diagnostic stations, lightcurve inspection, and live submission verification."
+            ],
+            capabilities: [
+                "88 Vectorized Time-Series & Centroid Features",
+                "Camera/CCD Astro-Cotrending to Eliminate Systematic Detector Drift",
+                "Tri-Architecture Gradient Boosted Ensemble (50% LGB + 40% HGB + 10% CB)",
+                "Stratified Detector-Channel Cross-Validation (0.6336 Generalization F1)",
+                "5-Fold Stratified Out-of-Fold Evaluation (0.6455 Macro F1)",
+                "Deterministic Inference & Bitwise Reproducible Outputs",
+                "Automated 14-Point Competition Submission Schema Validator"
+            ],
+            metrics: [
+                "0.6455 Out-of-Fold Macro F1 across 18,000 training stars",
+                "0.6336 Detector-Channel Generalization F1 (holding out unseen hardware)",
+                "60.3% Reduction in Kolmogorov-Smirnov train-to-test feature distribution drift",
+                "14 / 14 Automated Submission Schema & Physics Checks Passed",
+                "7,000 Deterministic Test Sample Predictions (SHA-256 Verified)"
+            ],
+            teamContext: "Independent competition entry for Hack4Hack 2026 ML Challenge. All experiment records, cross-validation artifacts, telemetry dashboard, and submission files preserved in repository.",
+            githubUrl: "https://github.com/karan-rajput872/Planet-Hunters-Round1",
+            githubButtonText: "GitHub Repository",
+            detailUrl: "planet-hunters.html",
+            detailButtonText: "View Project",
+            liveUrl: "",
+            image: "assets/images/planet-hunters/project_cover.png",
             featured: true
         },
         {
@@ -657,7 +712,7 @@ function renderStats() {
     const container = document.getElementById('statsGrid');
     if (!container) return;
 
-    const projectCount = (portfolioData.projects || []).length || 5;
+    const projectCount = (portfolioData.projects || []).length || 6;
     const certCount = (portfolioData.certifications || []).length || 14;
     const liveDeployments = (portfolioData.projects || []).filter(p => p.liveUrl && p.liveUrl.trim() !== '' && p.liveUrl !== '#').length || 2;
     const repoCount = 5;
@@ -1024,6 +1079,17 @@ function renderProjects() {
 
         // Action buttons handling (only rendered when real URLs exist)
         const buttons = [];
+
+        // Dedicated Project Details / Case Study Link
+        if (project.detailUrl && project.detailUrl.trim() !== '') {
+            const detailLabel = project.detailButtonText || 'View Project';
+            buttons.push(`
+                <a href="${project.detailUrl}" class="btn btn-sm btn-primary" aria-label="${detailLabel} for ${escapeHTML(project.title)}">
+                    <span>${detailLabel}</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+                </a>
+            `);
+        }
 
         if (project.liveUrl && project.liveUrl.trim() !== '') {
             const liveLabel = project.liveButtonText || 'Live Demo';
@@ -1797,8 +1863,8 @@ function renderResume() {
         "Industrial 4.0 (IND)"
     ];
 
-    // 3. Top Projects (CLICKBAIT, Portfolio, Simple Calculator)
-    const resumeProjects = (projects || []).slice(0, 3);
+    // 3. Top Projects (FindIt, Planet Hunters, CLICKBAIT, Portfolio)
+    const resumeProjects = (projects || []).slice(0, 4);
     const projectsHtml = resumeProjects.map(proj => {
         const isClickbait = proj.title.toUpperCase().includes('CLICKBAIT');
         const bullets = [];
@@ -1809,6 +1875,9 @@ function renderResume() {
 
         if (proj.title.toLowerCase().includes('findit')) {
             bullets.push("Engineered full-stack Smart Lost & Found platform with FastAPI backend, React/TypeScript frontend, AI-powered semantic matching, secure ownership claims, and Cloudinary media management.");
+        } else if (proj.title.toLowerCase().includes('planet hunter')) {
+            bullets.push("Developed an astronomy-focused multiclass Machine Learning solution for Hack4Hack 2026, experimenting with feature engineering, gradient-boosting models, and ensemble techniques to classify stellar observation data.");
+            bullets.push("Engineered 88 domain-informed features with Camera/CCD cotrending; deployed a 5-fold tri-architecture ensemble (LightGBM, HistGradientBoosting, CatBoost) achieving 0.6455 OOF Macro F1 and 0.6336 detector-channel generalization across 8 classes.");
         } else if (isClickbait) {
             bullets.push("Contributed to backend verification logic (Ed25519 signing/verification, SHA-256 hashing, public-key verification, expiry/revocation checking, and tamper detection) for digital communications.");
         } else if (proj.isCurrentSite) {
@@ -1823,7 +1892,7 @@ function renderResume() {
             ? `<div class="resume-tech-line"><strong>Technologies:</strong> ${proj.technologies.join(', ')}</div>`
             : '';
 
-        const statusYear = proj.status === 'In Development' || proj.status === 'In Progress' ? '2026' : (proj.status || '');
+        const statusYear = proj.title.toLowerCase().includes('planet hunter') ? '2026' : (proj.status === 'In Development' || proj.status === 'In Progress' ? '2026' : (proj.status || ''));
 
         return `
             <div class="resume-entry">
@@ -2450,6 +2519,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             ` : '';
 
+            let metricsHtml = '';
+            if (project.metrics && project.metrics.length > 0) {
+                metricsHtml = `
+                    <div class="project-modal-section">
+                        <h4 class="project-modal-section-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                            Key Verified Metrics & Validation
+                        </h4>
+                        <ul class="project-modal-list">
+                            ${project.metrics.map(m => `<li>${escapeHTML(m)}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
             projectModalBody.innerHTML = `
                 <div class="project-modal-body">
                     ${subtitleHtml}
@@ -2461,6 +2545,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${overviewHtml}
                     ${keyFeaturesHtml}
                     ${capabilitiesHtml}
+                    ${metricsHtml}
                     ${teamContextHtml}
                     ${roleHtml}
                     ${techHtml}
@@ -2470,6 +2555,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (projectModalFooter) {
             const footerBtns = [];
+
+            if (project.detailUrl && project.detailUrl.trim() !== '') {
+                const detailModalLabel = project.detailButtonText ? `View Full Project` : 'View Case Study';
+                footerBtns.push(`
+                    <a href="${project.detailUrl}" class="btn btn-primary btn-sm" aria-label="${detailModalLabel} for ${escapeHTML(project.title)}">
+                        <span>${detailModalLabel}</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+                    </a>
+                `);
+            }
 
             if (project.liveUrl && project.liveUrl.trim() !== '') {
                 const liveModalLabel = project.liveButtonText || 'Live Demo';

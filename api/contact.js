@@ -1,8 +1,8 @@
 // api/contact.js
 // Vercel Serverless Function & Node.js HTTP compatible endpoint for Portfolio Contact Form
 
-const RECIPIENT_EMAIL = process.env.CONTACT_RECIPIENT_EMAIL || 'priyanshukaran25@gmail.com';
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'Portfolio Contact <onboarding@resend.dev>';
+const RECIPIENT_EMAIL = (process.env.CONTACT_RECIPIENT_EMAIL || 'priyanshukaran25@gmail.com').trim();
+const FROM_EMAIL = (process.env.RESEND_FROM_EMAIL || 'Portfolio Contact <onboarding@resend.dev>').trim();
 
 // In-memory rate limiting map (IP -> timestamps array)
 const rateLimitMap = new Map();
@@ -85,9 +85,21 @@ module.exports = async function handler(req, res) {
             }
         }
 
+        // Fallback for runtimes where req.body stream has not been read by framework
+        if (!body || typeof body !== 'object') {
+            body = await new Promise((resolve) => {
+                let raw = '';
+                req.on('data', chunk => { raw += chunk; });
+                req.on('end', () => {
+                    try { resolve(raw ? JSON.parse(raw) : null); } catch (e) { resolve(null); }
+                });
+                req.on('error', () => resolve(null));
+            });
+        }
+
         if (!body || typeof body !== 'object') {
             res.writeHead(400, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ error: 'Request body must be a JSON object.' }));
+            res.end(JSON.stringify({ error: 'Request body must be a valid JSON object.' }));
             return;
         }
 
@@ -135,8 +147,8 @@ module.exports = async function handler(req, res) {
             return;
         }
 
-        // Verify Resend API Key
-        const apiKey = process.env.RESEND_API_KEY;
+        // Verify Resend API Key (trimmed to prevent accidental whitespace/newline issues)
+        const apiKey = (process.env.RESEND_API_KEY || '').trim();
         if (!apiKey) {
             res.writeHead(503, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({
@@ -246,9 +258,13 @@ module.exports = async function handler(req, res) {
 
         if (!resendRes.ok) {
             console.error('Resend delivery error:', resendJson);
+            let errorMessage = (resendJson && resendJson.message) || 'Failed to deliver message via email provider.';
+            if (resendRes.status === 403 && errorMessage.toLowerCase().includes('testing emails')) {
+                errorMessage = `${errorMessage} (Tip: With onboarding@resend.dev, messages can only be sent to the email address registered with your Resend account. To deliver to other emails, verify a domain in the Resend dashboard).`;
+            }
             res.writeHead(resendRes.status || 500, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({
-                error: (resendJson && resendJson.message) || 'Failed to deliver message via email provider.'
+                error: errorMessage
             }));
             return;
         }
