@@ -1240,25 +1240,39 @@ function renderCertifications() {
         ` : '';
 
         // Action button logic:
-        // 1. "View Certificate": opens the modal viewer displaying the actual certificate
-        // 2. "Verify Credential": opens the verified external credential link if available (e.g. OPSWAT)
-        // 3. Fallback: if no certificateFile exists, displays "Certificate file unavailable"
+        // 1. "View Certificate": direct link opening the actual PDF or image in a new tab (target="_blank")
+        // 2. "Preview": opens the interactive modal viewer
+        // 3. "Download": downloads the actual certificate file directly
+        // 4. "Verify Credential": opens the verified external credential link if available (e.g. OPSWAT)
         const actionBtns = [];
 
         if (cert.certificateFile && cert.certificateFile.trim() !== '') {
+            const encodedFile = encodeURI(cert.certificateFile);
             actionBtns.push(`
-                <button class="btn btn-outline btn-sm cert-btn" data-cert-index="${index}" aria-label="View certificate: ${cert.name}">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <a href="${encodedFile}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm cert-view-link" aria-label="View certificate in new tab: ${escapeHTML(cert.name)}">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     <span>View Certificate</span>
+                </a>
+            `);
+            actionBtns.push(`
+                <button class="btn btn-outline btn-sm cert-btn" data-cert-index="${index}" aria-label="Preview certificate: ${escapeHTML(cert.name)}">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    <span>Preview</span>
                 </button>
+            `);
+            actionBtns.push(`
+                <a href="${encodedFile}" download class="btn btn-outline btn-sm cert-download-link" aria-label="Download certificate: ${escapeHTML(cert.name)}">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span>Download</span>
+                </a>
             `);
         }
 
         if (cert.credentialUrl && cert.credentialUrl.trim() !== '') {
             actionBtns.push(`
-                <a href="${cert.credentialUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm cert-verify-btn" aria-label="Verify credential: ${cert.name}">
-                    <span>Verify Credential</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <a href="${cert.credentialUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm cert-verify-btn" aria-label="Verify credential: ${escapeHTML(cert.name)}">
+                    <span>Verify</span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 </a>
             `);
         }
@@ -2244,16 +2258,30 @@ document.addEventListener('DOMContentLoaded', () => {
         if (modalCertViewer) {
             if (cert.certificateFile && cert.certificateFile.trim() !== '') {
                 const isImage = /\.(png|jpe?g|webp)$/i.test(cert.certificateFile);
+                const encodedFile = encodeURI(cert.certificateFile);
                 if (isImage) {
                     modalCertViewer.innerHTML = `
                         <div class="modal-img-container">
-                            <img src="${encodeURI(cert.certificateFile)}" alt="Official Certificate: ${cert.name} - ${cert.organization}" class="modal-cert-img" loading="eager" />
+                            <img src="${encodedFile}" alt="Official Certificate: ${escapeHTML(cert.name)} - ${escapeHTML(cert.organization || '')}" class="modal-cert-img" loading="eager" />
                         </div>
                     `;
                 } else {
                     modalCertViewer.innerHTML = `
                         <div class="modal-pdf-container">
-                            <iframe src="${encodeURI(cert.certificateFile)}#toolbar=0" class="modal-cert-pdf" title="Official Certificate: ${cert.name}"></iframe>
+                            <iframe src="${encodedFile}#toolbar=0" class="modal-cert-pdf" title="Official Certificate: ${escapeHTML(cert.name)}"></iframe>
+                            <div class="modal-pdf-fallback-bar">
+                                <span class="modal-pdf-fallback-text">Official document viewer</span>
+                                <div class="modal-pdf-fallback-links">
+                                    <a href="${encodedFile}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-xs" aria-label="Open PDF in new tab">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                        <span>Open in New Tab</span>
+                                    </a>
+                                    <a href="${encodedFile}" download class="btn btn-outline btn-xs" aria-label="Download PDF">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                        <span>Download</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     `;
                 }
@@ -2302,17 +2330,24 @@ document.addEventListener('DOMContentLoaded', () => {
             if (cert.certificateFile && cert.certificateFile.trim() !== '') {
                 const isImage = /\.(png|jpe?g|webp)$/i.test(cert.certificateFile);
                 const btnLabel = isImage ? 'Open Full Image' : 'Open Full PDF';
+                const encodedFile = encodeURI(cert.certificateFile);
                 footerBtns.push(`
-                    <a href="${encodeURI(cert.certificateFile)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" aria-label="${btnLabel}: ${cert.name}">
+                    <a href="${encodedFile}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" aria-label="${btnLabel}: ${escapeHTML(cert.name)}">
                         <span>${btnLabel}</span>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                `);
+                footerBtns.push(`
+                    <a href="${encodedFile}" download class="btn btn-outline btn-sm" aria-label="Download Certificate: ${escapeHTML(cert.name)}">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Download Certificate</span>
                     </a>
                 `);
             }
 
             if (cert.credentialUrl && cert.credentialUrl.trim() !== '') {
                 footerBtns.push(`
-                    <a href="${cert.credentialUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm cert-verify-btn" aria-label="Verify credential on ${cert.organization}">
+                    <a href="${cert.credentialUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm cert-verify-btn" aria-label="Verify credential on ${escapeHTML(cert.organization || 'issuing body')}">
                         <span>Verify Credential</span>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     </a>
