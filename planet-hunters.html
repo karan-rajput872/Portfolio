@@ -902,6 +902,10 @@
                         <span>Explore Case Study</span>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
                     </a>
+                    <a id="heroLiveBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="display: none;" aria-label="Launch live deployed web application in new tab">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        <span>Live Demo</span>
+                    </a>
                     <a href="https://github.com/karan-rajput872/Planet-Hunters-Round1" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Open verified GitHub repository in new tab">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                         <span>GitHub Repository</span>
@@ -1723,17 +1727,63 @@
             </div>
         </section>
 
-        <!-- Scientific Intelligence Dashboard (Section J) -->
-        <section class="case-section" aria-labelledby="dashboardTitle">
+        <!-- Dual Telemetry Platform: Next.js 16 Web App & Streamlit Mission Control (Section J) -->
+        <section id="platform" class="case-section" aria-labelledby="dashboardTitle">
             <div class="container">
                 <div class="case-section-header">
-                    <span class="case-section-eyebrow">Interactive Telemetry</span>
-                    <h2 class="case-section-title" id="dashboardTitle">Scientific Intelligence Mission Control</h2>
+                    <span class="case-section-eyebrow">Dual Telemetry Platform</span>
+                    <h2 class="case-section-title" id="dashboardTitle">Next.js 16 Web Application & Streamlit Mission Control</h2>
                     <p class="case-section-subtitle">
-                        An interactive Streamlit + Plotly diagnostic dashboard featuring 8 mission telemetry stations, lightcurve inspection, and live submission verification.
+                        An enterprise-grade dual-application frontend architecture: a modern Next.js 16 App Router web application designed for Vercel, paired with an interactive Python Streamlit mission control platform.
                     </p>
                 </div>
 
+                <!-- Dual Platform Overview Grid -->
+                <div class="case-grid-2" style="margin-bottom: 32px;">
+                    <!-- Next.js Web Application Card -->
+                    <div class="case-card" style="border-top: 3px solid var(--cosmic-cyan);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                            <span class="case-pill case-pill-category" style="font-size: 0.72rem;">Next.js 16 • React 19 • TypeScript</span>
+                            <span class="case-pill case-pill-status" style="font-size: 0.72rem;">Vercel Ready</span>
+                        </div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">
+                            Modern Scientific Web Application
+                        </h3>
+                        <p style="font-size: 0.90rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 14px;">
+                            Engineered inside the <code style="color: var(--cosmic-cyan);">web/</code> directory using the Next.js 16 App Router, Tailwind CSS, Lucide icons, and Recharts. Built for ultra-fast, zero-runtime-cost serverless rendering on Vercel without requiring a Python runtime.
+                        </p>
+                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px;">
+                            <li style="display: flex; gap: 8px;"><span style="color: var(--cosmic-cyan);">✔</span> <strong>Interactive Prediction Explorer:</strong> Dynamic pagination, search by Star ID, and real-time class filtering across all 7,000 test predictions.</li>
+                            <li style="display: flex; gap: 8px;"><span style="color: var(--cosmic-cyan);">✔</span> <strong>Responsive Telemetry Dashboards:</strong> Typed metric cards, multiclass taxonomy breakdowns, and Recharts interactive visualizations.</li>
+                            <li style="display: flex; gap: 8px;"><span style="color: var(--cosmic-cyan);">✔</span> <strong>Decoupled Architecture:</strong> Strictly isolated from the Python environment, allowing independent Vercel deployments.</li>
+                        </ul>
+                        <a id="platformNextJsBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" style="display: none; width: fit-content; gap: 6px;" aria-label="Launch live deployed web application in new tab">
+                            <span>Launch Live Web App</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </div>
+
+                    <!-- Streamlit Mission Control Card -->
+                    <div class="case-card" style="border-top: 3px solid var(--accent);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                            <span class="case-pill case-pill-competition" style="font-size: 0.72rem;">Python • Streamlit • Plotly</span>
+                            <span class="case-pill case-pill-status" style="font-size: 0.72rem;">Telemetry Suite</span>
+                        </div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">
+                            Mission Control Telemetry Dashboard
+                        </h3>
+                        <p style="font-size: 0.90rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 14px;">
+                            A Python-native Streamlit diagnostic suite (<code style="color: var(--accent);">dashboard/app.py</code>) styled in a refined warm creamy theme, featuring 8 diagnostic stations, Plotly interactive charts, and live decoupled submission verification.
+                        </p>
+                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px;">
+                            <li style="display: flex; gap: 8px;"><span style="color: var(--accent);">✔</span> <strong>8 Diagnostic Stations:</strong> Comprehensive telemetry covering performance, taxonomy, model architecture, feature engineering, and verification.</li>
+                            <li style="display: flex; gap: 8px;"><span style="color: var(--accent);">✔</span> <strong>14-Point Schema & Physics Validator:</strong> Two-stage audit executing 12 artifact checks and 2 target cross-matching checks directly in-browser.</li>
+                            <li style="display: flex; gap: 8px;"><span style="color: var(--accent);">✔</span> <strong>Local & Cloud Ready:</strong> Launches via CLI or PowerShell launcher (<code style="color: var(--accent);">START_DASHBOARD.ps1</code>) on port 8501/8502.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 8 Diagnostic Stations Grid -->
                 <div class="case-grid-4">
                     <div class="case-card" style="padding: 20px;">
                         <span class="telemetry-label">Station 01</span>
@@ -1777,10 +1827,11 @@
                     </div>
                 </div>
 
-                <!-- Launch instructions box -->
-                <div class="case-card" style="margin-top: 24px; font-family: var(--font-mono); font-size: 0.84rem; background: rgba(5, 6, 11, 0.8);">
-                    <span style="color: var(--text-muted); display: block; margin-bottom: 6px;">// Local CLI launcher from repository root:</span>
-                    <span style="color: var(--accent);">$</span> streamlit run dashboard/app.py &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: var(--text-muted);"># Or execute .\START_DASHBOARD.ps1 on Windows</span>
+                <!-- Launch & Deployment Info Box -->
+                <div class="case-card" style="margin-top: 24px; font-family: var(--font-mono); font-size: 0.84rem; background: rgba(5, 6, 11, 0.8); line-height: 1.7;">
+                    <div style="color: var(--text-muted); margin-bottom: 6px;">// Deployment & Execution Commands:</div>
+                    <div><span style="color: var(--cosmic-cyan);">Next.js Web App:</span> &nbsp;<code>cd web &amp;&amp; npm run dev</code> &nbsp;&nbsp;<span style="color: var(--text-muted);"># Runs on http://localhost:3000 (Vercel deployment from /web)</span></div>
+                    <div><span style="color: var(--accent);">Streamlit Suite:</span> &nbsp;<code>streamlit run dashboard/app.py</code> &nbsp;&nbsp;<span style="color: var(--text-muted);"># Runs on http://localhost:8501 (Or execute .\START_DASHBOARD.ps1)</span></div>
                 </div>
             </div>
         </section>
@@ -1891,6 +1942,20 @@
                         console.error('Failed to copy checksum: ', err);
                     });
                 });
+            }
+            // Configurable Live Demo link for Planet Hunters deployment
+            const PLANET_HUNTERS_LIVE_URL = "";
+            const liveBtn = document.getElementById('heroLiveBtn');
+            const platformNextJsBtn = document.getElementById('platformNextJsBtn');
+            if (PLANET_HUNTERS_LIVE_URL && PLANET_HUNTERS_LIVE_URL.trim() !== '') {
+                if (liveBtn) {
+                    liveBtn.href = PLANET_HUNTERS_LIVE_URL;
+                    liveBtn.style.display = 'inline-flex';
+                }
+                if (platformNextJsBtn) {
+                    platformNextJsBtn.href = PLANET_HUNTERS_LIVE_URL;
+                    platformNextJsBtn.style.display = 'inline-flex';
+                }
             }
         });
     </script>

@@ -236,13 +236,13 @@ const portfolioData = {
             title: "Planet Hunters: Find New Worlds in Starlight",
             subtitle: "“Exploring Stellar Signals Through Machine Learning”",
             category: "Machine Learning / AI",
-            context: "Hack4Hack 2026",
-            status: "Competition Project",
+            context: "Hack4Hack 2026 — Round 1 Completed",
+            status: "Round 1 Completed",
             statusType: "completed",
-            description: "An astronomy-focused Machine Learning project developed for Hack4Hack 2026, exploring stellar observation data through feature engineering, model experimentation, and ensemble learning to classify potential planetary signals.",
-            overview: "Planet Hunters is an end-to-end Machine Learning solution developed for Hack4Hack 2026 that classifies space telescope stellar light curves into eight astrophysical and instrumental categories. Operating on 1,315-cadence time-series across 25,000 stars, the pipeline implements astronomical cotrending to eliminate camera/CCD systematic drift, extracts 88 domain-informed features, and trains a 5-fold tri-architecture ensemble (LightGBM, HistGradientBoosting, and CatBoost) achieving 0.6455 Out-of-Fold Macro F1 and 0.6336 Out-of-Detector Generalization with 100% bitwise-reproducible inference.",
-            role: "Machine Learning Engineer / Competition Participant",
-            roleDetail: "Designed and engineered the full competition pipeline: extracted 88 domain-informed statistical, Fourier, and astrometric centroid features; implemented Camera/CCD astro-cotrending that dropped feature drift by 60.3% and boosted detector generalization by +22.8%; trained multi-architecture gradient boosted models (leaf-wise LightGBM, depth-wise HistGradientBoosting, CatBoost); evaluated candidates through leak-free 5-fold stratified cross-validation; built an interactive Streamlit + Plotly mission control dashboard; and engineered an automated 14-point schema validator guaranteeing deterministic, bitwise-reproducible test predictions.",
+            description: "An astronomy-focused Machine Learning project developed for the HACK4HACK Hackathon (Round 1 Completed), exploring stellar observations and potential planetary signals through astro-cotrending, 88 domain-engineered features, and predictive tri-ensemble modelling.",
+            overview: "Planet Hunters is an end-to-end Machine Learning and telemetry solution developed for the HACK4HACK Hackathon (Round 1 Completed) that classifies space telescope stellar light curves into eight astrophysical and instrumental categories. Operating on 1,315-cadence time-series across 25,000 stars, the pipeline implements astronomical cotrending to eliminate camera/CCD systematic drift, extracts 88 domain-informed features, and trains a 5-fold tri-architecture ensemble (50% LightGBM, 40% HistGradientBoosting, and 10% CatBoost) achieving 0.6455 Out-of-Fold Macro F1 and 0.6336 Out-of-Detector Generalization with 100% bitwise-reproducible inference.",
+            role: "Machine Learning Engineer & Web Application Developer",
+            roleDetail: "Designed and engineered the full competition pipeline: developed camera/CCD astro-cotrending reducing systematic drift by 60.3% and lifting detector generalization from 0.5161 to 0.6336; extracted 88 domain features across 4 physical pillars (cotrended summary stats, transit BLS SNR, astrometric centroid in-dip shift vetting, and Fourier harmonics); evaluated candidates via leak-free 5-fold stratified cross-validation; trained the champion tri-architecture ensemble (50% LGBM + 40% HistGB + 10% CatBoost); developed an automated 14-point schema validator guaranteeing deterministic predictions; and built a dual telemetry platform with an interactive Next.js 16 web application and Python Streamlit mission control.",
             technologies: [
                 "Python",
                 "Machine Learning",
@@ -250,26 +250,30 @@ const portfolioData = {
                 "HistGradientBoosting",
                 "CatBoost",
                 "Feature Engineering",
+                "Astro-Cotrending",
                 "Ensemble Learning",
                 "Data Analysis",
-                "Model Evaluation"
+                "Model Evaluation",
+                "Next.js",
+                "Streamlit"
             ],
             keyFeatures: [
                 "Astro-Cotrending: Subtracted instantaneous median flux and centroid vectors per (camera, ccd) channel, eliminating thermal breathing and spacecraft pointing jitter.",
-                "Domain-Informed Feature Engineering: Extracted 88 features including 1-day rolling median detrending, transit dip SNR, 2D centroid displacement in/out-of-dip, flare rise-decay asymmetry, and Fourier harmonic energy ratios.",
+                "Domain-Informed Feature Engineering: Extracted 88 features across 4 pillars including 1-day rolling median detrending, transit dip SNR, 2D centroid in/out-of-dip shift vetting, flare rise-decay asymmetry, and Fourier harmonic energy ratios.",
                 "Tri-Architecture Ensemble: Blended leaf-wise LightGBM (50%), depth-wise regularized HistGradientBoosting (40%), and CatBoost oblivious trees (10%).",
-                "Dual Cross-Validation Rigor: Evaluated using both 5-Fold Stratified OOF (0.6455 Macro F1) and Stratified Detector-Channel CV (0.6336 Macro F1).",
+                "Dual Cross-Validation Rigor: Evaluated using both 5-Fold Stratified OOF (0.6455 Macro F1) and Stratified Detector-Channel CV (0.6336 Macro F1 holding out unseen hardware).",
                 "Automated Schema Validator: 14 automated schema and physics checks validating formatting, bounds, non-null values, and astronomical class distribution.",
-                "Interactive Mission Control Dashboard: Streamlit + Plotly telemetry suite with 8 diagnostic stations, lightcurve inspection, and live submission verification."
+                "Dual Telemetry Platform: Modern Next.js 16 scientific web application and interactive Streamlit mission control dashboard featuring 8 diagnostic stations, lightcurve inspection, and 7,000-star prediction explorer."
             ],
             capabilities: [
-                "88 Vectorized Time-Series & Centroid Features",
-                "Camera/CCD Astro-Cotrending to Eliminate Systematic Detector Drift",
+                "88 Vectorized Time-Series & Astrometric Centroid Features across 4 Physical Pillars",
+                "Camera/CCD Astro-Cotrending to Eliminate Systematic Detector Drift (-60.3% KS Drift)",
                 "Tri-Architecture Gradient Boosted Ensemble (50% LGB + 40% HGB + 10% CB)",
                 "Stratified Detector-Channel Cross-Validation (0.6336 Generalization F1)",
                 "5-Fold Stratified Out-of-Fold Evaluation (0.6455 Macro F1)",
-                "Deterministic Inference & Bitwise Reproducible Outputs",
-                "Automated 14-Point Competition Submission Schema Validator"
+                "Deterministic Inference & Bitwise Reproducible Outputs (SHA-256 Verified)",
+                "Automated 14-Point Competition Submission Schema Validator",
+                "Interactive Next.js 16 Web Application & Streamlit Telemetry Mission Control"
             ],
             metrics: [
                 "0.6455 Out-of-Fold Macro F1 across 18,000 training stars",
@@ -278,12 +282,13 @@ const portfolioData = {
                 "14 / 14 Automated Submission Schema & Physics Checks Passed",
                 "7,000 Deterministic Test Sample Predictions (SHA-256 Verified)"
             ],
-            teamContext: "Independent competition entry for Hack4Hack 2026 ML Challenge. All experiment records, cross-validation artifacts, telemetry dashboard, and submission files preserved in repository.",
+            teamContext: "Independent competition entry for HACK4HACK Hackathon (Round 1 Completed). All experiment records, cross-validation artifacts, telemetry dashboards, and verified submission files preserved in repository.",
             githubUrl: "https://github.com/karan-rajput872/Planet-Hunters-Round1",
             githubButtonText: "GitHub Repository",
             detailUrl: "planet-hunters.html",
             detailButtonText: "View Project",
             liveUrl: "",
+            liveButtonText: "Live Demo",
             image: "assets/images/planet-hunters/project_cover.png",
             featured: true
         },
@@ -635,6 +640,33 @@ const portfolioData = {
                 "Security-focused Backend"
             ],
             link: "https://lnkd.in/g23EDkZE"
+        },
+        {
+            title: "Shortlisted for Round 2 — ML Challenge Hack4Hack 2026",
+            project: "Planet Hunters — Find New Worlds in Starlight",
+            competition: "ML Challenge Hack4Hack 2026",
+            organizer: "Hack4Hack",
+            type: "Hackathon / ML Challenge",
+            status: "Shortlisted for Round 2",
+            year: "2026",
+            role: "Machine Learning Engineer",
+            description: "Participated in the ML Challenge Hack4Hack 2026 with Planet Hunters — Find New Worlds in Starlight, an astronomy-focused Machine Learning project. Successfully completed Round 1 and received official confirmation that my team has been shortlisted for Round 2.",
+            resumeTitle: "HACK4HACK 2026 — ML Challenge",
+            resumeDesc: "Shortlisted for Round 2 after participating in Round 1 with Planet Hunters, an astronomy-focused Machine Learning project.",
+            tags: [
+                "Machine Learning",
+                "Astronomy Time-Series",
+                "Astro-Cotrending",
+                "88 Domain Features",
+                "Ensemble Learning",
+                "LightGBM & HistGB",
+                "CatBoost",
+                "Round 1 Completed",
+                "Round 2 Shortlisted"
+            ],
+            detailUrl: "planet-hunters.html",
+            githubUrl: "https://github.com/karan-rajput872/Planet-Hunters-Round1",
+            liveUrl: ""
         }
     ]
 };
@@ -1093,8 +1125,11 @@ function renderProjects() {
 
         if (project.liveUrl && project.liveUrl.trim() !== '') {
             const liveLabel = project.liveButtonText || 'Live Demo';
+            const liveBtnClass = (project.detailUrl && project.detailUrl.trim() !== '')
+                ? 'btn btn-sm btn-outline'
+                : 'btn btn-sm btn-primary';
             buttons.push(`
-                <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" aria-label="${liveLabel} for ${escapeHTML(project.title)}">
+                <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="${liveBtnClass}" aria-label="${liveLabel} for ${escapeHTML(project.title)}">
                     <span>${liveLabel}</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 </a>
@@ -1427,9 +1462,14 @@ function renderAchievements() {
         const yearBadge = ach.year ? `<span class="achievement-year-badge">${escapeHTML(ach.year)}</span>` : '';
         const roleBadge = ach.role ? `<span class="achievement-role-badge">Role: ${escapeHTML(ach.role)}</span>` : '';
 
-        const projectSubtitle = ach.project 
-            ? `<h4 class="achievement-subtitle">Project: <span>${escapeHTML(ach.project)}</span></h4>` 
-            : (ach.subtitle ? `<h4 class="achievement-subtitle">${escapeHTML(ach.subtitle)}</h4>` : '');
+        let projectSubtitle = '';
+        if (ach.project && ach.competition) {
+            projectSubtitle = `<h4 class="achievement-subtitle">Project: <span>${escapeHTML(ach.project)}</span> &bull; <span style="color: var(--text-secondary); font-weight: 500;">${escapeHTML(ach.competition)}</span></h4>`;
+        } else if (ach.project) {
+            projectSubtitle = `<h4 class="achievement-subtitle">Project: <span>${escapeHTML(ach.project)}</span></h4>`;
+        } else if (ach.subtitle) {
+            projectSubtitle = `<h4 class="achievement-subtitle">${escapeHTML(ach.subtitle)}</h4>`;
+        }
 
         const tagsHtml = ach.tags && Array.isArray(ach.tags) && ach.tags.length > 0 ? `
             <div class="achievement-tags" aria-label="Key areas and technologies">
@@ -1438,7 +1478,16 @@ function renderAchievements() {
         ` : '';
 
         const buttons = [];
-        if (ach.link) {
+
+        // Dedicated Project Case Study / Project Link
+        if (ach.detailUrl && ach.detailUrl.trim() !== '') {
+            buttons.push(`
+                <a href="${ach.detailUrl}" class="btn btn-sm btn-primary" aria-label="View project: ${escapeHTML(ach.title)}">
+                    <span>View Project</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+                </a>
+            `);
+        } else if (ach.link) {
             buttons.push(`
                 <a href="${ach.link}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" aria-label="View project: ${escapeHTML(ach.title)}">
                     <span>View Project</span>
@@ -1446,12 +1495,44 @@ function renderAchievements() {
                 </a>
             `);
         }
+
+        // Live Project Demo (if verified/configured)
+        if (ach.liveUrl && ach.liveUrl.trim() !== '') {
+            buttons.push(`
+                <a href="${ach.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="View live project: ${escapeHTML(ach.title)}">
+                    <span>View Live Project</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+            `);
+        }
+
+        // GitHub Repository Link
+        if (ach.githubUrl && ach.githubUrl.trim() !== '') {
+            buttons.push(`
+                <a href="${ach.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="View GitHub repository: ${escapeHTML(ach.title)}">
+                    <span>View GitHub Repository</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+            `);
+        }
+
+        // Modal Details button (for CLICKBAIT / SIH)
         if (ach.project && ach.project.toUpperCase().includes('CLICKBAIT')) {
             buttons.push(`
                 <button type="button" class="btn btn-sm btn-outline project-details-btn" data-project-title="CLICKBAIT" aria-label="View CLICKBAIT project details">
                     <span>View Details</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </button>
+            `);
+        }
+
+        // Optional official confirmation document/link
+        if (ach.confirmationUrl && ach.confirmationUrl.trim() !== '') {
+            buttons.push(`
+                <a href="${ach.confirmationUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="View official confirmation">
+                    <span>View Confirmation</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                </a>
             `);
         }
 
@@ -1892,6 +1973,7 @@ function renderResume() {
         } else if (proj.title.toLowerCase().includes('planet hunter')) {
             bullets.push("Developed an astronomy-focused multiclass Machine Learning solution for Hack4Hack 2026, experimenting with feature engineering, gradient-boosting models, and ensemble techniques to classify stellar observation data.");
             bullets.push("Engineered 88 domain-informed features with Camera/CCD cotrending; deployed a 5-fold tri-architecture ensemble (LightGBM, HistGradientBoosting, CatBoost) achieving 0.6455 OOF Macro F1 and 0.6336 detector-channel generalization across 8 classes.");
+            bullets.push("Engineered dual telemetry interfaces (Next.js 16 web application and Python Streamlit mission control) with automated 14-point schema & physics validator ensuring bitwise reproducibility.");
         } else if (isClickbait) {
             bullets.push("Contributed to backend verification logic (Ed25519 signing/verification, SHA-256 hashing, public-key verification, expiry/revocation checking, and tamper detection) for digital communications.");
         } else if (proj.isCurrentSite) {
@@ -1939,19 +2021,23 @@ function renderResume() {
         `;
     }).join('');
 
-    // 5. Achievements (Smart India Hackathon 2026)
-    const achHtml = (achievements || []).map(ach => `
+    // 5. Achievements (Smart India Hackathon 2026 & HACK4HACK 2026)
+    const achHtml = (achievements || []).map(ach => {
+        const title = ach.resumeTitle || ach.title;
+        const desc = ach.resumeDesc || ach.description;
+        return `
         <div class="resume-entry">
             <div class="resume-entry-header">
                 <div>
-                    <h4 class="resume-entry-title">${escapeHTML(ach.title)}</h4>
+                    <h4 class="resume-entry-title">${escapeHTML(title)}</h4>
                     <span class="resume-entry-subtitle">Project: ${escapeHTML(ach.project || '')} &bull; ${escapeHTML(ach.status || '')}</span>
                 </div>
                 <span class="resume-entry-date">${escapeHTML(ach.year || '2026')}</span>
             </div>
-            <p class="resume-entry-desc">${escapeHTML(ach.description || '')}</p>
+            <p class="resume-entry-desc">${escapeHTML(desc)}</p>
         </div>
-    `).join('');
+        `;
+    }).join('');
 
     container.innerHTML = `
         <article class="resume-document">
