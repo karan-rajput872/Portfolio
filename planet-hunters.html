@@ -841,20 +841,20 @@
         <section class="case-hero" aria-labelledby="heroTitle">
             <div class="case-hero-container">
                 <div class="case-pill-row">
-                    <span class="case-pill case-pill-competition">Hack4Hack 2026 — ML Challenge</span>
+                    <span class="case-pill case-pill-competition">HACK4HACK ML Challenge 2026</span>
                     <span class="case-pill case-pill-category">Machine Learning / AI</span>
-                    <span class="case-pill case-pill-status">Bitwise Verified • 100% Deterministic</span>
+                    <span class="case-pill case-pill-status" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.4);">SHORTLISTED — ROUND 2</span>
                 </div>
 
                 <h1 class="case-title" id="heroTitle">
-                    Planet Hunters: <br>
+                    Planet Hunters — <br>
                     <span class="gradient-text">Find New Worlds in Starlight</span>
                 </h1>
 
-                <p class="case-tagline">Exploring Stellar Signals Through Machine Learning.</p>
+                <p class="case-tagline">Exploring stellar signals through physics-informed feature engineering and heterogeneous machine learning.</p>
 
                 <p class="case-lead">
-                    An astronomy-focused Machine Learning solution engineered for Hack4Hack 2026. Operating on 1,315-cadence space telescope light curves across 25,000 stars, the pipeline introduces <strong>astro-cotrending</strong> to eliminate detector-level systematic drift, extracts 88 domain-informed features, and deploys a 5-fold tri-architecture ensemble (LightGBM, HistGradientBoosting, and CatBoost) achieving <strong>0.6455 Out-of-Fold Macro F1</strong> and <strong>0.6336 Out-of-Detector Generalization</strong>.
+                    An astronomy-focused Machine Learning solution developed for the HACK4HACK ML Challenge 2026. Operating on 1,315-cadence space telescope light curves across 25,000 stars, the pipeline introduces <strong>astro-cotrending</strong> to eliminate detector-level systematic drift, extracts 88 domain-informed features, and deploys a 5-fold tri-architecture ensemble (LightGBM, HistGradientBoosting, and CatBoost) achieving <strong>0.6455 Out-of-Fold Macro F1</strong> and <strong>0.6336 Out-of-Detector Generalization</strong>.
                 </p>
 
                 <!-- Key Telemetry KPI Cards -->
@@ -877,17 +877,17 @@
                     <div class="telemetry-card">
                         <span class="telemetry-label">Stratified OOF Score</span>
                         <div class="telemetry-val highlight-val">0.6455</div>
-                        <div class="telemetry-sub">5-Fold Macro F1 (+0.0540)</div>
+                        <div class="telemetry-sub">5-Fold Macro F1 (Offline)</div>
                     </div>
                     <div class="telemetry-card">
                         <span class="telemetry-label">Detector Generalization</span>
                         <div class="telemetry-val cyan-val">0.6336</div>
-                        <div class="telemetry-sub">Holdout Detector Channel F1</div>
+                        <div class="telemetry-sub">Holdout Hardware Channel F1</div>
                     </div>
                     <div class="telemetry-card">
                         <span class="telemetry-label">Systematic Drift Drop</span>
                         <div class="telemetry-val highlight-val">-60.3%</div>
-                        <div class="telemetry-sub">Mean Kolmogorov-Smirnov</div>
+                        <div class="telemetry-sub">Reported KS Drift Reduction</div>
                     </div>
                 </div>
 
@@ -902,7 +902,7 @@
                         <span>Explore Case Study</span>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
                     </a>
-                    <a id="heroLiveBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="display: none;" aria-label="Launch live deployed web application in new tab">
+                    <a id="heroLiveBtn" href="https://planet-hunters-round1.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Launch live deployed web application in new tab">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                         <span>Live Demo</span>
                     </a>
@@ -1137,96 +1137,228 @@
         </section>
 
         <!-- Technical Approach (Section D) -->
+        <!-- Technical Approach & Development Journey (Section D) -->
         <section id="pipeline" class="case-section" aria-labelledby="pipelineTitle">
             <div class="container">
                 <div class="case-section-header">
                     <span class="case-section-eyebrow">Section D</span>
-                    <h2 class="case-section-title" id="pipelineTitle">Technical Approach & Engineering Pipeline</h2>
+                    <h2 class="case-section-title" id="pipelineTitle">Development Journey & Engineering Pipeline</h2>
                     <p class="case-section-subtitle">
-                        An eight-stage sequence spanning scientific signal detrending, astro-cotrending, multi-architecture tree training, and automated verification.
+                        A rigorous 10-stage engineering journey from initial competition formulation and time-series exploration to detector-aware cotrending, tri-ensemble modeling, and Round 2 shortlisting.
                     </p>
                 </div>
 
                 <div class="pipeline-stepper">
                     <div class="pipeline-step-card">
                         <span class="pipeline-step-number">Stage 01</span>
-                        <h4 class="pipeline-step-title">Dataset Inspection</h4>
+                        <h4 class="pipeline-step-title">Problem Understanding</h4>
                         <p class="pipeline-step-desc">
-                            Exploratory time-series profiling of 1,315 flux cadences, centroid coordinates, and 5 astrophysical parameters (Tmag, Teff, logg, Radius, Contamination).
+                            Formulated unweighted multiclass classification on 1,315-cadence light curves across 25,000 space telescope stars under unweighted Macro F1 evaluation.
                         </p>
                     </div>
 
                     <div class="pipeline-step-card">
                         <span class="pipeline-step-number">Stage 02</span>
-                        <h4 class="pipeline-step-title">Data Preprocessing</h4>
+                        <h4 class="pipeline-step-title">Stellar Telemetry Exploration</h4>
                         <p class="pipeline-step-desc">
-                            Normalization of relative flux, robust NaN-safe aggregations, MAD outlier clipping, and astrometric 2D coordinate stabilization.
+                            Exploratory time-series profiling across 18,000 train and 7,000 test stars, analyzing photometric flux, 2D centroid coordinates, and 5 stellar metadata features.
                         </p>
                     </div>
 
                     <div class="pipeline-step-card">
                         <span class="pipeline-step-number">Stage 03</span>
-                        <h4 class="pipeline-step-title">Astro-Cotrending & Features</h4>
+                        <h4 class="pipeline-step-title">Detector Preprocessing</h4>
                         <p class="pipeline-step-desc">
-                            88 vectorized domain features: 1-day rolling median detrending, transit dip SNR, 2D centroid in/out-of-dip shift, flare asymmetry, and camera/CCD cotrending.
+                            Built robust normalization, NaN-safe aggregations, 3-sigma and MAD-based outlier clipping, and astrometric centroid drift stabilization.
                         </p>
                     </div>
 
                     <div class="pipeline-step-card">
                         <span class="pipeline-step-number">Stage 04</span>
-                        <h4 class="pipeline-step-title">Model Experimentation</h4>
+                        <h4 class="pipeline-step-title">Astro-Cotrending Engine</h4>
                         <p class="pipeline-step-desc">
-                            Benchmarking diverse boosting paradigms: leaf-wise LightGBM (63 leaves), depth-wise regularized HistGradientBoosting (450 trees), and CatBoost oblivious trees.
+                            Grouped observations by Camera and CCD channels, computing and subtracting common-mode systematic flux trends and centroid jitter vectors.
                         </p>
                     </div>
 
                     <div class="pipeline-step-card">
                         <span class="pipeline-step-number">Stage 05</span>
-                        <h4 class="pipeline-step-title">Cross-Validation Rigor</h4>
+                        <h4 class="pipeline-step-title">88 Scientific Domain Features</h4>
                         <p class="pipeline-step-desc">
-                            Dual cross-validation: 5-Fold Stratified OOF (0.6455 Macro F1) and Stratified Detector-Channel CV (0.6336 Macro F1 holding out entire camera/CCD channels).
+                            Engineered 88 domain-informed features across 5 core astrophysical pillars: transit BLS SNR, astrometric centroid vetting, flare asymmetry, Fourier harmonics, and MAD variance.
                         </p>
                     </div>
 
                     <div class="pipeline-step-card">
                         <span class="pipeline-step-number">Stage 06</span>
-                        <h4 class="pipeline-step-title">Ensemble Development</h4>
+                        <h4 class="pipeline-step-title">Model Experimentation</h4>
                         <p class="pipeline-step-desc">
-                            Tri-architecture probability soft-blending: 50% LightGBM + 40% HistGradientBoosting + 10% CatBoost, combining complementary decision geometries.
+                            Benchmarked diverse boosting paradigms: leaf-wise LightGBM (63 leaves), depth-wise regularized HistGradientBoosting (450 trees), and CatBoost oblivious trees.
                         </p>
                     </div>
 
                     <div class="pipeline-step-card">
                         <span class="pipeline-step-number">Stage 07</span>
-                        <h4 class="pipeline-step-title">Prediction Generation</h4>
+                        <h4 class="pipeline-step-title">Tri-Architecture Ensemble</h4>
                         <p class="pipeline-step-desc">
-                            Bitwise deterministic argmax label extraction, validated across CPU platforms in ~6 seconds inference runtime without distribution collapse.
+                            Engineered a calibrated probability soft-blending ensemble combining LightGBM (50%), HistGradientBoosting (40%), and CatBoost (10%).
                         </p>
                     </div>
 
                     <div class="pipeline-step-card">
                         <span class="pipeline-step-number">Stage 08</span>
-                        <h4 class="pipeline-step-title">Automated Validation</h4>
+                        <h4 class="pipeline-step-title">Rigorous Offline Evaluation</h4>
                         <p class="pipeline-step-desc">
-                            14-point schema validator (exact 7,000 rows, id,label header, no nulls, 8 valid string enums, realistic astrophysical class frequencies).
+                            Evaluated across 5-fold stratified cross-validation (0.6455 Macro F1) and holdout detector-channel validation (0.6336 Macro F1) to ensure hardware invariance.
+                        </p>
+                    </div>
+
+                    <div class="pipeline-step-card">
+                        <span class="pipeline-step-number">Stage 09</span>
+                        <h4 class="pipeline-step-title">Submission Verification</h4>
+                        <p class="pipeline-step-desc">
+                            Built an automated 14-point schema and physics validator guaranteeing deterministic SHA-256 bitwise reproducible predictions for all 7,000 test stars.
+                        </p>
+                    </div>
+
+                    <div class="pipeline-step-card">
+                        <span class="pipeline-step-number">Stage 10</span>
+                        <h4 class="pipeline-step-title">Dashboard & Round 2 Shortlisting</h4>
+                        <p class="pipeline-step-desc">
+                            Deployed modern Next.js 16 web application and Streamlit mission control; completed Round 1 and received official confirmation of shortlisting for Round 2.
                         </p>
                     </div>
                 </div>
 
-                <!-- Forensic Cotrending Breakthrough Box -->
-                <div class="case-card" style="margin-top: 36px; border-color: rgba(56, 189, 248, 0.3); background: rgba(8, 14, 28, 0.85);">
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--cosmic-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                        <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--cosmic-cyan); margin: 0;">
-                            The Astronomical Cotrending Breakthrough (Phase 5)
-                        </h3>
+                <!-- Dedicated Astro-Cotrending Innovation Section -->
+                <div class="case-card" style="margin-top: 36px; border-color: rgba(56, 189, 248, 0.35); background: rgba(8, 14, 28, 0.9);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cosmic-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--cosmic-cyan); margin: 0;">
+                                Astro-Cotrending Innovation: Mitigating Hardware Distribution Drift
+                            </h3>
+                        </div>
+                        <span class="case-pill case-pill-status" style="font-size: 0.74rem;">Reported -60.3% Drift Reduction</span>
                     </div>
-                    <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 14px;">
-                        Initial submissions achieved <strong>0.5915 internal CV</strong>, but scored <strong>0.4214</strong> on the public leaderboard. A forensic audit revealed the astronomical root cause: test sector stars experienced strong physical camera/CCD pointing jitter and thermal drift (Cam 4 CCD 2 common trend std = 0.002627, or 161% of a quiet star's flux variation). Without correction, models hallucinated <code style="color: var(--cosmic-cyan);">pulsating_star</code> (27.2% vs 10.9% train) and <code style="color: var(--cosmic-cyan);">instrument_glitch</code> (19.6% vs 9.5% train) for 46.8% of the test set.
+
+                    <p style="font-size: 0.94rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px;">
+                        Space telescopes observe stellar fields across distinct optical cameras and CCD sensor channels. Spacecraft maneuvers (e.g. reaction wheel desaturation, momentum dumps) and orbital thermal breathing induce common-mode systematic flux fluctuations and pixel pointing jitter. If left uncorrected, machine learning models erroneously confuse these instrumental fluctuations with intrinsic astrophysical variability—causing baseline models to hallucinate pulsators and glitches across nearly half the test sector.
                     </p>
-                    <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7;">
-                        By computing and subtracting the instantaneous median flux and centroid vectors per <code style="color: var(--accent);">(camera, ccd)</code> hardware channel, Kolmogorov-Smirnov feature drift plummeted by <strong>60.3%</strong>, and out-of-detector cross-validation surged from <strong>0.5161 to 0.6336 Macro F1 (+22.8% relative improvement)</strong>.
-                    </p>
+
+                    <div class="case-grid-3" style="margin-bottom: 18px;">
+                        <div class="case-card" style="padding: 16px; background: rgba(5, 8, 16, 0.7);">
+                            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">1. Camera & CCD Grouping</h4>
+                            <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.55;">
+                                Stellar observations are grouped by physical optical channel: <code>(camera, ccd)</code>. All stars on the same physical sensor share synchronous orbital temperature and pointing conditions.
+                            </p>
+                        </div>
+                        <div class="case-card" style="padding: 16px; background: rgba(5, 8, 16, 0.7);">
+                            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">2. Common-Mode Flux Removal</h4>
+                            <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.55;">
+                                Computes the instantaneous median flux across all stars in each channel at every cadence, subtracting the shared systematic trend to unmask true stellar variability.
+                            </p>
+                        </div>
+                        <div class="case-card" style="padding: 16px; background: rgba(5, 8, 16, 0.7);">
+                            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">3. Common-Mode Centroid Vectoring</h4>
+                            <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.55;">
+                                Subtracts common-mode 2D centroid drift vectors, isolating true astrophysical astrometric displacement from spacecraft pointing drift.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Workflow Architecture Diagram -->
+                    <div style="background: rgba(4, 7, 14, 0.85); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 18px; margin-bottom: 16px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-secondary); overflow-x: auto;">
+                        <div style="color: var(--cosmic-cyan); font-weight: 600; margin-bottom: 8px;">// Conceptual Astro-Cotrending Workflow Architecture:</div>
+                        <div style="line-height: 1.8; white-space: pre;">Raw Light Curves (Flux, Centroid X, Y) + Metadata (Camera, CCD)
+   │
+   ├──> Group Observations by [Camera, CCD] Channel
+   │      ├──> Compute Channel Median Flux per Cadence: M_flux(t) = median_{stars}(Flux_i(t))
+   │      └──> Compute Channel Centroid Jitter: M_cx(t) = median(CentroidX_i(t)), M_cy(t) = median(CentroidY_i(t))
+   │
+   ├──> Common-Mode Detrending & Outlier Clipping:
+   │      ├──> Flux_cotrended(t) = Flux_raw(t) - M_flux(t)
+   │      └──> Centroid_cotrended(t) = Centroid_raw(t) - [M_cx(t), M_cy(t)]
+   │
+   └──> Outcome: Train-to-Test KS Feature Drift reduced by 60.3%* | Hardware Generalization: 0.5161 ➔ 0.6336 Macro F1</div>
+                    </div>
+
+                    <div class="case-alert" style="margin-top: 14px;">
+                        <svg class="case-alert-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        <div class="case-alert-content">
+                            <div class="case-alert-title" style="font-size: 0.85rem;">Scientific Integrity Note on Drift Reduction</div>
+                            <p style="font-size: 0.82rem; margin: 0; line-height: 1.5;">
+                                The reported <strong>60.3% reduction</strong> in Kolmogorov-Smirnov (KS) train-to-test feature distribution drift represents an experiment-specific reported result on this competition dataset and evaluation configuration, rather than a universal scientific guarantee across arbitrary astronomical instruments.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dedicated 88 Domain-Engineered Features Section -->
+                <div class="case-card" style="margin-top: 28px; border-color: rgba(129, 140, 248, 0.35); background: rgba(8, 14, 28, 0.9);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px;">
+                        <div>
+                            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--accent-indigo); margin: 0;">
+                                88 Domain-Engineered Astrophysical Features
+                            </h3>
+                            <p style="font-size: 0.86rem; color: var(--text-secondary); margin-top: 4px;">
+                                Tailored feature extraction designed around physical stellar mechanics and photometric signal geometry.
+                            </p>
+                        </div>
+                        <span class="case-pill case-pill-category" style="font-size: 0.74rem;">5 Core Feature Groups</span>
+                    </div>
+
+                    <div class="case-grid-2">
+                        <!-- Group 1 -->
+                        <div class="case-card" style="padding: 18px; background: rgba(5, 8, 16, 0.7); border-top: 3px solid #2563EB;">
+                            <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">
+                                1. Box Least Squares (BLS) Transit SNR
+                            </h4>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                                Periodically folds the cotrended flux time-series across grid search periods to identify periodic, flat-bottomed geometric dips. Computes transit depth, duration, period, and statistical signal-to-noise ratio (SNR) to distinguish true periodic exoplanets and eclipsing binaries from non-periodic stellar noise.
+                            </p>
+                        </div>
+
+                        <!-- Group 2 -->
+                        <div class="case-card" style="padding: 18px; background: rgba(5, 8, 16, 0.7); border-top: 3px solid #DC2626;">
+                            <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">
+                                2. Astrometric Centroid In-Dip Shift
+                            </h4>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                                Measures 2D pixel displacement of the photometric center-of-light during flux minima versus out-of-dip baseline. <em>Important scientific methodology note:</em> Centroid-shift analysis is employed as a method of helping identify possible background blended binary contamination (where light from a faint background binary shifts the aperture centroid during an eclipse); it serves as a critical candidate vetting filter, rather than definitive proof of planetary origin.
+                            </p>
+                        </div>
+
+                        <!-- Group 3 -->
+                        <div class="case-card" style="padding: 18px; background: rgba(5, 8, 16, 0.7); border-top: 3px solid #EA580C;">
+                            <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">
+                                3. Flare Rise-Decay Asymmetry
+                            </h4>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                                Analyzes impulsive flux surge profiles by computing the ratio between rapid flux rise time and gradual exponential thermal cooling decay time, isolating explosive magnetic reconnection events in active M-dwarf flare stars.
+                            </p>
+                        </div>
+
+                        <!-- Group 4 -->
+                        <div class="case-card" style="padding: 18px; background: rgba(5, 8, 16, 0.7); border-top: 3px solid #059669;">
+                            <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">
+                                4. Fourier Power Harmonics
+                            </h4>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                                Evaluates Fast Fourier Transform (FFT) spectral power density, prominent peak frequencies, and spectral entropy ratios. Disentangles rapid multi-mode acoustic oscillations in pulsating stars from multi-day quasi-sinusoidal rotational starspot modulations.
+                            </p>
+                        </div>
+
+                        <!-- Group 5 -->
+                        <div class="case-card" style="padding: 18px; background: rgba(5, 8, 16, 0.7); border-top: 3px solid #647C70; grid-column: 1 / -1;">
+                            <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">
+                                5. Median Absolute Deviation (MAD) & Scale Moments
+                            </h4>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                                Computes robust non-parametric statistical dispersion metrics including Median Absolute Deviation (MAD), interquartile range (IQR), skewness, kurtosis, and rolling quantile ratios. These provide scale-invariant baselines resilient against single-cadence cosmic ray hits, separating photometrically quiet stars from instrumental anomalies.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1368,6 +1500,43 @@
                     </p>
                 </div>
 
+                <!-- Offline Evaluation Summary Table (Exact Comparison) -->
+                <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 14px; color: var(--text-primary);">
+                    Reported Offline Model Evaluation Metrics
+                </h3>
+                <div class="table-responsive" style="margin-bottom: 24px;">
+                    <table class="case-table">
+                        <thead>
+                            <tr>
+                                <th>Evaluation</th>
+                                <th>Macro F1</th>
+                                <th>Evaluation Scope & Hardware Context</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>5-fold Out-of-Fold</strong></td>
+                                <td><strong style="color: var(--accent); font-size: 1.1rem;">0.6455</strong></td>
+                                <td>Internal stratified cross-validation across all 18,000 training stars</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Out-of-Detector Generalisation</strong></td>
+                                <td><strong style="color: var(--cosmic-cyan); font-size: 1.1rem;">0.6336</strong></td>
+                                <td>Spatial holdout split validating generalisation to unseen detector hardware</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="case-card" style="margin-bottom: 24px; padding: 18px; background: rgba(5, 8, 16, 0.7); border-left: 3px solid var(--cosmic-cyan);">
+                    <h4 style="font-size: 0.98rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">
+                        Distinction: Cross-Validation Performance vs. Hardware Generalisation
+                    </h4>
+                    <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65; margin: 0;">
+                        Standard 5-fold cross-validation evaluates performance across unseen stellar observations sampled randomly from the training distribution. Out-of-detector generalisation, in contrast, explicitly holds out entire camera and CCD channels from training. Because each optical channel possesses unique pointing jitter profiles and thermal drift curves, evaluating on held-out detector hardware tests true physical invariance. Both metrics are genuine offline evaluation results—strictly documented as offline benchmarks without claiming public leaderboard rankings or competitor comparisons.
+                    </p>
+                </div>
+
                 <!-- Class-Wise Performance Table -->
                 <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 14px; color: var(--text-primary);">
                     Class-Wise Out-of-Fold Performance (18,000 Training Stars)
@@ -1466,12 +1635,12 @@
                 <div class="case-alert">
                     <svg class="case-alert-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                     <div class="case-alert-content">
-                        <div class="case-alert-title">Evaluation Transparency & Competition Context</div>
+                        <div class="case-alert-title">Evaluation Transparency & Offline Benchmarking</div>
                         <p>
-                            All metrics displayed are genuine, verified cross-validation scores computed across 18,000 ground-truth stars and holdout detector channels. The earlier un-cotrended Phase 4 submission achieved <strong>0.4214</strong> on the public leaderboard due to test detector thermal breathing and spacecraft pointing jitter. The promoted Phase 5 champion (<code style="color: var(--accent);">submission_FINAL.csv</code>) resolves this detector systematic drift, elevating out-of-detector cross-validation to <strong>0.6336 Macro F1 (+0.2122 jump)</strong>.
+                            All metrics displayed are genuine, verified offline cross-validation scores computed across 18,000 ground-truth stars and holdout detector channels. The earlier un-cotrended Phase 4 submission scored <strong>0.4214</strong> on the public leaderboard due to test detector thermal breathing and spacecraft pointing jitter. The promoted Phase 5 champion (<code style="color: var(--accent);">submission_FINAL.csv</code>) resolves this detector systematic drift, elevating out-of-detector generalisation to <strong>0.6336 Macro F1 (+0.2122 jump)</strong>.
                         </p>
                         <p style="margin-top: 6px; font-size: 0.85rem; color: var(--text-muted);">
-                            Note: The final Phase 5 candidate artifact is packaged and ready for official upload. In adherence to strict scientific integrity, no public leaderboard rank or unverified official standing is claimed.
+                            Note: All reported performance values represent offline validation results. In strict adherence to scientific integrity, no public leaderboard rank, prize, or unverified competitor comparison is claimed.
                         </p>
                     </div>
                 </div>
@@ -1485,28 +1654,28 @@
                     <span class="case-section-eyebrow">Section G</span>
                     <h2 class="case-section-title" id="outcomesTitle">Key Learning Outcomes & Competencies</h2>
                     <p class="case-section-subtitle">
-                        Practical skills gained and demonstrated through high-stakes competitive machine learning and scientific time-series signal processing.
+                        Comprehensive technical competencies demonstrated throughout high-stakes competitive machine learning, signal processing, and telemetry platform architecture.
                     </p>
                 </div>
 
-                <div class="case-grid-4">
+                <div class="case-grid-3">
                     <div class="case-card">
                         <div style="color: var(--accent); margin-bottom: 10px;">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                         </div>
-                        <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Time-Series Engineering</h4>
-                        <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
-                            Vectorized 88 features across 1,315-cadence observations: rolling median detrending, transit SNR, Fourier harmonics, and astrometry.
+                        <h4 style="font-size: 1.02rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">1. Scientific Data Analysis</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                            Exploratory analysis of 1,315-cadence astronomical time-series, identifying detector systematics, thermal breathing patterns, and optical noise floors across space telescopes.
                         </p>
                     </div>
 
                     <div class="case-card">
                         <div style="color: var(--cosmic-cyan); margin-bottom: 10px;">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M4.93 4.93l4.24 4.24"></path><path d="M14.83 14.83l4.24 4.24"></path><path d="M14.83 9.17l4.24-4.24"></path><path d="M4.93 19.07l4.24-4.24"></path></svg>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M4.93 4.93l4.24 4.24"></path><path d="M14.83 14.83l4.24 4.24"></path></svg>
                         </div>
-                        <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Astro-Cotrending</h4>
-                        <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
-                            Diagnosed physical sensor distribution shift and eliminated common-mode spacecraft pointing jitter, reducing KS drift by 60.3%.
+                        <h4 style="font-size: 1.02rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">2. Feature Engineering</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                            Crafted 88 physics-informed features including Box Least Squares transit search, astrometric centroid in-dip shift vetting, flare rise-decay asymmetry, and Fourier harmonics.
                         </p>
                     </div>
 
@@ -1514,19 +1683,69 @@
                         <div style="color: var(--cosmic-indigo); margin-bottom: 10px;">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                         </div>
-                        <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Multi-Architecture Ensembling</h4>
-                        <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
-                            Blended heterogeneous gradient-boosted trees (leaf-wise LightGBM, depth-wise HistGradientBoosting, symmetric CatBoost).
+                        <h4 style="font-size: 1.02rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">3. Multiclass Classification</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                            Optimized 8-class decision boundaries under unweighted Macro F1, balancing high-prevalence quiet stars with rare astrophysical events like stellar flares and background blends.
+                        </p>
+                    </div>
+
+                    <div class="case-card">
+                        <div style="color: #f59e0b; margin-bottom: 10px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                        </div>
+                        <h4 style="font-size: 1.02rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">4. Ensemble Modelling</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                            Blended diverse tree architectures—leaf-wise LightGBM (50%), depth-wise HistGradientBoosting (40%), and CatBoost oblivious trees (10%)—for calibrated probabilistic voting.
                         </p>
                     </div>
 
                     <div class="case-card">
                         <div style="color: #34d399; margin-bottom: 10px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                        </div>
+                        <h4 style="font-size: 1.02rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">5. Model Validation</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                            Constructed leak-free 5-fold stratified cross-validation pipelines preventing target or temporal leakage while tracking stability across all experimental phases.
+                        </p>
+                    </div>
+
+                    <div class="case-card">
+                        <div style="color: #38bdf8; margin-bottom: 10px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m10 15 5-3-5-3v6Z"></path></svg>
+                        </div>
+                        <h4 style="font-size: 1.02rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">6. Generalisation Testing</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                            Designed out-of-detector holdout evaluation to test generalization to unseen hardware, ensuring models remain invariant to sensor-specific drift and jitter.
+                        </p>
+                    </div>
+
+                    <div class="case-card">
+                        <div style="color: #a855f7; margin-bottom: 10px;">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                         </div>
-                        <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Deterministic Validation</h4>
-                        <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
-                            Built automated 14-point schema validator guaranteeing bitwise reproducible predictions and 100% submission compliance.
+                        <h4 style="font-size: 1.02rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">7. Reproducibility</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                            Enforced 100% deterministic bitwise reproducibility with fixed seeds, immutable artifact tracking, and verified SHA-256 checksums across CPU architectures.
+                        </p>
+                    </div>
+
+                    <div class="case-card">
+                        <div style="color: #ec4899; margin-bottom: 10px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
+                        </div>
+                        <h4 style="font-size: 1.02rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">8. Interactive Dashboard Dev</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                            Engineered an interactive 8-station telemetry dashboard deployed on Vercel with Next.js 16 and Python Streamlit, enabling real-time prediction exploration and schema audits.
+                        </p>
+                    </div>
+
+                    <div class="case-card">
+                        <div style="color: #10b981; margin-bottom: 10px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.1-3.1a1 1 0 0 0 0-1.4l-1.6-1.6a1 1 0 0 0-1.4 0Z"></path><path d="m2 22 7.6-7.6"></path></svg>
+                        </div>
+                        <h4 style="font-size: 1.02rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">9. Technical Problem-Solving</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                            Diagnosed the astronomical root cause of feature distribution drift via forensic inspection, delivering a 60.3% reduction in KS drift and securing Round 2 shortlisting.
                         </p>
                     </div>
                 </div>
@@ -1757,7 +1976,7 @@
                             <li style="display: flex; gap: 8px;"><span style="color: var(--cosmic-cyan);">✔</span> <strong>Responsive Telemetry Dashboards:</strong> Typed metric cards, multiclass taxonomy breakdowns, and Recharts interactive visualizations.</li>
                             <li style="display: flex; gap: 8px;"><span style="color: var(--cosmic-cyan);">✔</span> <strong>Decoupled Architecture:</strong> Strictly isolated from the Python environment, allowing independent Vercel deployments.</li>
                         </ul>
-                        <a id="platformNextJsBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" style="display: none; width: fit-content; gap: 6px;" aria-label="Launch live deployed web application in new tab">
+                        <a id="platformNextJsBtn" href="https://planet-hunters-round1.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" style="display: inline-flex; width: fit-content; gap: 6px;" aria-label="Launch live deployed web application in new tab">
                             <span>Launch Live Web App</span>
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                         </a>
@@ -1944,7 +2163,7 @@
                 });
             }
             // Configurable Live Demo link for Planet Hunters deployment
-            const PLANET_HUNTERS_LIVE_URL = "";
+            const PLANET_HUNTERS_LIVE_URL = "https://planet-hunters-round1.vercel.app/";
             const liveBtn = document.getElementById('heroLiveBtn');
             const platformNextJsBtn = document.getElementById('platformNextJsBtn');
             if (PLANET_HUNTERS_LIVE_URL && PLANET_HUNTERS_LIVE_URL.trim() !== '') {

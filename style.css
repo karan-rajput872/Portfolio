@@ -1230,6 +1230,28 @@ button {
     color: var(--text-primary);
 }
 
+.project-thumbnail {
+    margin: 12px 0 16px 0;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    max-height: 190px;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.project-thumbnail img {
+    width: 100%;
+    height: 100%;
+    max-height: 190px;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-normal);
+}
+
+.project-card:hover .project-thumbnail img {
+    transform: scale(1.02);
+}
+
 .project-bottom {
     margin-top: auto;
     padding-top: 10px;
@@ -1867,6 +1889,23 @@ button {
     color: var(--text-secondary);
     font-size: 0.95rem;
     line-height: 1.7;
+}
+
+.achievement-highlights {
+    margin: 12px 0 16px 20px;
+    padding: 0;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+
+.achievement-highlights li {
+    margin-bottom: 6px;
+    position: relative;
+}
+
+.achievement-highlights li::marker {
+    color: var(--accent);
 }
 
 .achievement-tags {
