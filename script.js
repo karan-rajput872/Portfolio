@@ -1555,7 +1555,7 @@ function renderAchievements() {
         const thumbnailHtml = ach.thumbnail ? `
             <div class="achievement-thumbnail-wrap">
                 <a href="${escapeHTML(ach.presentationUrl || ach.detailUrl || '#')}" target="_blank" rel="noopener noreferrer" class="achievement-thumbnail-link" aria-label="Open presentation deck: ${escapeHTML(ach.title)}">
-                    <img src="${escapeHTML(ach.thumbnail)}" alt="${escapeHTML(ach.thumbnailAlt || ach.title)}" class="achievement-thumbnail-img" loading="lazy" />
+                    <img src="${escapeHTML(ach.thumbnail)}" alt="${escapeHTML(ach.thumbnailAlt || ach.title)}" class="achievement-thumbnail-img" loading="eager" decoding="async" />
                     <div class="achievement-thumbnail-overlay">
                         <span class="achievement-thumbnail-badge">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
@@ -1652,7 +1652,7 @@ function renderAchievements() {
         const actionBtn = buttons.length > 0 ? `<div class="achievement-actions">${buttons.join('')}</div>` : '';
 
         return `
-            <div class="achievement-card reveal">
+            <div class="achievement-card reveal revealed">
                 <div class="achievement-icon" aria-hidden="true">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H7v2h10v-2h-2c-.55 0-1-.45-1-1v-2.34c3.27-.8 5.5-3.71 5.5-7.16 0-1.66-.67-3.16-1.76-4.24l-1.42 1.42C16.89 7.24 17.5 8.29 17.5 9.5c0 2.48-1.79 4.54-4.13 4.93L13 14.5v-1l-.5-.5h-1l-.5.5v1l-.37-.07C8.29 14.04 6.5 11.98 6.5 9.5c0-1.21.61-2.26 1.68-2.82L6.76 5.26C5.67 6.34 5 7.84 5 9.5c0 3.45 2.23 6.36 5.5 7.16z"></path></svg>
                 </div>
@@ -2376,7 +2376,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     navLinks.forEach(link => {
-        link.addEventListener('click', () => closeMenu());
+        link.addEventListener('click', () => {
+            closeMenu();
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                const targetEl = document.querySelector(href);
+                if (targetEl) {
+                    targetEl.querySelectorAll('.reveal').forEach(el => el.classList.add('revealed'));
+                }
+            }
+        });
     });
 
     document.addEventListener('click', (event) => {
@@ -2890,14 +2899,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -30px 0px'
+            threshold: 0.05,
+            rootMargin: '0px 0px 40px 0px'
         });
 
         revealElements.forEach(el => revealObserver.observe(el));
     } else {
         revealElements.forEach(el => el.classList.add('revealed'));
     }
+
+    // Fail-safe visibility check: immediately reveal all elements currently inside or near viewport
+    const checkViewportReveals = () => {
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        document.querySelectorAll('.reveal:not(.revealed)').forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < viewportHeight + 100 && rect.bottom > -100) {
+                el.classList.add('revealed');
+            }
+        });
+    };
+    checkViewportReveals();
+    setTimeout(checkViewportReveals, 250);
+    setTimeout(checkViewportReveals, 750);
+    window.addEventListener('scroll', checkViewportReveals, { passive: true });
+    window.addEventListener('resize', checkViewportReveals, { passive: true });
 
     console.log("Priyanshu Karan Portfolio — Complete.");
 });
