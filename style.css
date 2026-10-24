@@ -3909,3 +3909,31 @@ button {
         font-size: 7.5pt !important;
     }
 }
+
+
+/* Attribution badges for assisted research and presentation */
+.project-attribution, .achievement-attribution {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 8px 0 12px;
+    padding: 6px 12px;
+    background: rgba(249, 115, 22, 0.05);
+    border: 1px solid rgba(249, 115, 22, 0.2);
+    border-radius: var(--radius-sm);
+    line-height: 1.45;
+}
+
+.project-attribution a, .project-attribution-link,
+.achievement-attribution a, .achievement-attribution-link {
+    color: var(--accent);
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.project-attribution a:hover, .project-attribution-link:hover,
+.achievement-attribution a:hover, .achievement-attribution-link:hover {
+    color: var(--accent-light, #38bdf8);
+}

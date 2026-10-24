@@ -59,9 +59,9 @@ const portfolioData = {
         {
             id: "projects",
             label: "PROJECTS BUILT",
-            value: 6,
-            displayValue: "6",
-            description: "Verified academic and hackathon projects"
+            value: 7,
+            displayValue: "7",
+            description: "Verified academic, competition, and research projects"
         },
         {
             id: "certifications",
@@ -73,16 +73,16 @@ const portfolioData = {
         {
             id: "deployments",
             label: "LIVE DEPLOYMENTS",
-            value: 2,
-            displayValue: "2",
-            description: "Verified live project demo deployments (FindIt, CLICKBAIT)"
+            value: 3,
+            displayValue: "3",
+            description: "Verified live project demo deployments (FindIt, CLICKBAIT, Dark Store Strategy)"
         },
         {
             id: "repositories",
             label: "CODE REPOSITORIES",
-            value: 5,
+            value: 6,
             suffix: "+",
-            displayValue: "5+",
+            displayValue: "6+",
             description: "Active repositories and open-source project codebases"
         }
     ],
@@ -300,6 +300,63 @@ const portfolioData = {
             liveButtonText: "Live Demo",
             image: "assets/images/planet-hunters/project_cover.png",
             imageAlt: "Planet Hunters machine learning platform interface showing astronomical data analysis and classification.",
+            featured: true
+        },
+        {
+            title: "Dark Store Private-Label Defence Strategy",
+            subtitle: "\"Defending National FMCG Margins in Delhi NCR Quick Commerce\"",
+            category: "Business Strategy Research | Competition Project",
+            context: "Unstop — Prompt to Podium",
+            status: "Completed / Participated",
+            statusType: "completed",
+            description: "A competition-based business strategy research project examining how a national dairy brand can defend its market position against private-label competition in Delhi NCR's quick-commerce ecosystem.",
+            highlights: [
+                "Researched quick-commerce market context & platform dual identity across Blinkit, Zepto, and Instamart.",
+                "Built a verified 24-month financial cohort model (Base ROI -50.6%, 12-month LTV/CAC 1.12x on ₹1,148L investment).",
+                "Formulated 5 strategic recommendations prioritizing cold-chain moats, batch QR traceability, SKU architecture, and Kirana margin protection."
+            ],
+            overview: "A competition-based business strategy research project for Unstop Prompt to Podium examining how a national dairy brand can defend its market position against platform private-label encroachment in Delhi NCR. The research analyzes quick-commerce platform dual identity, channel contribution economics (4.5% quick commerce vs ~25% traditional retail & D2C), priority customer segmentation (ICPs), multi-scenario 24-month cohort financials, a 12-month phased implementation roadmap, and an enterprise risk register.",
+            role: "Lead Researcher & Business Strategist",
+            roleDetail: "Conducted competitive market research across Delhi NCR dark-store clusters, evaluated platform listing economics and FMCG distribution data, constructed a 24-month customer cohort financial model with sensitivity scenarios, engineered a 5-point strategic defence framework, and delivered an executive 14-slide presentation on Kreyato AI.",
+            technologies: [
+                "Business Research",
+                "Strategic Analysis",
+                "Market Research",
+                "Competitive Analysis",
+                "Financial Modelling",
+                "Data Interpretation",
+                "Presentation and Communication"
+            ],
+            keyFeatures: [
+                "Quick-Commerce Market Context: Sized national dairy ($31.95B) and Delhi NCR ($558.5B at 14.79% CAGR) alongside 3,500+ dark store density.",
+                "Private-Label Threat Analysis: Analyzed platform algorithmic downranking, 10–15% pricing discounts, and platform dual identity.",
+                "Customer Segmentation (ICPs): Identified Priority ICP 1 (Health-Conscious Urban Families) and Priority ICP 2 (Convenience Professionals).",
+                "Channel Contribution Economics: Quantified margin disparity between Quick Commerce (4.5%), Traditional Retail (25.04%), and D2C (25.56%).",
+                "24-Month Cohort Model: Modeled unit economics showing base-case ROI of -50.6% and Year-1 LTV/CAC of 1.12x on ₹1,148L investment.",
+                "Five Strategic Recommendations: Formulated R1 (Freshness & Traceability), R2 (SKU Architecture), R3 (Platform JBPs), R4 (LTV Engine), and R5 (Channel Realignment).",
+                "Phased Implementation Roadmap: Structured into Immediate (0–3M), Medium (3–12M), and Long-Term (12+M) phases.",
+                "Enterprise Risk Register: Matrix of Commercial, Operational, Regulatory, and Competitive risks with mitigation and monitoring metrics."
+            ],
+            capabilities: [
+                "Quick-commerce unit economics and cohort lifetime value modeling",
+                "FMCG retail channel margin and trade distribution analysis",
+                "Dark store platform shelf space and algorithmic search dynamics",
+                "Consumer price sensitivity and willingness-to-pay segmentation",
+                "Cold-chain traceability and FSSAI shelf-life compliance strategy",
+                "Executive presentation development and business communication"
+            ],
+            teamContext: "Completed as a standalone competition research submission for Unstop Prompt to Podium: Research. Create. Present. Developed with research and presentation assistance from Kreyato AI.",
+            platformAttribution: "Research and presentation developed with the assistance of <a href=\"https://kreyato.ai/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"project-attribution-link\">Kreyato AI</a>.",
+            githubUrl: "https://github.com/karan-rajput872/prompt-to-podium-dark-store-strategy",
+            githubButtonText: "GitHub Repository",
+            liveUrl: "https://prompt-to-podium-dark-store-strategy-priyanshukaran25-5139.vercel.app",
+            liveButtonText: "View Live Case Study",
+            presentationUrl: "https://kreyato.ai/s/8GzJFW3w",
+            presentationButtonText: "View Research Presentation",
+            detailUrl: "dark-store-dairy-strategy.html",
+            detailButtonText: "Case Study Overview",
+            image: "assets/images/unstop_prompt_to_podium_cover.png",
+            imageAlt: "Dark Store Private-Label Defence Strategy — Unstop Prompt to Podium Presentation Cover Slide",
             featured: true
         },
         {
@@ -692,18 +749,18 @@ const portfolioData = {
             liveUrl: "https://planet-hunters-round1.vercel.app/"
         },
         {
-            title: "Prompt to Podium: Research. Create. Present.",
+            title: "Unstop — Prompt to Podium: Research. Create. Present.",
             topic: "Dark Store Private-Label Defence Strategy for a National Dairy Brand in Delhi NCR's Quick-Commerce Ecosystem",
             project: "Dark Store Private-Label Defence Strategy",
             platform: "Unstop",
-            competition: "Unstop Prompt to Podium",
+            competition: "Unstop — Prompt to Podium: Research. Create. Present.",
             type: "Research & Strategy / Presentation",
             status: "Completed / Participated",
             year: "2026",
             role: "Lead Researcher & Strategist",
-            description: "Completed a research and presentation-based challenge through Unstop, exploring a strategic business problem involving private-label competition, dark-store operations, and the quick-commerce ecosystem in Delhi NCR. The work focused on developing a research-backed strategic presentation for a national dairy brand.",
-            resumeTitle: "Prompt to Podium: Research. Create. Present. — Unstop",
-            resumeDesc: "Completed a research and strategic presentation challenge focused on developing a dark-store private-label defence strategy for a national dairy brand in Delhi NCR's quick-commerce ecosystem.",
+            description: "Successfully completed a competition-based research and business strategy project focused on defending a national dairy brand against private-label competition in Delhi NCR's quick-commerce ecosystem.",
+            resumeTitle: "Unstop — Prompt to Podium: Research. Create. Present.",
+            resumeDesc: "Completed a competition-based research and business strategy project focused on defending a national dairy brand against private-label competition in Delhi NCR's quick-commerce ecosystem (Status: Completed / Participated).",
             thumbnail: "assets/images/unstop_prompt_to_podium_cover.png",
             thumbnailAlt: "Dark Store Private-Label Defence Strategy — Unstop Prompt to Podium Presentation Cover Slide",
             highlights: [
@@ -724,8 +781,12 @@ const portfolioData = {
                 "Business Communication"
             ],
             presentationUrl: "https://kreyato.ai/s/8GzJFW3w",
+            liveUrl: "https://prompt-to-podium-dark-store-strategy-priyanshukaran25-5139.vercel.app",
+            liveButtonText: "View Live Case Study",
+            githubUrl: "https://github.com/karan-rajput872/prompt-to-podium-dark-store-strategy",
             detailUrl: "dark-store-dairy-strategy.html",
-            detailLabel: "Research Case Study"
+            detailLabel: "Case Study Overview",
+            platformAttribution: "Research and presentation developed with the assistance of <a href=\"https://kreyato.ai/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"achievement-attribution-link\">Kreyato AI</a>."
         }
     ]
 };
@@ -1205,6 +1266,17 @@ function renderProjects() {
             `);
         }
 
+        // Dedicated Research Presentation Link
+        if (project.presentationUrl && project.presentationUrl.trim() !== '') {
+            const presLabel = project.presentationButtonText || 'Research Presentation';
+            buttons.push(`
+                <a href="${project.presentationUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="${presLabel} for ${escapeHTML(project.title)}">
+                    <span>${presLabel}</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+            `);
+        }
+
         // View Details button (only when roleDetail or additional info exists and project does not have dedicated detailUrl)
         if (!project.detailUrl && (project.roleDetail || (project.subtitle && project.featured) || project.capabilities || project.keyFeatures)) {
             buttons.push(`
@@ -1262,6 +1334,12 @@ function renderProjects() {
                     <p class="project-desc">${escapeHTML(project.description)}</p>
                     ${highlightsHtml}
                     ${roleBadgeHtml}
+                    ${project.platformAttribution ? `
+                        <div class="project-attribution">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                            <span>${project.platformAttribution}</span>
+                        </div>
+                    ` : ''}
                 </div>
                 <div class="project-bottom">
                     <div class="project-tech-stack">
@@ -1578,6 +1656,13 @@ function renderAchievements() {
             </div>
         ` : '';
 
+        const attributionHtml = ach.platformAttribution ? `
+            <div class="achievement-attribution">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <span>${ach.platformAttribution}</span>
+            </div>
+        ` : '';
+
         const buttons = [];
 
         // 1. Dedicated Presentation Link (Unstop / Kreyato)
@@ -1668,6 +1753,7 @@ function renderAchievements() {
                     <p class="achievement-desc">${escapeHTML(ach.description)}</p>
                     ${thumbnailHtml}
                     ${highlightsHtml}
+                    ${attributionHtml}
                     ${tagsHtml}
                     ${actionBtn}
                 </div>
@@ -2073,8 +2159,10 @@ function renderResume() {
         "Industrial 4.0 (IND)"
     ];
 
-    // 3. Top Projects (FindIt, Planet Hunters, CLICKBAIT, Portfolio)
-    const resumeProjects = (projects || []).slice(0, 4);
+    // 3. Featured & Competition Projects (FindIt, Planet Hunters, Dark Store, CLICKBAIT, Portfolio)
+    const resumeProjects = (projects || []).filter(p => 
+        p.featured || p.isCurrentSite || p.title.toLowerCase().includes('dark store')
+    ).slice(0, 5);
     const projectsHtml = resumeProjects.map(proj => {
         const isClickbait = proj.title.toUpperCase().includes('CLICKBAIT');
         const bullets = [];
@@ -2089,7 +2177,11 @@ function renderResume() {
             bullets.push("Developed an astronomy-focused Machine Learning solution using detector-aware cotrending, 88 domain-engineered features, and a heterogeneous LightGBM, HistGradientBoosting, and CatBoost ensemble. Completed Round 1 and was shortlisted for Round 2 of the HACK4HACK ML Challenge 2026.");
             bullets.push("Engineered 88 domain-informed features with Camera/CCD cotrending; deployed a 5-fold tri-architecture ensemble (LightGBM, HistGradientBoosting, CatBoost) achieving 0.6455 OOF Macro F1 and 0.6336 detector-channel generalization across 8 classes.");
             bullets.push("Engineered dual telemetry interfaces (Next.js 16 web application and Python Streamlit mission control) with automated 14-point schema & physics validator ensuring bitwise reproducibility.");
-            // Developed an astronomy-focused multiclass Machine Learning solution for Hack4Hack 2026
+        } else if (proj.title.toLowerCase().includes('dark store') || proj.title.toLowerCase().includes('prompt to podium')) {
+            bullets.push("Conducted competition-based business strategy research for Unstop Prompt to Podium, examining quick-commerce dark store dynamics, platform private-label competition, and channel margin disparities (4.5% quick commerce vs ~25% traditional retail & D2C) in Delhi NCR.");
+            bullets.push("Constructed a verified 24-month multi-scenario customer cohort model evaluating unit economics (Base-case ROI: -50.6%, Year-1 LTV/CAC: 1.12x on ₹1,148L cumulative investment).");
+            bullets.push("Formulated an actionable 5-point strategic defence framework (freshness moats, batch QR traceability, SKU architecture, and Kirana profit engine protection) supported by a 12-month phased roadmap and enterprise risk register.");
+            bullets.push("Research and presentation developed with the assistance of Kreyato AI.");
         } else if (isClickbait) {
             bullets.push("Contributed to backend verification logic (Ed25519 signing/verification, SHA-256 hashing, public-key verification, expiry/revocation checking, and tamper detection) for digital communications.");
         } else if (proj.isCurrentSite) {
@@ -2105,9 +2197,12 @@ function renderResume() {
             : '';
 
         const statusYear = proj.title.toLowerCase().includes('planet hunter') ? '2026' : (proj.status === 'In Development' || proj.status === 'In Progress' ? '2026' : (proj.status || ''));
-        const resumeProjectTitle = proj.title.toLowerCase().includes('planet hunter')
-            ? "Planet Hunters — Find New Worlds in Starlight | HACK4HACK 2026"
-            : proj.title;
+                let resumeProjectTitle = proj.title;
+        if (proj.title.toLowerCase().includes('planet hunter')) {
+            resumeProjectTitle = "Planet Hunters — Find New Worlds in Starlight | HACK4HACK 2026";
+        } else if (proj.title.toLowerCase().includes('dark store') || proj.title.toLowerCase().includes('prompt to podium')) {
+            resumeProjectTitle = "Dark Store Private-Label Defence Strategy — Unstop Prompt to Podium";
+        }
 
         return `
             <div class="resume-entry">
@@ -2841,6 +2936,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" aria-label="${githubModalLabel} for ${escapeHTML(project.title)}">
                         <span>${githubModalLabel}</span>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                `);
+            }
+
+            if (project.presentationUrl && project.presentationUrl.trim() !== '') {
+                const presModalLabel = project.presentationButtonText || 'View Research Presentation';
+                footerBtns.push(`
+                    <a href="${project.presentationUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" aria-label="${presModalLabel} for ${escapeHTML(project.title)}">
+                        <span>${presModalLabel}</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     </a>
                 `);
             }
