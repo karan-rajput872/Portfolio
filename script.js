@@ -409,21 +409,61 @@ const portfolioData = {
         },
         {
             title: "Personal Portfolio Website",
+            subtitle: "\"Centralized Professional Profile & Technical Showcase\"",
             category: "Web Development",
+            context: "Active Production Site",
             status: "Completed",
             statusType: "completed",
-            description: "A responsive, accessible personal portfolio showcasing academic coursework, verified certifications, projects, and achievements with a centralized Vanilla JavaScript data architecture.",
-            role: "Full Stack (Solo Project)",
-            roleDetail: "Built responsive design, dynamic data-driven rendering for all sections including 10 certificates, centralized content architecture, accessible modal viewers, and print-ready resume stylesheet.",
-            technologies: [
-                "HTML",
-                "CSS",
-                "JavaScript"
+            description: "A responsive personal portfolio website built to showcase my academic journey, technical skills, projects, achievements, and verified certifications. It brings my professional profile, project demonstrations, and contact information together in one accessible platform.",
+            highlights: [
+                "Responsive design for desktop, tablet, and mobile with fluid dark-mode typography.",
+                "Centralized Vanilla JavaScript data architecture with zero external framework dependencies.",
+                "Verified credentials & activities hub featuring 14 certifications and competition achievements.",
+                "Interactive on-page resume viewer paired with automated ATS-compliant PDF generation."
             ],
-            githubUrl: "",
-            liveUrl: "",
-            image: "",
-            featured: false,
+            overview: "A responsive personal portfolio website designed and developed from scratch to showcase my academic journey, verified technical certifications, engineering projects, hackathons, and research case studies. Engineered with a centralized Vanilla JavaScript architecture, the platform dynamically renders content from structured datasets while maintaining high accessibility, smooth transitions, and instant performance without bulky framework overhead.",
+            role: "Full Stack Development | UI/UX Design | Performance & Integration",
+            roleDetail: "Designed and engineered the end-to-end portfolio: crafted the custom dark-theme design system with orange accent highlights, built the modular Vanilla JavaScript data-driven rendering pipeline, developed interactive modal dialogs and responsive navigation, configured Puppeteer for automated ATS PDF resume compilation, and set up continuous production deployment on Vercel and GitHub Pages.",
+            technologies: [
+                "HTML5",
+                "CSS3",
+                "JavaScript (ES6+)",
+                "Vercel",
+                "Puppeteer"
+            ],
+            keyFeatures: [
+                "Responsive Cross-Device Layout: Engineered for seamless presentation across desktop (1600px+), tablet, and mobile (360px+).",
+                "Centralized Data Architecture: Single-source-of-truth state management rendering all sections dynamically in pure Vanilla JavaScript.",
+                "Projects & Case Study Showcase: Interactive project cards with authentic previews, live demo links, repository access, and deep-dive modal dialogs.",
+                "Verified Credentials Hub: Comprehensive showcase of 14 authentic credentials across CS, AI, Cloud, and Cybersecurity with direct verification links.",
+                "Dual Resume Experience: Interactive ATS-friendly on-page resume viewer accompanied by automated, downloadable PDF generation.",
+                "Functional Contact Integration: Client-side validated contact form ready for serverless delivery.",
+                "Zero-Framework Performance: Ultra-fast page loads, accessible semantic HTML5 markup, and smooth CSS micro-interactions."
+            ],
+            capabilities: [
+                "Dynamic Vanilla JS Rendering Engine (No Framework Bloat)",
+                "Full-Spectrum Responsive Layouts (Desktop, Tablet, Mobile)",
+                "Interactive Modal Viewers with Keyboard Navigation & Focus Trapping",
+                "Automated Headless Chromium ATS PDF Generation via Puppeteer",
+                "Continuous Git-Based CI/CD Deployment on Vercel and GitHub Pages",
+                "Verified Credentials & Achievement Verification System",
+                "Custom Dark Aesthetic with CSS Variables & Smooth Transitions"
+            ],
+            metrics: [
+                "100% Zero-Framework Implementation (Pure HTML5 / CSS3 / ES6+ JavaScript)",
+                "7 Projects & 14 Official Certifications Dynamically Managed",
+                "3 Verified Live Deployments & 6+ Code Repositories Integrated",
+                "Zero Horizontal Layout Overflow across all mobile viewports (down to 360px)",
+                "Automated 497 KB ATS-Compliant PDF Resume Synchronization"
+            ],
+            teamContext: "Solo project designed, architected, and continuously maintained by Priyanshu Karan. All code, design systems, and data pipelines are published in the open-source GitHub repository.",
+            githubUrl: "https://github.com/karan-rajput872/Portfolio",
+            githubButtonText: "GitHub Repository",
+            liveUrl: "https://portfolio-priyanshukaran25-5139.vercel.app",
+            liveButtonText: "Live Demo",
+            image: "assets/images/portfolio_website_cover.png",
+            imageAlt: "Personal portfolio website interface showing hero section, navigation, and developer profile.",
+            featured: true,
             isCurrentSite: true
         },
         {
@@ -1326,7 +1366,9 @@ function renderProjects() {
                     </div>
                     ${project.image ? `
                         <div class="project-thumbnail">
+                            ${project.liveUrl ? `<a href="${escapeHTML(project.liveUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Open live demo of ${escapeHTML(project.title)}" style="display:block; width:100%; height:100%; text-decoration:none;">` : ''}
                             <img src="${escapeHTML(project.image)}" alt="${escapeHTML(project.imageAlt || project.title)}" loading="lazy">
+                            ${project.liveUrl ? `</a>` : ''}
                         </div>
                     ` : ''}
                     <h3 class="project-title">${escapeHTML(project.title)}</h3>
@@ -2185,7 +2227,8 @@ function renderResume() {
         } else if (isClickbait) {
             bullets.push("Contributed to backend verification logic (Ed25519 signing/verification, SHA-256 hashing, public-key verification, expiry/revocation checking, and tamper detection) for digital communications.");
         } else if (proj.isCurrentSite) {
-            bullets.push("Engineered modular, responsive web portfolio with custom Vanilla JS data architecture, accessible modal certificate viewer, and print-ready stylesheet.");
+            bullets.push("Engineered a responsive personal portfolio featuring dynamic Vanilla JavaScript data rendering, custom dark-theme styling, accessible modal viewers, and automated ATS PDF generation with Puppeteer.");
+            bullets.push("Integrated comprehensive showcase hubs for 7 projects, 14 verified certifications, hackathons, and research case studies with continuous CI/CD deployment on Vercel and GitHub Pages.");
         }
 
         const bulletsList = bullets.length > 0 
