@@ -178,7 +178,12 @@ const portfolioData = {
             context: "Campus Platform",
             status: "Completed",
             statusType: "completed",
-            description: "An AI-powered Smart Lost & Found Platform that simplifies reporting, discovering, and recovering lost belongings through intelligent matching, secure ownership verification, and seamless communication.",
+            description: "An AI-powered Lost & Found platform that simplifies reporting, discovering, and recovering lost belongings through intelligent matching, secure ownership verification, and seamless communication.",
+            highlights: [
+                "AI-powered semantic item matching.",
+                "Secure ownership verification and claims.",
+                "Real-time communication and notifications."
+            ],
             overview: "FindIt is a full-stack Smart Lost & Found Platform designed to simplify reporting, discovering, and recovering lost belongings. It helps users report lost or found items, discover potentially matching reports, submit ownership claims, and coordinate the recovery process.",
             role: "Full Stack & Applied AI Developer",
             roleDetail: "Designed and engineered the complete end-to-end platform architecture: built the high-performance FastAPI backend with SQLAlchemy 2.0 ORM and dual SQLite/PostgreSQL support, developed the modern React and TypeScript frontend, implemented the AI-powered semantic matching engine with multi-attribute similarity analysis and match explanations, integrated Cloudinary media handling and Google OAuth / JWT authentication, and deployed the full system across Vercel and Render.",
@@ -229,7 +234,8 @@ const portfolioData = {
             liveUrl: "https://findit-production.vercel.app",
             liveButtonText: "Live Demo",
             githubButtonText: "GitHub Repository",
-            image: "",
+            image: "assets/images/findit_cover.png",
+            imageAlt: "FindIt Smart Lost and Found Platform interface showing the item discovery and reporting experience.",
             featured: true
         },
         {
@@ -240,6 +246,11 @@ const portfolioData = {
             status: "Round 2 Shortlisted",
             statusType: "completed",
             description: "An astronomy-focused Machine Learning project developed for the HACK4HACK ML Challenge 2026, combining detector-aware data processing, 88 domain-engineered features, and a heterogeneous three-model ensemble to classify stellar observations and investigate potential planetary signals.",
+            highlights: [
+                "Astro-Cotrending systematic noise removal (-60.3% drift).",
+                "88 domain-engineered features across 4 physical pillars.",
+                "Heterogeneous tri-model ensemble (0.6455 OOF Macro F1)."
+            ],
             overview: "Planet Hunters is an end-to-end Machine Learning and telemetry solution developed for the HACK4HACK Hackathon (Round 2 Shortlisted) that classifies space telescope stellar light curves into eight astrophysical and instrumental categories. Operating on 1,315-cadence time-series across 25,000 stars, the pipeline implements astronomical cotrending to eliminate camera/CCD systematic drift, extracts 88 domain-informed features, and trains a 5-fold tri-architecture ensemble (50% LightGBM, 40% HistGradientBoosting, and 10% CatBoost) achieving 0.6455 Out-of-Fold Macro F1 and 0.6336 Out-of-Detector Generalization with 100% bitwise-reproducible inference.",
             role: "Machine Learning Engineer & Web Application Developer",
             roleDetail: "Designed and engineered the full competition pipeline: developed camera/CCD astro-cotrending reducing systematic drift by 60.3% and lifting detector generalization from 0.5161 to 0.6336; extracted 88 domain features across 4 physical pillars (cotrended summary stats, transit BLS SNR, astrometric centroid in-dip shift vetting, and Fourier harmonics); evaluated candidates via leak-free 5-fold stratified cross-validation; trained the champion tri-architecture ensemble (50% LGBM + 40% HistGB + 10% CatBoost); developed an automated 14-point schema validator guaranteeing deterministic predictions; and built a dual telemetry platform with an interactive Next.js 16 web application and Python Streamlit mission control.",
@@ -288,17 +299,23 @@ const portfolioData = {
             liveUrl: "https://planet-hunters-round1.vercel.app/",
             liveButtonText: "Live Demo",
             image: "assets/images/planet-hunters/project_cover.png",
+            imageAlt: "Planet Hunters machine learning platform interface showing astronomical data analysis and classification.",
             featured: true
         },
         {
             title: "CLICKBAIT",
-            subtitle: "“Don’t Guess. Verify.”",
+            subtitle: "“Don't Guess. Verify.”",
             category: "Smart India Hackathon 2026",
             context: "Internal Round",
             status: "Completed",
             statusType: "completed",
-            description: "A student-focused digital verification platform designed to help students verify potentially suspicious digital communications — including emails, scholarship notices, examination circulars, fee updates, internship messages, URLs, and raw messages — before trusting them.",
-            role: "Backend / Cryptography Security",
+            description: "A student-focused digital verification platform designed to help users identify potentially suspicious communications, including emails, scholarship notices, examination circulars, fee updates, internship messages, URLs, and raw messages — before trusting them.",
+            highlights: [
+                "Suspicious message and URL verification.",
+                "Evidence extraction and authenticity analysis.",
+                "AI-assisted explanations and forensic verification."
+            ],
+            role: "Backend / Cryptography / Security",
             roleDetail: "Contributed to backend verification logic including Ed25519-based cryptographic signing and verification, SHA-256 hashing, canonical payload generation, public-key verification, expiry checking, revocation checking, tamper detection, and zero-PII blockchain registry concepts.",
             technologies: [
                 "Ed25519",
@@ -329,7 +346,8 @@ const portfolioData = {
             teamContext: "The project involved frontend, backend, OCR, AI-assisted analysis, and forensic verification components. Developed collaboratively for the Smart India Hackathon 2026 Internal Round.",
             githubUrl: "",
             liveUrl: "https://lnkd.in/g23EDkZE",
-            image: "",
+            image: "assets/images/clickbait_cover.png",
+            imageAlt: "CLICKBAIT digital verification platform interface showing suspicious communication analysis.",
             featured: true
         },
         {
@@ -1170,6 +1188,18 @@ function renderProjects() {
             `);
         }
 
+        // Key highlights list
+        const highlightsHtml = (project.highlights && project.highlights.length > 0)
+            ? `
+                <div class="project-highlights">
+                    <span class="project-highlights-label">Key Highlights:</span>
+                    <ul class="project-highlights-list">
+                        ${project.highlights.map(h => `<li><span class="highlight-bullet">•</span><span>${escapeHTML(h)}</span></li>`).join('')}
+                    </ul>
+                </div>
+            `
+            : '';
+
         const actionsHtml = buttons.length > 0 ? `<div class="project-footer">${buttons.join('')}</div>` : '';
 
         // Card class: featured projects get special styling
@@ -1177,7 +1207,7 @@ function renderProjects() {
 
         return `
             <article class="${cardClass}">
-                <div>
+                <div class="project-content-top">
                     ${featuredLabel}
                     <div class="project-header">
                         <div class="project-header-left">
@@ -1188,12 +1218,13 @@ function renderProjects() {
                     </div>
                     ${project.image ? `
                         <div class="project-thumbnail">
-                            <img src="${escapeHTML(project.image)}" alt="${escapeHTML(project.title)}" loading="lazy">
+                            <img src="${escapeHTML(project.image)}" alt="${escapeHTML(project.imageAlt || project.title)}" loading="lazy">
                         </div>
                     ` : ''}
                     <h3 class="project-title">${escapeHTML(project.title)}</h3>
                     ${subtitleHtml}
                     <p class="project-desc">${escapeHTML(project.description)}</p>
+                    ${highlightsHtml}
                     ${roleBadgeHtml}
                 </div>
                 <div class="project-bottom">
@@ -2573,7 +2604,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 `);
             }
 
+            const imageBannerHtml = project.image ? `
+                <div class="project-modal-image-banner" style="margin-bottom: 20px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-subtle); aspect-ratio: 16 / 9; max-height: 240px; background: rgba(0,0,0,0.3);">
+                    <img src="${escapeHTML(project.image)}" alt="${escapeHTML(project.imageAlt || project.title)}" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
+                </div>
+            ` : '';
+
             const overviewHtml = `
+                ${imageBannerHtml}
                 <div class="project-modal-section">
                     <h4 class="project-modal-section-title">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
