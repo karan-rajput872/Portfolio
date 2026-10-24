@@ -1992,6 +1992,75 @@ button {
     gap: 12px;
 }
 
+.achievement-thumbnail-wrap {
+    margin: 18px 0;
+    max-width: 680px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    background: #080a14;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.achievement-thumbnail-wrap:hover {
+    border-color: rgba(249, 115, 22, 0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5), 0 0 16px rgba(249, 115, 22, 0.15);
+}
+
+.achievement-thumbnail-link {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.achievement-thumbnail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-normal);
+}
+
+.achievement-thumbnail-link:hover .achievement-thumbnail-img {
+    transform: scale(1.02);
+}
+
+.achievement-thumbnail-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(5, 6, 11, 0.88) 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 14px 18px;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.achievement-thumbnail-link:hover .achievement-thumbnail-overlay,
+.achievement-thumbnail-link:focus-visible .achievement-thumbnail-overlay {
+    opacity: 1;
+}
+
+.achievement-thumbnail-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(249, 115, 22, 0.95);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    letter-spacing: 0.3px;
+}
+
 /* --------------------------------------------------------------------------
    13. RESUME SECTION (STEP 4H PROFESSIONAL RESUME INTEGRATION)
    -------------------------------------------------------------------------- */

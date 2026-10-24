@@ -690,6 +690,42 @@ const portfolioData = {
             detailUrl: "planet-hunters.html",
             githubUrl: "https://github.com/karan-rajput872/Planet-Hunters-Round1",
             liveUrl: "https://planet-hunters-round1.vercel.app/"
+        },
+        {
+            title: "Prompt to Podium: Research. Create. Present.",
+            topic: "Dark Store Private-Label Defence Strategy for a National Dairy Brand in Delhi NCR's Quick-Commerce Ecosystem",
+            project: "Dark Store Private-Label Defence Strategy",
+            platform: "Unstop",
+            competition: "Unstop Prompt to Podium",
+            type: "Research & Strategy / Presentation",
+            status: "Completed / Participated",
+            year: "2026",
+            role: "Lead Researcher & Strategist",
+            description: "Completed a research and presentation-based challenge through Unstop, exploring a strategic business problem involving private-label competition, dark-store operations, and the quick-commerce ecosystem in Delhi NCR. The work focused on developing a research-backed strategic presentation for a national dairy brand.",
+            resumeTitle: "Prompt to Podium: Research. Create. Present. — Unstop",
+            resumeDesc: "Completed a research and strategic presentation challenge focused on developing a dark-store private-label defence strategy for a national dairy brand in Delhi NCR's quick-commerce ecosystem.",
+            thumbnail: "assets/images/unstop_prompt_to_podium_cover.png",
+            thumbnailAlt: "Dark Store Private-Label Defence Strategy — Unstop Prompt to Podium Presentation Cover Slide",
+            highlights: [
+                "Researched quick-commerce dark store operations across Blinkit, Zepto, and Swiggy Instamart in Delhi NCR.",
+                "Built a 24-month cohort model evaluating unit economics (Base-case ROI -50.6%, 12-month LTV/CAC 1.12x).",
+                "Formulated 5 strategic recommendations prioritizing freshness, traceability, and channel profitability over volume races.",
+                "Delivered a structured 14-slide executive presentation hosted on Kreyato AI for senior FMCG and dairy stakeholders."
+            ],
+            tags: [
+                "Market Research",
+                "Competitive Analysis",
+                "Business Strategy",
+                "Quick Commerce",
+                "Market Positioning",
+                "Strategic Thinking",
+                "Research Synthesis",
+                "Presentation Development",
+                "Business Communication"
+            ],
+            presentationUrl: "https://kreyato.ai/s/8GzJFW3w",
+            detailUrl: "dark-store-dairy-strategy.html",
+            detailLabel: "Research Case Study"
         }
     ]
 };
@@ -1504,13 +1540,31 @@ function renderAchievements() {
         const roleBadge = ach.role ? `<span class="achievement-role-badge">Role: ${escapeHTML(ach.role)}</span>` : '';
 
         let projectSubtitle = '';
-        if (ach.project && ach.competition) {
+        if (ach.topic && ach.platform) {
+            projectSubtitle = `<h4 class="achievement-subtitle">Platform: <span style="color: var(--accent); font-weight: 600;">${escapeHTML(ach.platform)}</span> &bull; Topic: <span>${escapeHTML(ach.topic)}</span></h4>`;
+        } else if (ach.topic) {
+            projectSubtitle = `<h4 class="achievement-subtitle">Topic: <span>${escapeHTML(ach.topic)}</span></h4>`;
+        } else if (ach.project && ach.competition) {
             projectSubtitle = `<h4 class="achievement-subtitle">Project: <span>${escapeHTML(ach.project)}</span> &bull; <span style="color: var(--text-secondary); font-weight: 500;">${escapeHTML(ach.competition)}</span></h4>`;
         } else if (ach.project) {
             projectSubtitle = `<h4 class="achievement-subtitle">Project: <span>${escapeHTML(ach.project)}</span></h4>`;
         } else if (ach.subtitle) {
             projectSubtitle = `<h4 class="achievement-subtitle">${escapeHTML(ach.subtitle)}</h4>`;
         }
+
+        const thumbnailHtml = ach.thumbnail ? `
+            <div class="achievement-thumbnail-wrap">
+                <a href="${escapeHTML(ach.presentationUrl || ach.detailUrl || '#')}" target="_blank" rel="noopener noreferrer" class="achievement-thumbnail-link" aria-label="Open presentation deck: ${escapeHTML(ach.title)}">
+                    <img src="${escapeHTML(ach.thumbnail)}" alt="${escapeHTML(ach.thumbnailAlt || ach.title)}" class="achievement-thumbnail-img" loading="lazy" />
+                    <div class="achievement-thumbnail-overlay">
+                        <span class="achievement-thumbnail-badge">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            View Deck
+                        </span>
+                    </div>
+                </a>
+            </div>
+        ` : '';
 
         const highlightsHtml = ach.highlights && Array.isArray(ach.highlights) && ach.highlights.length > 0 ? `
             <ul class="achievement-highlights">
@@ -1526,11 +1580,23 @@ function renderAchievements() {
 
         const buttons = [];
 
-        // Dedicated Project Case Study / Project Link
-        if (ach.detailUrl && ach.detailUrl.trim() !== '') {
+        // 1. Dedicated Presentation Link (Unstop / Kreyato)
+        if (ach.presentationUrl && ach.presentationUrl.trim() !== '') {
             buttons.push(`
-                <a href="${ach.detailUrl}" class="btn btn-sm btn-primary" aria-label="View project: ${escapeHTML(ach.title)}">
-                    <span>View Project</span>
+                <a href="${ach.presentationUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" aria-label="View research presentation: ${escapeHTML(ach.title)}">
+                    <span>View Research Presentation</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+            `);
+        }
+
+        // 2. Dedicated Case Study / Project Detail Link
+        if (ach.detailUrl && ach.detailUrl.trim() !== '') {
+            const btnLabel = ach.detailLabel || "View Project";
+            const btnClass = ach.presentationUrl ? "btn btn-sm btn-outline" : "btn btn-sm btn-primary";
+            buttons.push(`
+                <a href="${ach.detailUrl}" class="${btnClass}" aria-label="${escapeHTML(btnLabel)}: ${escapeHTML(ach.title)}">
+                    <span>${escapeHTML(btnLabel)}</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
                 </a>
             `);
@@ -1600,6 +1666,7 @@ function renderAchievements() {
                     <h3 class="achievement-title">${escapeHTML(ach.title)}</h3>
                     ${projectSubtitle}
                     <p class="achievement-desc">${escapeHTML(ach.description)}</p>
+                    ${thumbnailHtml}
                     ${highlightsHtml}
                     ${tagsHtml}
                     ${actionBtn}
@@ -2073,16 +2140,19 @@ function renderResume() {
         `;
     }).join('');
 
-    // 5. Achievements (Smart India Hackathon 2026 & HACK4HACK 2026)
+    // 5. Achievements (Smart India Hackathon 2026, HACK4HACK 2026 & Unstop Prompt to Podium)
     const achHtml = (achievements || []).map(ach => {
         const title = ach.resumeTitle || ach.title;
         const desc = ach.resumeDesc || ach.description;
+        const subtitleText = ach.topic 
+            ? `Topic: ${escapeHTML(ach.topic)} &bull; ${escapeHTML(ach.status || '')}` 
+            : `Project: ${escapeHTML(ach.project || '')} &bull; ${escapeHTML(ach.status || '')}`;
         return `
         <div class="resume-entry">
             <div class="resume-entry-header">
                 <div>
                     <h4 class="resume-entry-title">${escapeHTML(title)}</h4>
-                    <span class="resume-entry-subtitle">Project: ${escapeHTML(ach.project || '')} &bull; ${escapeHTML(ach.status || '')}</span>
+                    <span class="resume-entry-subtitle">${subtitleText}</span>
                 </div>
                 <span class="resume-entry-date">${escapeHTML(ach.year || '2026')}</span>
             </div>
