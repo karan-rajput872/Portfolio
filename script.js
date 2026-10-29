@@ -66,8 +66,8 @@ const portfolioData = {
         {
             id: "certifications",
             label: "CERTIFICATES EARNED",
-            value: 14,
-            displayValue: "14",
+            value: 16,
+            displayValue: "16",
             description: "Official credentials across CS, AI, Cloud & Security"
         },
         {
@@ -418,7 +418,7 @@ const portfolioData = {
             highlights: [
                 "Responsive design for desktop, tablet, and mobile with fluid dark-mode typography.",
                 "Centralized Vanilla JavaScript data architecture with zero external framework dependencies.",
-                "Verified credentials & activities hub featuring 14 certifications and competition achievements.",
+                "Verified credentials & activities hub featuring 16 certifications and competition achievements.",
                 "Interactive on-page resume viewer paired with automated ATS-compliant PDF generation."
             ],
             overview: "A responsive personal portfolio website designed and developed from scratch to showcase my academic journey, verified technical certifications, engineering projects, hackathons, and research case studies. Engineered with a centralized Vanilla JavaScript architecture, the platform dynamically renders content from structured datasets while maintaining high accessibility, smooth transitions, and instant performance without bulky framework overhead.",
@@ -435,7 +435,7 @@ const portfolioData = {
                 "Responsive Cross-Device Layout: Engineered for seamless presentation across desktop (1600px+), tablet, and mobile (360px+).",
                 "Centralized Data Architecture: Single-source-of-truth state management rendering all sections dynamically in pure Vanilla JavaScript.",
                 "Projects & Case Study Showcase: Interactive project cards with authentic previews, live demo links, repository access, and deep-dive modal dialogs.",
-                "Verified Credentials Hub: Comprehensive showcase of 14 authentic credentials across CS, AI, Cloud, and Cybersecurity with direct verification links.",
+                "Verified Credentials Hub: Comprehensive showcase of 16 authentic credentials across CS, AI, Cloud, and Cybersecurity with direct verification links.",
                 "Dual Resume Experience: Interactive ATS-friendly on-page resume viewer accompanied by automated, downloadable PDF generation.",
                 "Functional Contact Integration: Client-side validated contact form ready for serverless delivery.",
                 "Zero-Framework Performance: Ultra-fast page loads, accessible semantic HTML5 markup, and smooth CSS micro-interactions."
@@ -451,7 +451,7 @@ const portfolioData = {
             ],
             metrics: [
                 "100% Zero-Framework Implementation (Pure HTML5 / CSS3 / ES6+ JavaScript)",
-                "7 Projects & 14 Official Certifications Dynamically Managed",
+                "7 Projects & 16 Official Certifications Dynamically Managed",
                 "3 Verified Live Deployments & 6+ Code Repositories Integrated",
                 "Zero Horizontal Layout Overflow across all mobile viewports (down to 360px)",
                 "Automated 497 KB ATS-Compliant PDF Resume Synchronization"
@@ -501,7 +501,7 @@ const portfolioData = {
     ],
 
     // ----------------------------------------------------------------------
-    // CERTIFICATIONS (ALL 14 VERIFIED CERTIFICATES - CONNECTED TO REAL FILES)
+    // CERTIFICATIONS (ALL 16 VERIFIED CERTIFICATES - CONNECTED TO REAL FILES)
     // ----------------------------------------------------------------------
     certifications: [
         {
@@ -690,6 +690,61 @@ const portfolioData = {
                 "Prompt Engineering",
                 "Artificial Intelligence"
             ]
+        },
+        {
+            name: "AI Tools & Claude Workshop — Certificate of Completion",
+            title: "AI Tools & Claude Workshop — Certificate of Completion",
+            shortName: "AI Tools & Claude Workshop",
+            organization: "Be10x",
+            issuer: "Be10x",
+            recipient: "Priyanshu Karan",
+            type: "Certificate of Completion",
+            issueDate: "28 October 2026",
+            date: "28 October 2026",
+            credentialId: "",
+            credentialUrl: "",
+            certificateFile: "assets/certificates/be10x-ai-tools-claude-workshop.pdf",
+            file: "assets/certificates/be10x-ai-tools-claude-workshop.pdf",
+            previewImage: "assets/certificates/be10x-ai-tools-claude-workshop-preview.png",
+            image: "assets/certificates/be10x-ai-tools-claude-workshop-preview.png",
+            description: "Successfully completed the Be10x AI Tools & Claude Workshop, gaining practical exposure to using AI tools for presentations, data analysis, coding, and debugging.",
+            resumeDesc: "Practical exposure to AI-assisted presentations, data analysis, coding, and debugging.",
+            skills: [
+                "Artificial Intelligence",
+                "Generative AI",
+                "Claude",
+                "AI-Assisted Coding",
+                "Data Analysis",
+                "AI Productivity Tools"
+            ]
+        },
+        {
+            name: "ML Challenge Hack4Hack 2026 — Certificate of Participation",
+            title: "ML Challenge Hack4Hack 2026 — Certificate of Participation",
+            shortName: "ML Challenge Hack4Hack 2026",
+            organization: "Hack4Hack",
+            issuer: "Hack4Hack",
+            recipient: "Priyanshu Karan",
+            team: "Kaalchakra",
+            type: "Certificate of Participation",
+            issueDate: "28 October 2026",
+            date: "28 October 2026",
+            credentialId: "0548DB0D",
+            idLabel: "Certificate ID",
+            credentialUrl: "",
+            certificateFile: "assets/certificates/hack4hack-2026-ml-challenge.pdf",
+            file: "assets/certificates/hack4hack-2026-ml-challenge.pdf",
+            previewImage: "assets/certificates/hack4hack-2026-ml-challenge-preview.png",
+            image: "assets/certificates/hack4hack-2026-ml-challenge-preview.png",
+            description: "Participated in the ML Challenge Hack4Hack 2026, organized by Hack4Hack, as a member of Team Kaalchakra. Successfully cleared Round 1 and was shortlisted for Round 2.",
+            resumeDesc: "Participated as a member of Team Kaalchakra; successfully cleared Round 1 and was shortlisted for Round 2.",
+            skills: [
+                "Machine Learning",
+                "Artificial Intelligence",
+                "Python",
+                "Problem Solving",
+                "Technical Competition"
+            ]
         }
     ],
 
@@ -759,31 +814,34 @@ const portfolioData = {
             project: "Planet Hunters — Find New Worlds in Starlight",
             competition: "ML Challenge Hack4Hack 2026",
             organizer: "Hack4Hack",
+            team: "Team Kaalchakra",
             type: "Hackathon / ML Challenge",
             status: "Shortlisted for Round 2",
             year: "2026",
             role: "Machine Learning Engineer",
-            description: "Participated in the ML Challenge Hack4Hack 2026 with Planet Hunters — Find New Worlds in Starlight, an astronomy-focused Machine Learning project. Successfully completed Round 1 and received official confirmation that my team has been shortlisted for Round 2.",
-            resumeTitle: "HACK4HACK 2026 — ML Challenge",
-            resumeDesc: "Shortlisted for Round 2 after participating in Round 1 with Planet Hunters, an astronomy-focused Machine Learning project.",
+            description: "Participated in the ML Challenge Hack4Hack 2026, organized by Hack4Hack, as a member of Team Kaalchakra with Planet Hunters — Find New Worlds in Starlight. Successfully cleared Round 1 and was shortlisted for Round 2 (Certificate of Participation received).",
+            resumeTitle: "Hack4Hack 2026 — ML Challenge",
+            resumeDesc: "Participated as a member of Team Kaalchakra; successfully cleared Round 1 and was shortlisted for Round 2.",
             highlights: [
-                "Participated in HACK4HACK ML Challenge 2026.",
-                "Completed Round 1.",
-                "Team officially shortlisted for Round 2.",
+                "Successfully cleared Round 1.",
+                "Shortlisted for Round 2.",
+                "Participated as a member of Team Kaalchakra.",
+                "Certificate of Participation received.",
                 "Developed Planet Hunters using a heterogeneous Machine Learning ensemble.",
                 "Built an interactive scientific telemetry dashboard."
             ],
             tags: [
                 "Machine Learning",
+                "Team Kaalchakra",
+                "Round 1 Cleared",
+                "Round 2 Shortlisted",
+                "Certificate of Participation",
                 "Astronomy Time-Series",
-                "Astro-Cotrending",
-                "88 Domain Features",
                 "Ensemble Learning",
-                "LightGBM & HistGB",
-                "CatBoost",
-                "Round 1 Completed",
-                "Round 2 Shortlisted"
+                "Python",
+                "Technical Competition"
             ],
+            certificateUrl: "assets/certificates/hack4hack-2026-ml-challenge.pdf",
             detailUrl: "planet-hunters.html",
             githubUrl: "https://github.com/karan-rajput872/Planet-Hunters-Round1",
             liveUrl: "https://planet-hunters-round1.vercel.app/"
@@ -905,7 +963,7 @@ function renderStats() {
     if (!container) return;
 
     const projectCount = (portfolioData.projects || []).length || 6;
-    const certCount = (portfolioData.certifications || []).length || 14;
+    const certCount = (portfolioData.certifications || []).length || 16;
     const liveDeployments = (portfolioData.projects || []).filter(p => p.liveUrl && p.liveUrl.trim() !== '' && p.liveUrl !== '#').length || 2;
     const repoCount = 5;
 
@@ -1395,7 +1453,7 @@ function renderProjects() {
 }
 
 /**
- * Render Certifications Section (All 14 Real Certificates)
+ * Render Certifications Section (All 16 Real Certificates)
  */
 function renderCertifications() {
     const container = document.getElementById('certificationsContainer');
@@ -1415,6 +1473,15 @@ function renderCertifications() {
                 <div class="cert-meta-row">
                     <span class="cert-meta-label">Recipient:</span>
                     <span class="cert-meta-val">${escapeHTML(cert.recipient)}</span>
+                </div>
+            `);
+        }
+
+        if (cert.team && cert.team.trim() !== '') {
+            metaRows.push(`
+                <div class="cert-meta-row">
+                    <span class="cert-meta-label">Team:</span>
+                    <span class="cert-meta-val">${escapeHTML(cert.team)}</span>
                 </div>
             `);
         }
@@ -1772,6 +1839,16 @@ function renderAchievements() {
                 <a href="${ach.confirmationUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="View official confirmation">
                     <span>View Confirmation</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                </a>
+            `);
+        }
+
+        // Optional certificate link (e.g. Hack4Hack Certificate of Participation)
+        if (ach.certificateUrl && ach.certificateUrl.trim() !== '') {
+            buttons.push(`
+                <a href="${encodeURI(ach.certificateUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="View official certificate: ${escapeHTML(ach.title)}">
+                    <span>View Certificate</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 </a>
             `);
         }
@@ -2228,7 +2305,7 @@ function renderResume() {
             bullets.push("Contributed to backend verification logic (Ed25519 signing/verification, SHA-256 hashing, public-key verification, expiry/revocation checking, and tamper detection) for digital communications.");
         } else if (proj.isCurrentSite) {
             bullets.push("Engineered a responsive personal portfolio featuring dynamic Vanilla JavaScript data rendering, custom dark-theme styling, accessible modal viewers, and automated ATS PDF generation with Puppeteer.");
-            bullets.push("Integrated comprehensive showcase hubs for 7 projects, 14 verified certifications, hackathons, and research case studies with continuous CI/CD deployment on Vercel and GitHub Pages.");
+            bullets.push("Integrated comprehensive showcase hubs for 7 projects, 16 verified certifications, hackathons, and research case studies with continuous CI/CD deployment on Vercel and GitHub Pages.");
         }
 
         const bulletsList = bullets.length > 0 
@@ -2620,13 +2697,28 @@ document.addEventListener('DOMContentLoaded', () => {
                             <img src="${encodedFile}" alt="Official Certificate: ${escapeHTML(cert.name)} - ${escapeHTML(cert.organization || '')}" class="modal-cert-img" loading="eager" />
                         </div>
                     `;
+                } else if (cert.previewImage) {
+                    const encodedPreview = encodeURI(cert.previewImage);
+                    modalCertViewer.innerHTML = `
+                        <div class="modal-img-container">
+                            <img src="${encodedPreview}" alt="Official Certificate: ${escapeHTML(cert.name)} - ${escapeHTML(cert.organization || '')}" class="modal-cert-img" loading="eager" />
+                        </div>
+                        <iframe src="${encodedFile}#toolbar=0" class="modal-cert-pdf" title="Official Certificate: ${escapeHTML(cert.name)}" style="display:none;" aria-hidden="true"></iframe>
+                    `;
                 } else {
+                    const previewBtn = cert.previewImage ? `
+                        <a href="${encodeURI(cert.previewImage)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-xs" aria-label="Open preview image in new tab">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            <span>Preview Image</span>
+                        </a>
+                    ` : '';
                     modalCertViewer.innerHTML = `
                         <div class="modal-pdf-container">
                             <iframe src="${encodedFile}#toolbar=0" class="modal-cert-pdf" title="Official Certificate: ${escapeHTML(cert.name)}"></iframe>
                             <div class="modal-pdf-fallback-bar">
                                 <span class="modal-pdf-fallback-text">Official document viewer</span>
                                 <div class="modal-pdf-fallback-links">
+                                    ${previewBtn}
                                     <a href="${encodedFile}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-xs" aria-label="Open PDF in new tab">
                                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                                         <span>Open in New Tab</span>
@@ -2653,6 +2745,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const extraRows = [];
         if (cert.recipient && cert.recipient.trim() !== '') {
             extraRows.push(`<div><strong>Recipient:</strong> <span>${escapeHTML(cert.recipient)}</span></div>`);
+        }
+        if (cert.team && cert.team.trim() !== '') {
+            extraRows.push(`<div><strong>Team:</strong> <span>${escapeHTML(cert.team)}</span></div>`);
         }
         if (cert.issueDate && cert.issueDate.trim() !== '') {
             extraRows.push(`<div><strong>Issue Date:</strong> <span>${cert.issueDate}</span></div>`);
@@ -2696,6 +2791,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="${encodedFile}" download class="btn btn-outline btn-sm" aria-label="Download Certificate: ${escapeHTML(cert.name)}">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                         <span>Download Certificate</span>
+                    </a>
+                `);
+            }
+
+            if (cert.previewImage && cert.previewImage.trim() !== '') {
+                footerBtns.push(`
+                    <a href="${encodeURI(cert.previewImage)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" aria-label="View preview image: ${escapeHTML(cert.name)}">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                        <span>Preview Image</span>
                     </a>
                 `);
             }
