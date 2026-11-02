@@ -134,16 +134,23 @@ const portfolioData = {
         ],
         webDevelopment: [
             "HTML",
-            "CSS"
+            "CSS",
+            "JavaScript"
         ],
         tools: [
             "Git",
             "GitHub"
+        ],
+        aiMl: [
+            "Machine Learning",
+            "Generative AI",
+            "AI-Assisted Tools",
+            "Data Analysis"
         ]
     },
 
     // ----------------------------------------------------------------------
-    // CURRENTLY LEARNING
+    // CURRENTLY EXPLORING (LEARNING ROADMAP)
     // ----------------------------------------------------------------------
     // Topics and areas you are actively exploring and developing.
     // These appear clearly marked as active learning in About Me and Skills.
@@ -152,6 +159,32 @@ const portfolioData = {
         "JavaScript",
         "Artificial Intelligence / Machine Learning",
         "Web Development"
+    ],
+    currentlyExploring: [
+        {
+            topic: "Data Structures & Algorithms",
+            status: "In Progress",
+            description: "Algorithmic thinking, complexity analysis, and linear/non-linear structures through coursework.",
+            icon: "dsa"
+        },
+        {
+            topic: "JavaScript (ES6+)",
+            status: "In Progress",
+            description: "Modern asynchronous paradigms, DOM performance, and web application logic.",
+            icon: "javascript"
+        },
+        {
+            topic: "AI / Machine Learning",
+            status: "In Progress",
+            description: "Foundational predictive modeling and competitive challenge problem-solving.",
+            icon: "ml"
+        },
+        {
+            topic: "Web Development",
+            status: "In Progress",
+            description: "Responsive frontend engineering, semantic UI design, and web accessibility standards.",
+            icon: "web"
+        }
     ],
 
     // ----------------------------------------------------------------------
@@ -1016,8 +1049,8 @@ function initStatsAnimation() {
                 statNumbers.forEach(el => {
                     const target = parseFloat(el.getAttribute('data-value') || el.textContent) || 0;
                     const parentCol = el.closest('.stat-col');
-                    const decimals = parentCol && parentCol.hasAttribute('data-decimals') 
-                        ? parseInt(parentCol.getAttribute('data-decimals'), 10) 
+                    const decimals = parentCol && parentCol.hasAttribute('data-decimals')
+                        ? parseInt(parentCol.getAttribute('data-decimals'), 10)
                         : 0;
                     const suffix = parentCol && parentCol.hasAttribute('data-suffix')
                         ? parentCol.getAttribute('data-suffix')
@@ -1184,7 +1217,7 @@ function renderCurrentlyLearning() {
 }
 
 /**
- * Render Technical Skills Section
+ * Render Technical Expertise Section (Redesigned Developer Architecture)
  */
 function renderSkills() {
     const container = document.getElementById('skillsContainer');
@@ -1195,83 +1228,191 @@ function renderSkills() {
         return;
     }
 
-    // Category display metadata (icons & formatted titles)
+    // Authentic Technology SVGs
+    const techIcons = {
+        c: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="C programming language logo"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#00599C"/><path d="M12.5 7.5a4.5 4.5 0 0 0-4.5 4.5 4.5 4.5 0 0 0 4.5 4.5c1.65 0 3.08-.89 3.86-2.22l-1.78-1.03a2.43 2.43 0 0 1-2.08 1.25 2.45 2.45 0 0 1-2.45-2.45 2.45 2.45 0 0 1 2.45-2.45c.86 0 1.62.48 2.02 1.2l1.81-1.05A4.47 4.47 0 0 0 12.5 7.5z" fill="#659AD2"/></svg>`,
+        python: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Python logo"><path d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.006 2.75h5.82v.825H3.852S0 5.768 0 11.884c0 6.115 3.367 5.918 3.367 5.918h2.01v-2.825s-.11-3.367 3.31-3.367h5.688s3.197.052 3.197-3.118V3.118S17.95 0 11.914 0zm-3.2 1.74a1.04 1.04 0 1 1 0 2.08 1.04 1.04 0 0 1 0-2.08z" fill="#3776AB"/><path d="M12.086 24c6.094 0 5.714-2.656 5.714-2.656l-.006-2.75h-5.82v-.825h8.174s3.852.463 3.852-5.653c0-6.115-3.367-5.918-3.367-5.918h-2.01v2.825s.11 3.367-3.31 3.367H9.681s-3.197-.052-3.197 3.118v5.334S6.05 24 12.086 24zm3.2-1.74a1.04 1.04 0 1 1 0-2.08 1.04 1.04 0 0 1 0 2.08z" fill="#FFD43B"/></svg>`,
+        html: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="HTML5 logo"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0z" fill="#E34F26"/><path d="M12 22.018l7.027-1.948 1.62-18.07H12v20.018z" fill="#EF652A"/><path d="M12 8.76H7.904l.235 2.668H12V8.76zm0 5.347h-2.08l-.133-1.493H7.424l.261 2.94 4.315 1.198V14.107z" fill="#EBEBEB"/><path d="M12 3.424v2.668h7.824l-.235 2.668H12v2.668h5.234l-.495 5.578-4.739 1.315V20.32l6.16-1.708.844-9.376.01-.137.49-5.675H12z" fill="#FFFFFF"/></svg>`,
+        html5: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="HTML5 logo"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0z" fill="#E34F26"/><path d="M12 22.018l7.027-1.948 1.62-18.07H12v20.018z" fill="#EF652A"/><path d="M12 8.76H7.904l.235 2.668H12V8.76zm0 5.347h-2.08l-.133-1.493H7.424l.261 2.94 4.315 1.198V14.107z" fill="#EBEBEB"/><path d="M12 3.424v2.668h7.824l-.235 2.668H12v2.668h5.234l-.495 5.578-4.739 1.315V20.32l6.16-1.708.844-9.376.01-.137.49-5.675H12z" fill="#FFFFFF"/></svg>`,
+        css: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="CSS3 logo"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0z" fill="#1572B6"/><path d="M12 22.018l7.027-1.948 1.62-18.07H12v20.018z" fill="#33A9DC"/><path d="M12 8.76H7.904l.235 2.668H12V8.76zm0 5.347h-2.08l-.133-1.493H7.424l.261 2.94 4.315 1.198V14.107z" fill="#EBEBEB"/><path d="M12 3.424v2.668h7.824l-.235 2.668H12v2.668h5.234l-.495 5.578-4.739 1.315V20.32l6.16-1.708.844-9.376.01-.137.49-5.675H12z" fill="#FFFFFF"/></svg>`,
+        css3: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="CSS3 logo"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0z" fill="#1572B6"/><path d="M12 22.018l7.027-1.948 1.62-18.07H12v20.018z" fill="#33A9DC"/><path d="M12 8.76H7.904l.235 2.668H12V8.76zm0 5.347h-2.08l-.133-1.493H7.424l.261 2.94 4.315 1.198V14.107z" fill="#EBEBEB"/><path d="M12 3.424v2.668h7.824l-.235 2.668H12v2.668h5.234l-.495 5.578-4.739 1.315V20.32l6.16-1.708.844-9.376.01-.137.49-5.675H12z" fill="#FFFFFF"/></svg>`,
+        javascript: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="JavaScript logo"><rect width="24" height="24" rx="4" fill="#F7DF1E"/><path d="M6.5 17.5c.3.5.7.8 1.3.8.7 0 1.2-.4 1.2-1.3v-6.5h2v6.6c0 1.9-1.1 2.9-2.9 2.9-1.4 0-2.4-.7-2.8-1.7l1.2-.8zm8.1 2.4c-1.3 0-2.2-.6-2.6-1.6l1.3-.8c.3.5.7.8 1.3.8.6 0 1-.3 1-.7 0-.5-.4-.7-1.2-1-1.4-.5-2.3-1.1-2.3-2.4 0-1.3 1-2.3 2.5-2.3 1.1 0 1.9.4 2.4 1.3l-1.2.8c-.3-.4-.6-.6-1.1-.6-.6 0-.9.3-.9.7 0 .5.3.7 1.1 1 1.5.5 2.4 1.2 2.4 2.5 0 1.5-1.1 2.3-2.7 2.3z" fill="#000000"/></svg>`,
+        git: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Git logo"><path d="M23.546 10.93L13.067.452a1.5 1.5 0 0 0-2.126 0L8.808 2.585l3.25 3.25a2.213 2.213 0 0 1 2.801 2.812l3.134 3.134a2.21 2.21 0 0 1 2.82 2.766 2.22 2.22 0 0 1-3.328 1.037 2.21 2.21 0 0 1-.53-.53l-3.05-3.05v7.228a2.213 2.213 0 1 1-1.8-1.765V9.99a2.22 2.22 0 0 1-1.077-2.887L7.818 3.892.454 11.256a1.5 1.5 0 0 0 0 2.127l10.48 10.48a1.5 1.5 0 0 0 2.125 0l10.487-10.48a1.503 1.503 0 0 0 0-2.453z" fill="#F05032"/></svg>`,
+        github: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="GitHub logo"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill="#FFFFFF"/></svg>`,
+        ml: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Machine Learning icon"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>`,
+        genai: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Generative AI icon"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>`,
+        aiTools: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="AI Tools icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`,
+        dataAnalysis: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Data Analysis icon"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`,
+        dsa: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="DSA icon"><circle cx="12" cy="5" r="3"></circle><circle cx="5" cy="19" r="3"></circle><circle cx="19" cy="19" r="3"></circle><line x1="7.5" y1="17" x2="10.5" y2="7.5"></line><line x1="16.5" y1="17" x2="13.5" y2="7.5"></line></svg>`,
+        web: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Web architecture icon"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`
+    };
+
+    // Metadata dictionary for technology labels & roles
+    const techMeta = {
+        "c": { name: "C", role: "Procedural & Logic", icon: techIcons.c },
+        "python": { name: "Python", role: "Scripting & Data / ML", icon: techIcons.python },
+        "html": { name: "HTML5", role: "Semantic Markup", icon: techIcons.html5 },
+        "html5": { name: "HTML5", role: "Semantic Markup", icon: techIcons.html5 },
+        "css": { name: "CSS3", role: "Responsive UI", icon: techIcons.css3 },
+        "css3": { name: "CSS3", role: "Responsive UI", icon: techIcons.css3 },
+        "javascript": { name: "JavaScript", role: "DOM & App Logic", icon: techIcons.javascript },
+        "git": { name: "Git", role: "Version Control", icon: techIcons.git },
+        "github": { name: "GitHub", role: "CI/CD & Collaboration", icon: techIcons.github },
+        "machine learning": { name: "Machine Learning", role: "Supervised & Tabular", icon: techIcons.ml },
+        "generative ai": { name: "Generative AI", role: "LLM Workflows", icon: techIcons.genai },
+        "ai-assisted tools": { name: "AI Tools", role: "Claude & Productivity", icon: techIcons.aiTools },
+        "ai tools": { name: "AI Tools", role: "Claude & Productivity", icon: techIcons.aiTools },
+        "data analysis": { name: "Data Analysis", role: "Model Evaluation", icon: techIcons.dataAnalysis }
+    };
+
+    // Category display configuration
     const categoryConfig = {
         programming: {
-            title: "Programming",
-            icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`
+            title: "Programming Languages",
+            badge: "2 Languages",
+            desc: "Core languages used for foundational algorithms, computational problem solving, and software engineering.",
+            note: "Academic coursework & computational foundations",
+            noteIcon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`,
+            icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`,
+            rowClass: "expertise-card-r1",
+            isTwoCol: false
         },
         webDevelopment: {
             title: "Web Development",
-            icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`
+            badge: "3 Technologies",
+            desc: "Modern web standards applied to build responsive, accessible, and interactive portfolio experiences.",
+            note: "Applied across personal portfolio & web projects",
+            noteIcon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>`,
+            icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`,
+            rowClass: "expertise-card-r1",
+            isTwoCol: false
         },
         tools: {
-            title: "Tools & Platforms",
-            icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`
+            title: "Developer Tools",
+            badge: "2 Platforms",
+            desc: "Industry-standard version control and collaborative development workflows across all active repositories.",
+            note: "Active Git commit history & branch workflows",
+            noteIcon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>`,
+            icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`,
+            rowClass: "expertise-card-r1",
+            isTwoCol: false
+        },
+        aiMl: {
+            title: "AI & Machine Learning",
+            badge: "4 Focus Areas",
+            desc: "Practical exposure to machine learning workflows, tabular model experimentation, and AI tooling.",
+            note: "Supported by Hack4Hack 2026 challenge participation & Be10x workshop",
+            noteIcon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
+            icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="8.5" y1="7.5" x2="15.5" y2="16.5"></line><line x1="8.5" y1="16.5" x2="15.5" y2="7.5"></line></svg>`,
+            rowClass: "expertise-card-r2",
+            isTwoCol: true
         }
     };
 
-    // Build skill category cards
-    let categoriesHtml = Object.entries(portfolioData.skills).map(([key, items]) => {
+    // Render the 4 Core Technical Categories
+    let cardsHtml = Object.entries(portfolioData.skills).map(([key, items]) => {
         const config = categoryConfig[key] || {
             title: key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()),
-            icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>`
+            badge: `${items.length} Skills`,
+            desc: "Technical competencies and development tooling.",
+            note: "Verified portfolio technologies",
+            noteIcon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>`,
+            icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon></svg>`,
+            rowClass: "expertise-card-r1",
+            isTwoCol: false
         };
 
-        const badgesHtml = items.map(skill => {
-            const skillName = typeof skill === 'string' ? skill : skill.name;
-            const skillType = typeof skill === 'object' && skill.type ? skill.type : '';
+        const itemsHtml = items.map(skill => {
+            const rawName = typeof skill === 'string' ? skill : skill.name;
+            const lookupKey = rawName.toLowerCase().trim();
+            const meta = techMeta[lookupKey] || {
+                name: rawName,
+                role: typeof skill === 'object' && skill.role ? skill.role : "Technology",
+                icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle></svg>`
+            };
+
             return `
-                <div class="skill-badge">
-                    <span class="skill-name">${skillName}</span>
-                    ${skillType ? `<span class="skill-type">${skillType}</span>` : ''}
+                <div class="exp-item-row">
+                    <div class="exp-item-left">
+                        <span class="exp-item-icon" aria-hidden="true">${meta.icon}</span>
+                        <span class="exp-item-name">${escapeHTML(meta.name)}</span>
+                    </div>
+                    <span class="exp-item-role">${escapeHTML(meta.role)}</span>
                 </div>
             `;
         }).join('');
 
+        const stackClass = config.isTwoCol ? "exp-items-2col" : "exp-items-stack";
+
         return `
-            <div class="skill-category-card reveal">
-                <div class="category-header">
-                    <div class="category-icon" aria-hidden="true">
-                        ${config.icon}
+            <div class="expertise-card ${config.rowClass} reveal">
+                <div>
+                    <div class="exp-card-header">
+                        <div class="exp-card-header-left">
+                            <div class="exp-card-icon-box" aria-hidden="true">${config.icon}</div>
+                            <h3 class="exp-card-title">${escapeHTML(config.title)}</h3>
+                        </div>
+                        <span class="exp-card-badge">${escapeHTML(config.badge)}</span>
                     </div>
-                    <h3>${config.title}</h3>
+                    <p class="exp-card-desc">${escapeHTML(config.desc)}</p>
+                    <div class="${stackClass}">
+                        ${itemsHtml}
+                    </div>
                 </div>
-                <div class="skill-tags">
-                    ${badgesHtml}
+                <div class="exp-context-note">
+                    ${config.noteIcon}
+                    <span>${escapeHTML(config.note)}</span>
                 </div>
             </div>
         `;
     }).join('');
 
-    // Dedicated "Currently Learning" card in Skills section
-    if (portfolioData.currentlyLearning && portfolioData.currentlyLearning.length > 0) {
-        const learningBadgesHtml = portfolioData.currentlyLearning.map(item => {
-            const name = typeof item === 'string' ? item : item.title;
-            return `
-                <div class="skill-badge learning">
-                    <span class="skill-name">${name}</span>
-                    <span class="skill-type">Exploring / In Progress</span>
-                </div>
-            `;
-        }).join('');
+    // Render 5th Card: "Currently Exploring" Learning Roadmap
+    const exploringItems = portfolioData.currentlyExploring || [
+        { topic: "Data Structures & Algorithms", status: "In Progress", description: "Algorithmic thinking, complexity analysis, and linear/non-linear structures.", icon: "dsa" },
+        { topic: "JavaScript (ES6+)", status: "In Progress", description: "Modern asynchronous paradigms, DOM performance, and web app logic.", icon: "javascript" },
+        { topic: "AI / Machine Learning", status: "In Progress", description: "Foundational predictive modeling and competitive challenge problem-solving.", icon: "ml" },
+        { topic: "Web Development", status: "In Progress", description: "Responsive frontend engineering, semantic UI design, and accessibility standards.", icon: "web" }
+    ];
 
-        categoriesHtml += `
-            <div class="skill-category-card reveal">
-                <div class="category-header">
-                    <div class="category-icon" aria-hidden="true">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    </div>
-                    <h3>Currently Learning</h3>
+    const exploringHtml = exploringItems.map(item => {
+        const topic = item.topic || item;
+        const desc = item.description || "Active engineering roadmap & practical development.";
+        return `
+            <div class="exploring-mini-card">
+                <div class="exploring-mini-top">
+                    <span class="exploring-mini-title">${escapeHTML(topic)}</span>
                 </div>
-                <div class="skill-tags">
-                    ${learningBadgesHtml}
-                </div>
+                <p class="exploring-mini-desc">${escapeHTML(desc)}</p>
             </div>
         `;
-    }
+    }).join('');
 
-    container.innerHTML = categoriesHtml;
+    cardsHtml += `
+        <div class="expertise-card expertise-card-r2 reveal">
+            <div>
+                <div class="exp-card-header">
+                    <div class="exp-card-header-left">
+                        <div class="exp-card-icon-box" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </div>
+                        <h3 class="exp-card-title">Currently Exploring</h3>
+                    </div>
+                    <span class="status-pulse-pill"><span class="status-pulse-dot" aria-hidden="true"></span>In Progress</span>
+                </div>
+                <p class="exp-card-desc">Areas I'm actively studying and developing through coursework and projects.</p>
+                <div class="exp-items-2col">
+                    ${exploringHtml}
+                </div>
+            </div>
+            <div class="exp-context-note">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <span>Continuous engineering roadmap &amp; university curriculum</span>
+            </div>
+        </div>
+    `;
+
+    container.innerHTML = cardsHtml;
 }
 
 /**
@@ -2279,7 +2420,7 @@ function renderResume() {
     ];
 
     // 3. Featured & Competition Projects (FindIt, Planet Hunters, Dark Store, CLICKBAIT, Portfolio)
-    const resumeProjects = (projects || []).filter(p => 
+    const resumeProjects = (projects || []).filter(p =>
         p.featured || p.isCurrentSite || p.title.toLowerCase().includes('dark store')
     ).slice(0, 5);
     const projectsHtml = resumeProjects.map(proj => {
@@ -2308,8 +2449,8 @@ function renderResume() {
             bullets.push("Integrated comprehensive showcase hubs for 7 projects, 16 verified certifications, hackathons, and research case studies with continuous CI/CD deployment on Vercel and GitHub Pages.");
         }
 
-        const bulletsList = bullets.length > 0 
-            ? `<ul class="resume-item-bullets">${bullets.map(b => `<li>${b}</li>`).join('')}</ul>` 
+        const bulletsList = bullets.length > 0
+            ? `<ul class="resume-item-bullets">${bullets.map(b => `<li>${b}</li>`).join('')}</ul>`
             : '';
 
         const techList = proj.technologies && proj.technologies.length > 0
@@ -2317,7 +2458,7 @@ function renderResume() {
             : '';
 
         const statusYear = proj.title.toLowerCase().includes('planet hunter') ? '2026' : (proj.status === 'In Development' || proj.status === 'In Progress' ? '2026' : (proj.status || ''));
-                let resumeProjectTitle = proj.title;
+        let resumeProjectTitle = proj.title;
         if (proj.title.toLowerCase().includes('planet hunter')) {
             resumeProjectTitle = "Planet Hunters — Find New Worlds in Starlight | HACK4HACK 2026";
         } else if (proj.title.toLowerCase().includes('dark store') || proj.title.toLowerCase().includes('prompt to podium')) {
@@ -2359,8 +2500,8 @@ function renderResume() {
     const achHtml = (achievements || []).map(ach => {
         const title = ach.resumeTitle || ach.title;
         const desc = ach.resumeDesc || ach.description;
-        const subtitleText = ach.topic 
-            ? `Topic: ${escapeHTML(ach.topic)} &bull; ${escapeHTML(ach.status || '')}` 
+        const subtitleText = ach.topic
+            ? `Topic: ${escapeHTML(ach.topic)} &bull; ${escapeHTML(ach.status || '')}`
             : `Project: ${escapeHTML(ach.project || '')} &bull; ${escapeHTML(ach.status || '')}`;
         return `
         <div class="resume-entry">
@@ -2449,19 +2590,22 @@ function renderResume() {
                 <div class="resume-skills-table">
                     <div class="resume-skill-row">
                         <span class="resume-skill-key">Programming:</span>
-                        <span class="resume-skill-value">${(skills.programming || []).join(', ')}</span>
+                        <span class="resume-skill-value">${(skills.programming || []).map(s => typeof s === 'string' ? s : s.name).join(', ')}</span>
                     </div>
                     <div class="resume-skill-row">
                         <span class="resume-skill-key">Web Development:</span>
-                        <span class="resume-skill-value">${(skills.webDevelopment || []).join(', ')}, JavaScript</span>
+                        <span class="resume-skill-value">${((list) => {
+                            const arr = (list || []).map(s => typeof s === 'string' ? s : s.name);
+                            return arr.includes('JavaScript') ? arr.join(', ') : `${arr.join(', ')}, JavaScript`;
+                        })(skills.webDevelopment)}</span>
                     </div>
                     <div class="resume-skill-row">
                         <span class="resume-skill-key">Core Foundations &amp; Learning:</span>
-                        <span class="resume-skill-value">${(portfolioData.currentlyLearning || []).join(', ')}</span>
+                        <span class="resume-skill-value">${(portfolioData.currentlyLearning || []).map(s => typeof s === 'string' ? s : (s.topic || s.title)).join(', ')}</span>
                     </div>
                     <div class="resume-skill-row">
                         <span class="resume-skill-key">Developer Tools:</span>
-                        <span class="resume-skill-value">${(skills.tools || []).join(', ')}</span>
+                        <span class="resume-skill-value">${(skills.tools || []).map(s => typeof s === 'string' ? s : s.name).join(', ')}</span>
                     </div>
                 </div>
             </section>
@@ -2512,7 +2656,7 @@ function renderResume() {
     if (downloadBtn) {
         downloadBtn.onclick = (e) => {
             if (e) e.preventDefault();
-            const resumePath = (portfolioData.resume && (portfolioData.resume.path || portfolioData.resume.file)) 
+            const resumePath = (portfolioData.resume && (portfolioData.resume.path || portfolioData.resume.file))
                 || "assets/resume/Priyanshu_Karan_Resume.pdf";
             const downloadLink = document.createElement('a');
             downloadLink.href = resumePath;
@@ -2894,8 +3038,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (projectModalBody) {
-            const subtitleHtml = project.subtitle 
-                ? `<p class="project-modal-subtitle">${escapeHTML(project.subtitle)}</p>` 
+            const subtitleHtml = project.subtitle
+                ? `<p class="project-modal-subtitle">${escapeHTML(project.subtitle)}</p>`
                 : '';
 
             const statusClass = project.statusType || 'completed';
