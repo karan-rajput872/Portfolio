@@ -2855,14 +2855,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!prefersReducedMotion && typeof window.Lenis !== 'undefined') {
         try {
             lenis = new window.Lenis({
-                duration: 1.15,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                lerp: 0.08, // Refined silky linear interpolation factor (~18-20% more gradual, elegant inertia)
+                wheelMultiplier: 0.88, // Gentle wheel acceleration for natural, luxurious glide
+                touchMultiplier: 1, // 100% native gesture response on mobile touch
+                smoothTouch: false, // Maintain native mobile touch inertia
                 direction: 'vertical',
                 gestureDirection: 'vertical',
                 smooth: true,
-                smoothTouch: false, // 100% native gesture response on mobile touch
-                touchMultiplier: 1,
-                wheelMultiplier: 0.95,
                 infinite: false
             });
 
@@ -2907,11 +2906,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const navbarHeight = navbar ? navbar.offsetHeight : 72;
         if (lenis) {
             lenis.scrollTo(targetEl, {
-                offset: -navbarHeight - 10,
-                duration: 1.15
+                offset: -navbarHeight - 14,
+                duration: 1.35,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
             });
         } else {
-            const targetPos = targetEl.getBoundingClientRect().top + window.scrollY - navbarHeight - 10;
+            const targetPos = targetEl.getBoundingClientRect().top + window.scrollY - navbarHeight - 14;
             window.scrollTo({
                 top: targetPos,
                 behavior: prefersReducedMotion ? 'auto' : 'smooth'
@@ -2923,7 +2923,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (backToTopBtn) {
         backToTopBtn.addEventListener('click', () => {
             if (lenis) {
-                lenis.scrollTo(0, { duration: 1.2 });
+                lenis.scrollTo(0, {
+                    duration: 1.35,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                });
             } else {
                 window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
             }
