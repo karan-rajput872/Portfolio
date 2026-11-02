@@ -2808,8 +2808,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
+            const sectionRect = section.getBoundingClientRect();
+            const sectionTop = sectionRect.top + scrollY;
+            const sectionHeight = sectionRect.height || section.offsetHeight;
             const sectionId = section.getAttribute('id');
 
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
@@ -2829,6 +2830,9 @@ document.addEventListener('DOMContentLoaded', () => {
         updateScrollProgress(scrollY);
         updateBackToTop(scrollY);
         highlightActiveNav(scrollY);
+        if (typeof checkViewportReveals === 'function') {
+            checkViewportReveals();
+        }
     };
 
     // 5. Initialize Lenis Smooth Scrolling Engine
@@ -2838,10 +2842,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!prefersReducedMotion && typeof window.Lenis !== 'undefined') {
         try {
             lenis = new window.Lenis({
-                lerp: 0.075, // Silky linear interpolation factor (~15-20% more gradual, elegant controlled inertia)
-                wheelMultiplier: 0.82, // Gentle wheel acceleration for natural, luxurious glide
+                lerp: 0.07, // Silky linear interpolation factor (~15-20% more gradual, luxurious controlled inertia)
+                wheelMultiplier: 0.80, // Gentle wheel acceleration for natural, fluid glide
                 touchMultiplier: 1, // 100% native gesture response on mobile touch
-                smoothTouch: false, // Maintain native mobile touch inertia
+                smoothTouch: false, // Maintain native mobile touch momentum
                 direction: 'vertical',
                 gestureDirection: 'vertical',
                 smooth: true,
@@ -2890,7 +2894,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (lenis) {
             lenis.scrollTo(targetEl, {
                 offset: -navbarHeight - 16,
-                duration: 1.4,
+                duration: 1.45,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
             });
         } else {
@@ -2907,7 +2911,7 @@ document.addEventListener('DOMContentLoaded', () => {
         backToTopBtn.addEventListener('click', () => {
             if (lenis) {
                 lenis.scrollTo(0, {
-                    duration: 1.4,
+                    duration: 1.45,
                     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
                 });
             } else {
@@ -3466,7 +3470,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Fail-safe visibility check: immediately reveal all elements currently inside or near viewport
-    const checkViewportReveals = () => {
+    function checkViewportReveals() {
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
         document.querySelectorAll('.reveal:not(.revealed)').forEach(el => {
             const rect = el.getBoundingClientRect();
@@ -3474,7 +3478,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.classList.add('revealed');
             }
         });
-    };
+    }
     checkViewportReveals();
     setTimeout(checkViewportReveals, 250);
     setTimeout(checkViewportReveals, 750);
