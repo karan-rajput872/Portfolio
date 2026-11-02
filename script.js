@@ -2595,9 +2595,9 @@ function renderResume() {
                     <div class="resume-skill-row">
                         <span class="resume-skill-key">Web Development:</span>
                         <span class="resume-skill-value">${((list) => {
-                            const arr = (list || []).map(s => typeof s === 'string' ? s : s.name);
-                            return arr.includes('JavaScript') ? arr.join(', ') : `${arr.join(', ')}, JavaScript`;
-                        })(skills.webDevelopment)}</span>
+            const arr = (list || []).map(s => typeof s === 'string' ? s : s.name);
+            return arr.includes('JavaScript') ? arr.join(', ') : `${arr.join(', ')}, JavaScript`;
+        })(skills.webDevelopment)}</span>
                     </div>
                     <div class="resume-skill-row">
                         <span class="resume-skill-key">Core Foundations &amp; Learning:</span>
