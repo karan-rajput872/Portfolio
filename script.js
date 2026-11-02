@@ -63,8 +63,8 @@ const portfolioData = {
         {
             id: "projects",
             label: "PROJECTS BUILT",
-            value: 7,
-            displayValue: "7",
+            value: 6,
+            displayValue: "6",
             description: "Verified academic, competition, and research projects"
         },
         {
@@ -452,7 +452,7 @@ const portfolioData = {
             ],
             metrics: [
                 "100% Zero-Framework Implementation (Pure HTML5 / CSS3 / ES6+ JavaScript)",
-                "7 Projects & 16 Official Certifications Dynamically Managed",
+                "6 Projects & 16 Official Certifications Dynamically Managed",
                 "3 Verified Live Deployments & 6+ Code Repositories Integrated",
                 "Zero Horizontal Layout Overflow across all mobile viewports (down to 360px)",
                 "Automated 497 KB ATS-Compliant PDF Resume Synchronization"
@@ -466,33 +466,6 @@ const portfolioData = {
             imageAlt: "Personal portfolio website interface showing hero section, navigation, and developer profile.",
             featured: true,
             isCurrentSite: true
-        },
-        {
-            title: "Simple Calculator",
-            subtitle: "\"Structured Console Arithmetic Utility in C\"",
-            category: "C Programming",
-            context: "Academic Project",
-            status: "Completed",
-            statusType: "completed",
-            description: "A console-based calculator program built in C to perform fundamental arithmetic calculations with structured logic and user input handling.",
-            overview: "A console-based calculator program built in C to perform fundamental arithmetic calculations with structured procedural logic, boundary checks, and robust user input handling.",
-            problemSolution: "Beginning programmers need clean, predictable command-line utilities; this project implements formatted menu navigation, robust input validation, and modular arithmetic subroutines.",
-            capabilities: [
-                "Standard arithmetic operations (addition, subtraction, multiplication, division)",
-                "Input validation and division-by-zero runtime error protection",
-                "Modular procedural design with clear function separation"
-            ],
-            role: "Developer (Academic Project)",
-            roleDetail: "Implemented core arithmetic functions, conditional execution routines, and terminal interface.",
-            technologies: [
-                "C",
-                "Procedural Programming",
-                "CLI"
-            ],
-            githubUrl: "",
-            liveUrl: "",
-            image: "",
-            featured: false
         },
         {
             title: "Student Result System",
@@ -2486,7 +2459,7 @@ function renderResume() {
             bullets.push("Contributed to backend verification logic (Ed25519 signing/verification, SHA-256 hashing, public-key verification, expiry/revocation checking, and tamper detection) for digital communications.");
         } else if (proj.isCurrentSite) {
             bullets.push("Engineered a responsive personal portfolio featuring dynamic Vanilla JavaScript data rendering, custom dark-theme styling, accessible modal viewers, and automated ATS PDF generation with Puppeteer.");
-            bullets.push("Integrated comprehensive showcase hubs for 7 projects, 16 verified certifications, hackathons, and research case studies with continuous CI/CD deployment on Vercel and GitHub Pages.");
+            bullets.push("Integrated comprehensive showcase hubs for 6 projects, 16 verified certifications, hackathons, and research case studies with continuous CI/CD deployment on Vercel and GitHub Pages.");
         }
 
         const bulletsList = bullets.length > 0
