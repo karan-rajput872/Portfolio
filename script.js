@@ -2739,13 +2739,15 @@ document.addEventListener('DOMContentLoaded', () => {
     renderResume();
 
     // ----------------------------------------------------------------------
-    // Step B: Navbar and Navigation Elements
+    // Step B: Navbar, Lenis Ultra-Smooth Scrolling & Micro-Interactions
     // ----------------------------------------------------------------------
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section[id]');
+    const scrollProgressBar = document.getElementById('scrollProgressBar');
+    const backToTopBtn = document.getElementById('backToTop');
 
     // Mobile Menu Toggle
     const toggleMenu = () => {
@@ -2755,50 +2757,62 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const closeMenu = () => {
+        if (!navMenu) return;
         navMenu.classList.remove('open');
-        navToggle.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
+        if (navToggle) {
+            navToggle.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
     };
 
     if (navToggle) {
         navToggle.addEventListener('click', toggleMenu);
     }
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            closeMenu();
-            const href = link.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                const targetEl = document.querySelector(href);
-                if (targetEl) {
-                    targetEl.querySelectorAll('.reveal').forEach(el => el.classList.add('revealed'));
-                }
-            }
-        });
-    });
-
     document.addEventListener('click', (event) => {
-        if (!navbar.contains(event.target) && navMenu.classList.contains('open')) {
+        if (navbar && !navbar.contains(event.target) && navMenu && navMenu.classList.contains('open')) {
             closeMenu();
         }
     });
 
-    // Sticky Navbar Scroll Effect
-    const handleNavbarScroll = () => {
-        if (window.scrollY > 20) {
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && navMenu && navMenu.classList.contains('open')) {
+            closeMenu();
+        }
+    });
+
+    // 1. Sticky Navbar Visual Treatment on Scroll
+    const handleNavbarScroll = (scrollY = window.scrollY) => {
+        if (!navbar) return;
+        if (scrollY > 20) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
     };
 
-    window.addEventListener('scroll', handleNavbarScroll, { passive: true });
-    handleNavbarScroll();
+    // 2. Reading Progress Indicator Bar
+    const updateScrollProgress = (scrollY = window.scrollY) => {
+        if (!scrollProgressBar) return;
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = totalHeight > 0 ? (scrollY / totalHeight) * 100 : 0;
+        scrollProgressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+    };
 
-    // Active Navigation Highlighting (Smooth & Accurate Section Tracking)
-    const highlightActiveNav = () => {
-        const scrollPosition = window.scrollY + 120;
-        const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50;
+    // 3. Floating Back to Top Button
+    const updateBackToTop = (scrollY = window.scrollY) => {
+        if (!backToTopBtn) return;
+        if (scrollY > 380) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    };
+
+    // 4. Active Navigation Highlighting (Accurate Section Scrollspy)
+    const highlightActiveNav = (scrollY = window.scrollY) => {
+        const scrollPosition = scrollY + 140;
+        const isBottom = window.innerHeight + scrollY >= document.documentElement.scrollHeight - 60;
 
         if (isBottom) {
             navLinks.forEach(link => {
@@ -2826,8 +2840,113 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    window.addEventListener('scroll', highlightActiveNav, { passive: true });
-    highlightActiveNav();
+    // Unified scroll tick dispatcher
+    const onScrollTick = (scrollY = window.scrollY) => {
+        handleNavbarScroll(scrollY);
+        updateScrollProgress(scrollY);
+        updateBackToTop(scrollY);
+        highlightActiveNav(scrollY);
+    };
+
+    // 5. Initialize Lenis Smooth Scrolling Engine
+    let lenis = null;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion && typeof window.Lenis !== 'undefined') {
+        try {
+            lenis = new window.Lenis({
+                duration: 1.15,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                direction: 'vertical',
+                gestureDirection: 'vertical',
+                smooth: true,
+                smoothTouch: false, // 100% native gesture response on mobile touch
+                touchMultiplier: 1,
+                wheelMultiplier: 0.95,
+                infinite: false
+            });
+
+            window.lenis = lenis;
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+
+            lenis.on('scroll', (e) => {
+                onScrollTick(e.scroll);
+            });
+        } catch (e) {
+            console.warn('Lenis smooth scrolling fallback to native:', e);
+            lenis = null;
+        }
+    }
+
+    // Fallback standard scroll listener when Lenis is inactive
+    if (!lenis) {
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    onScrollTick(window.scrollY);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    }
+
+    // Initial check
+    onScrollTick(window.scrollY);
+
+    // 6. Smooth Scrolling for Internal Links (Anchor Navigation)
+    const scrollToTarget = (targetEl) => {
+        if (!targetEl) return;
+        targetEl.querySelectorAll('.reveal').forEach(el => el.classList.add('revealed'));
+        const navbarHeight = navbar ? navbar.offsetHeight : 72;
+        if (lenis) {
+            lenis.scrollTo(targetEl, {
+                offset: -navbarHeight - 10,
+                duration: 1.15
+            });
+        } else {
+            const targetPos = targetEl.getBoundingClientRect().top + window.scrollY - navbarHeight - 10;
+            window.scrollTo({
+                top: targetPos,
+                behavior: prefersReducedMotion ? 'auto' : 'smooth'
+            });
+        }
+    };
+
+    // Back to top button action
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+            if (lenis) {
+                lenis.scrollTo(0, { duration: 1.2 });
+            } else {
+                window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+            }
+        });
+    }
+
+    // Global anchor click interception
+    document.addEventListener('click', (e) => {
+        const anchor = e.target.closest('a[href^="#"]');
+        if (!anchor) return;
+        const href = anchor.getAttribute('href');
+        if (!href || href === '#' || href === '#main-content') return;
+
+        const targetEl = document.querySelector(href);
+        if (targetEl) {
+            e.preventDefault();
+            closeMenu();
+            scrollToTarget(targetEl);
+            if (history.pushState) {
+                history.pushState(null, '', href);
+            }
+        }
+    });
 
     // ----------------------------------------------------------------------
     // Step C: Certificate Viewer & Lightbox Modal
@@ -2847,6 +2966,9 @@ document.addEventListener('DOMContentLoaded', () => {
         certModal.classList.remove('open');
         certModal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        if (window.lenis) {
+            window.lenis.start();
+        }
         if (modalCertViewer) {
             modalCertViewer.innerHTML = '';
         }
@@ -3002,6 +3124,9 @@ document.addEventListener('DOMContentLoaded', () => {
         certModal.classList.add('open');
         certModal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+        if (window.lenis) {
+            window.lenis.stop();
+        }
     };
 
     // Event delegation for dynamically rendered cert-btn buttons
@@ -3040,6 +3165,9 @@ document.addEventListener('DOMContentLoaded', () => {
         projectModal.classList.remove('open');
         projectModal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        if (window.lenis) {
+            window.lenis.start();
+        }
     };
 
     const openProjectModal = (target) => {
@@ -3286,6 +3414,9 @@ document.addEventListener('DOMContentLoaded', () => {
         projectModal.classList.add('open');
         projectModal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+        if (window.lenis) {
+            window.lenis.stop();
+        }
     };
 
     // Event delegation for project-details-btn
