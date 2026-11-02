@@ -215,29 +215,26 @@ const portfolioData = {
             context: "Campus Platform",
             status: "Completed",
             statusType: "completed",
-            description: "An AI-powered Lost & Found platform that simplifies reporting, discovering, and recovering lost belongings through intelligent matching, secure ownership verification, and seamless communication.",
-            highlights: [
-                "AI-powered semantic item matching.",
-                "Secure ownership verification and claims.",
-                "Real-time communication and notifications."
+            description: "FindIt is a smart lost and found platform designed to help people report, discover, and recover misplaced belongings through an organized digital system with intelligent assistance.",
+            overview: "FindIt is a full-stack smart lost and found platform designed to simplify reporting, discovering, and recovering misplaced belongings. It helps users report lost or found items, discover matching reports with AI assistance, submit confidential ownership claims, and coordinate the recovery process.",
+            problemSolution: "Traditional lost and found processes make tracking missing items and contacting finders difficult; FindIt provides centralized reporting, semantic matching, and secure ownership claim verification.",
+            capabilities: [
+                "AI-powered semantic item matching with similarity explanations",
+                "Multi-attribute search and category filtering of reported items",
+                "Photo-based item reporting with confidential ownership claim proofs",
+                "In-platform communication, activity notifications and recovery tracking"
             ],
-            overview: "FindIt is a full-stack Smart Lost & Found Platform designed to simplify reporting, discovering, and recovering lost belongings. It helps users report lost or found items, discover potentially matching reports, submit ownership claims, and coordinate the recovery process.",
             role: "Full Stack & Applied AI Developer",
             roleDetail: "Designed and engineered the complete end-to-end platform architecture: built the high-performance FastAPI backend with SQLAlchemy 2.0 ORM and dual SQLite/PostgreSQL support, developed the modern React and TypeScript frontend, implemented the AI-powered semantic matching engine with multi-attribute similarity analysis and match explanations, integrated Cloudinary media handling and Google OAuth / JWT authentication, and deployed the full system across Vercel and Render.",
             technologies: [
-                "React.js",
+                "React",
                 "TypeScript",
-                "Python",
                 "FastAPI",
+                "Python",
                 "PostgreSQL",
                 "SQLAlchemy",
-                "SQLite",
-                "JWT Authentication",
                 "Cloudinary",
-                "Google Sign-In",
-                "AI-powered semantic matching",
-                "Vercel",
-                "Render"
+                "JWT Auth"
             ],
             keyFeatures: [
                 "Lost and Found Reporting: Users can report lost and found belongings with descriptions, images, categories, and location details.",
@@ -248,16 +245,6 @@ const portfolioData = {
                 "In-Platform Messaging: Users can communicate through the platform during the recovery process.",
                 "Notifications: Users receive notifications about relevant activities and claim updates.",
                 "Secure Item Recovery: The platform supports a transparent handover and item recovery process."
-            ],
-            capabilities: [
-                "AI-powered semantic matching with intelligent match explanations",
-                "Lost and found item reporting with descriptions, images, categories & locations",
-                "Multi-criteria browsing, keyword search, and dynamic category filtering",
-                "Confidential ownership verification & protected claim submission",
-                "In-platform messaging between finders and claimants",
-                "Real-time notifications for item activity and claim updates",
-                "Secure item recovery and transparent physical handover tracking",
-                "JWT authentication, protected routes & Google Sign-In"
             ],
             securityConcepts: [
                 "Salted Bcrypt password hashing & stateless PyJWT Bearer authorization",
@@ -276,35 +263,36 @@ const portfolioData = {
             featured: true
         },
         {
-            title: "CLICKBAIT",
-            subtitle: "“DON'T GUESS. VERIFY.”",
+            title: "CLICKBAIT — Digital Verification Platform",
+            subtitle: "\"Don't Guess. Verify.\"",
             category: "Smart India Hackathon 2026",
             context: "Internal Round",
-            status: "Completed",
+            status: "Internal Round Completed",
             statusType: "completed",
-            description: "A student-focused digital verification platform designed to help users identify potentially suspicious communications, including emails, scholarship notices, examination circulars, fee updates, internship messages, URLs, and raw messages — before trusting them.",
-            highlights: [
-                "Suspicious message and URL verification.",
-                "Evidence extraction and authenticity analysis.",
-                "AI-assisted explanations and forensic verification."
+            description: "A student-focused digital verification platform designed to help users assess potentially suspicious communications, including emails, circulars, fee updates, and URLs, before trusting them.",
+            overview: "A student-focused digital verification platform designed to help users assess potentially suspicious communications, including emails, scholarship notices, examination circulars, fee updates, internship messages, and URLs, before trusting or acting on them.",
+            problemSolution: "Students routinely encounter deceptive academic notices and phishing links; CLICKBAIT inspects submitted text, URLs, and media to extract forensic evidence and explain risk indicators in plain language.",
+            capabilities: [
+                "Suspicious message and URL authenticity verification",
+                "Evidence extraction and cryptographic tampering checks",
+                "AI-assisted explanations and forensic verification indicators",
+                "Support for raw messages, circular text, and URL authenticity"
             ],
             role: "Backend / Cryptography / Security",
             roleDetail: "Contributed to backend verification logic including Ed25519-based cryptographic signing and verification, SHA-256 hashing, canonical payload generation, public-key verification, expiry checking, revocation checking, tamper detection, and zero-PII blockchain registry concepts.",
             technologies: [
-                "Ed25519",
-                "SHA-256",
                 "Node.js",
                 "Python",
+                "Ed25519",
+                "SHA-256",
                 "Cryptography",
                 "Backend Security"
             ],
-            capabilities: [
-                "Verify emails & raw messages",
-                "Verify URLs and check authenticity",
-                "Analyze screenshots & extract evidence",
-                "Detect suspicious indicators & alterations",
-                "AI-assisted analysis & forensic verification",
-                "Explain verification results in understandable language"
+            keyFeatures: [
+                "Suspicious message and URL verification across student communication channels.",
+                "Evidence extraction and authenticity analysis with cryptographic verification.",
+                "AI-assisted risk explanations and forensic indicators in accessible language.",
+                "Tamper detection and canonical payload hashing for digital records."
             ],
             securityConcepts: [
                 "Ed25519 signing and verification",
@@ -319,25 +307,27 @@ const portfolioData = {
             teamContext: "The project involved frontend, backend, OCR, AI-assisted analysis, and forensic verification components. Developed collaboratively for the Smart India Hackathon 2026 Internal Round.",
             githubUrl: "",
             liveUrl: "https://lnkd.in/g23EDkZE",
+            liveButtonText: "Live Demo",
             image: "assets/images/clickbait_cover.png",
             imageAlt: "CLICKBAIT digital verification platform interface showing suspicious communication analysis.",
             featured: true
         },
         {
-            title: "Planet Hunters — Find New Worlds in Starlight",
-            subtitle: "“Exploring Stellar Signals Through Machine Learning”",
+            title: "Planet Hunters — Find New Worlds in Stellar Data",
+            subtitle: "\"Exploring Stellar Signals Through Machine Learning\"",
             category: "Machine Learning / Artificial Intelligence",
             context: "HACK4HACK 2026 — ML Challenge",
-            status: "Round 1 Cleared • Shortlisted for Round 2",
+            status: "Round 1 Completed · Shortlisted for Round 2",
             statusType: "completed",
-            description: "An astronomy-focused Machine Learning project developed for the HACK4HACK ML Challenge 2026 (Team Kaalchakra). Successfully cleared Round 1 and was shortlisted for Round 2 (did not participate in Round 2). Combines detector-aware data processing, 88 domain-engineered features, and a heterogeneous three-model ensemble to classify stellar observations and investigate potential planetary signals.",
-            highlights: [
-                "Successfully cleared Round 1; shortlisted for Round 2 (did not participate in Round 2).",
-                "Astro-Cotrending systematic noise removal (-60.3% drift).",
-                "88 domain-engineered features across 4 physical pillars.",
-                "Heterogeneous tri-model ensemble (0.6455 OOF Macro F1)."
+            description: "An astronomy-focused machine learning project focused on identifying potential planetary signals and classifying space telescope stellar observations across 25,000 light curves.",
+            overview: "Planet Hunters is an end-to-end machine learning and telemetry solution developed for the HACK4HACK ML Challenge that classifies space telescope stellar light curves into astrophysical categories. Operating across 25,000 stars, the pipeline implements astronomical cotrending to eliminate systematic detector drift, extracts 88 domain features, and trains a gradient-boosted ensemble.",
+            problemSolution: "Raw telescope light curves suffer from thermal breathing and camera pointing jitter; the pipeline applies astro-cotrending, extracts 88 physical features, and trains a gradient-boosted ensemble.",
+            capabilities: [
+                "Astro-cotrending systematic noise correction across detector channels",
+                "88 domain-engineered features across transit, astrometric & harmonic pillars",
+                "Heterogeneous tri-model ensemble (LightGBM, HistGradientBoosting, CatBoost)",
+                "Deterministic 14-point submission schema validation & telemetry dashboards"
             ],
-            overview: "Planet Hunters is an end-to-end Machine Learning and telemetry solution developed for the HACK4HACK Hackathon (Round 2 Shortlisted) that classifies space telescope stellar light curves into eight astrophysical and instrumental categories. Operating on 1,315-cadence time-series across 25,000 stars, the pipeline implements astronomical cotrending to eliminate camera/CCD systematic drift, extracts 88 domain-informed features, and trains a 5-fold tri-architecture ensemble (50% LightGBM, 40% HistGradientBoosting, and 10% CatBoost) achieving 0.6455 Out-of-Fold Macro F1 and 0.6336 Out-of-Detector Generalization with 100% bitwise-reproducible inference.",
             role: "Machine Learning Engineer & Web Application Developer",
             roleDetail: "Designed and engineered the full competition pipeline: developed camera/CCD astro-cotrending reducing systematic drift by 60.3% and lifting detector generalization from 0.5161 to 0.6336; extracted 88 domain features across 4 physical pillars (cotrended summary stats, transit BLS SNR, astrometric centroid in-dip shift vetting, and Fourier harmonics); evaluated candidates via leak-free 5-fold stratified cross-validation; trained the champion tri-architecture ensemble (50% LGBM + 40% HistGB + 10% CatBoost); developed an automated 14-point schema validator guaranteeing deterministic predictions; and built a dual telemetry platform with an interactive Next.js 16 web application and Python Streamlit mission control.",
             technologies: [
@@ -345,35 +335,22 @@ const portfolioData = {
                 "LightGBM",
                 "HistGradientBoosting",
                 "CatBoost",
-                "Machine Learning",
+                "Scikit-Learn",
                 "Feature Engineering",
-                "Ensemble Learning",
-                "Scientific Data Analysis",
-                "Data Analysis",
-                "Model Evaluation"
+                "Data Analysis"
             ],
             keyFeatures: [
-                "Astro-Cotrending: Subtracted instantaneous median flux and centroid vectors per (camera, ccd) channel, eliminating thermal breathing and spacecraft pointing jitter.",
-                "Domain-Informed Feature Engineering: Extracted 88 features across 4 pillars including 1-day rolling median detrending, transit dip SNR, 2D centroid in/out-of-dip shift vetting, flare rise-decay asymmetry, and Fourier harmonic energy ratios.",
+                "Astro-Cotrending: Subtracted instantaneous median flux and centroid vectors per channel, eliminating thermal breathing and spacecraft pointing jitter.",
+                "Domain-Informed Feature Engineering: Extracted 88 features across 4 pillars including 1-day rolling median detrending, transit dip SNR, and Fourier harmonic ratios.",
                 "Tri-Architecture Ensemble: Blended leaf-wise LightGBM (50%), depth-wise regularized HistGradientBoosting (40%), and CatBoost oblivious trees (10%).",
-                "Dual Cross-Validation Rigor: Evaluated using both 5-Fold Stratified OOF (0.6455 Macro F1) and Stratified Detector-Channel CV (0.6336 Macro F1 holding out unseen hardware).",
+                "Dual Cross-Validation Rigor: Evaluated using both 5-Fold Stratified OOF (0.6455 Macro F1) and Stratified Detector-Channel CV (0.6336 Macro F1).",
                 "Automated Schema Validator: 14 automated schema and physics checks validating formatting, bounds, non-null values, and astronomical class distribution.",
-                "Dual Telemetry Platform: Modern Next.js 16 scientific web application and interactive Streamlit mission control dashboard featuring 8 diagnostic stations, lightcurve inspection, and 7,000-star prediction explorer."
-            ],
-            capabilities: [
-                "88 Vectorized Time-Series & Astrometric Centroid Features across 4 Physical Pillars",
-                "Camera/CCD Astro-Cotrending to Eliminate Systematic Detector Drift (-60.3% KS Drift)",
-                "Tri-Architecture Gradient Boosted Ensemble (50% LGB + 40% HGB + 10% CB)",
-                "Stratified Detector-Channel Cross-Validation (0.6336 Generalization F1)",
-                "5-Fold Stratified Out-of-Fold Evaluation (0.6455 Macro F1)",
-                "Deterministic Inference & Bitwise Reproducible Outputs (SHA-256 Verified)",
-                "Automated 14-Point Competition Submission Schema Validator",
-                "Interactive Next.js 16 Web Application & Streamlit Telemetry Mission Control"
+                "Dual Telemetry Platform: Modern Next.js 16 scientific web application and interactive Streamlit mission control dashboard."
             ],
             metrics: [
                 "0.6455 Out-of-Fold Macro F1 across 18,000 training stars",
                 "0.6336 Detector-Channel Generalization F1 (holding out unseen hardware)",
-                "60.3% Reduction in Kolmogorov-Smirnov train-to-test feature distribution drift (reported experiment-specific result)",
+                "60.3% Reduction in Kolmogorov-Smirnov train-to-test feature distribution drift",
                 "14 / 14 Automated Submission Schema & Physics Checks Passed",
                 "7,000 Deterministic Test Sample Predictions (SHA-256 Verified)"
             ],
@@ -391,27 +368,28 @@ const portfolioData = {
         {
             title: "Dark Store Private-Label Defence Strategy",
             subtitle: "\"Defending National FMCG Margins in Delhi NCR Quick Commerce\"",
-            category: "Business Strategy Research | Competition Project",
+            category: "Business Strategy Research",
             context: "Unstop — Prompt to Podium",
             status: "Completed / Participated",
             statusType: "completed",
             description: "A competition-based business strategy research project examining how a national dairy brand can defend its market position against private-label competition in Delhi NCR's quick-commerce ecosystem.",
-            highlights: [
-                "Researched quick-commerce market context & platform dual identity across Blinkit, Zepto, and Instamart.",
-                "Built a verified 24-month financial cohort model (Base ROI -50.6%, 12-month LTV/CAC 1.12x on ₹1,148L investment).",
-                "Formulated 5 strategic recommendations prioritizing cold-chain moats, batch QR traceability, SKU architecture, and Kirana margin protection."
+            overview: "A competition-based business strategy research project for Unstop Prompt to Podium examining how a national dairy brand can defend its market position against platform private-label encroachment in Delhi NCR. The research analyzes quick-commerce platform dual identity, channel contribution economics, priority customer segmentation, multi-scenario cohort financials, and a phased implementation roadmap.",
+            problemSolution: "Algorithmic downranking and margin erosion threaten FMCG brands in quick commerce; the research models channel economics and provides a 5-pillar cold-chain and SKU defence roadmap.",
+            capabilities: [
+                "Quick-commerce unit economics and 24-month customer cohort financial model",
+                "FMCG retail channel margin and trade distribution analysis (4.5% QC vs 25% retail)",
+                "5-point strategic defence framework for batch QR traceability and SKU architecture",
+                "Executive 14-slide research presentation developed with Kreyato AI"
             ],
-            overview: "A competition-based business strategy research project for Unstop Prompt to Podium examining how a national dairy brand can defend its market position against platform private-label encroachment in Delhi NCR. The research analyzes quick-commerce platform dual identity, channel contribution economics (4.5% quick commerce vs ~25% traditional retail & D2C), priority customer segmentation (ICPs), multi-scenario 24-month cohort financials, a 12-month phased implementation roadmap, and an enterprise risk register.",
             role: "Lead Researcher & Business Strategist",
             roleDetail: "Conducted competitive market research across Delhi NCR dark-store clusters, evaluated platform listing economics and FMCG distribution data, constructed a 24-month customer cohort financial model with sensitivity scenarios, engineered a 5-point strategic defence framework, and delivered an executive 14-slide presentation on Kreyato AI.",
             technologies: [
                 "Business Research",
+                "Financial Modelling",
                 "Strategic Analysis",
                 "Market Research",
                 "Competitive Analysis",
-                "Financial Modelling",
-                "Data Interpretation",
-                "Presentation and Communication"
+                "Data Interpretation"
             ],
             keyFeatures: [
                 "Quick-Commerce Market Context: Sized national dairy ($31.95B) and Delhi NCR ($558.5B at 14.79% CAGR) alongside 3,500+ dark store density.",
@@ -423,22 +401,14 @@ const portfolioData = {
                 "Phased Implementation Roadmap: Structured into Immediate (0–3M), Medium (3–12M), and Long-Term (12+M) phases.",
                 "Enterprise Risk Register: Matrix of Commercial, Operational, Regulatory, and Competitive risks with mitigation and monitoring metrics."
             ],
-            capabilities: [
-                "Quick-commerce unit economics and cohort lifetime value modeling",
-                "FMCG retail channel margin and trade distribution analysis",
-                "Dark store platform shelf space and algorithmic search dynamics",
-                "Consumer price sensitivity and willingness-to-pay segmentation",
-                "Cold-chain traceability and FSSAI shelf-life compliance strategy",
-                "Executive presentation development and business communication"
-            ],
             teamContext: "Completed as a standalone competition research submission for Unstop Prompt to Podium: Research. Create. Present. Developed with research and presentation assistance from Kreyato AI.",
-            platformAttribution: "Research and presentation developed with the assistance of <a href=\"https://kreyato.ai/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"project-attribution-link\">Kreyato AI</a>.",
+            platformAttribution: "Research and presentation workflow developed with the assistance of <a href=\"https://kreyato.ai/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"project-attribution-link\">Kreyato AI</a>.",
             githubUrl: "https://github.com/karan-rajput872/prompt-to-podium-dark-store-strategy",
             githubButtonText: "GitHub Repository",
             liveUrl: "https://prompt-to-podium-dark-store-strategy-priyanshukaran25-5139.vercel.app",
             liveButtonText: "View Live Case Study",
             presentationUrl: "https://kreyato.ai/s/8GzJFW3w",
-            presentationButtonText: "View Research Presentation",
+            presentationButtonText: "Research Presentation",
             detailUrl: "dark-store-dairy-strategy.html",
             detailButtonText: "Case Study Overview",
             image: "assets/images/unstop_prompt_to_podium_cover.png",
@@ -452,22 +422,24 @@ const portfolioData = {
             context: "Active Production Site",
             status: "Completed",
             statusType: "completed",
-            description: "A responsive personal portfolio website built to showcase my academic journey, technical skills, projects, achievements, and verified certifications. It brings my professional profile, project demonstrations, and contact information together in one accessible platform.",
-            highlights: [
-                "Responsive design for desktop, tablet, and mobile with fluid dark-mode typography.",
-                "Centralized Vanilla JavaScript data architecture with zero external framework dependencies.",
-                "Verified credentials & activities hub featuring 16 certifications and competition achievements.",
-                "Interactive on-page resume viewer paired with automated ATS-compliant PDF generation."
+            description: "A responsive personal portfolio website built to showcase my academic journey, technical skills, projects, achievements, and verified certifications.",
+            overview: "A responsive personal portfolio website designed and developed from scratch to showcase my academic journey, verified technical certifications, engineering projects, hackathons, and research case studies. Engineered with a centralized Vanilla JavaScript architecture, the platform dynamically renders content from structured datasets while maintaining high accessibility, smooth transitions, and instant performance.",
+            problemSolution: "Heavy frontend frameworks create unnecessary bundle bloat for static portfolios; this site achieves instant loading, smooth micro-interactions, and ATS resume generation with zero external UI dependencies.",
+            capabilities: [
+                "Zero-framework Vanilla JS architecture with single-source-of-truth state",
+                "Full-spectrum responsive layout across desktop, tablet, and mobile viewports",
+                "Automated ATS-compliant PDF resume generation using headless Chromium",
+                "Verified credentials hub displaying 16 authentic certificates with direct links"
             ],
-            overview: "A responsive personal portfolio website designed and developed from scratch to showcase my academic journey, verified technical certifications, engineering projects, hackathons, and research case studies. Engineered with a centralized Vanilla JavaScript architecture, the platform dynamically renders content from structured datasets while maintaining high accessibility, smooth transitions, and instant performance without bulky framework overhead.",
             role: "Full Stack Development | UI/UX Design | Performance & Integration",
             roleDetail: "Designed and engineered the end-to-end portfolio: crafted the custom dark-theme design system with orange accent highlights, built the modular Vanilla JavaScript data-driven rendering pipeline, developed interactive modal dialogs and responsive navigation, configured Puppeteer for automated ATS PDF resume compilation, and set up continuous production deployment on Vercel and GitHub Pages.",
             technologies: [
                 "HTML5",
                 "CSS3",
                 "JavaScript (ES6+)",
-                "Vercel",
-                "Puppeteer"
+                "Lenis Scroll",
+                "Puppeteer",
+                "Vercel"
             ],
             keyFeatures: [
                 "Responsive Cross-Device Layout: Engineered for seamless presentation across desktop (1600px+), tablet, and mobile (360px+).",
@@ -477,15 +449,6 @@ const portfolioData = {
                 "Dual Resume Experience: Interactive ATS-friendly on-page resume viewer accompanied by automated, downloadable PDF generation.",
                 "Functional Contact Integration: Client-side validated contact form ready for serverless delivery.",
                 "Zero-Framework Performance: Ultra-fast page loads, accessible semantic HTML5 markup, and smooth CSS micro-interactions."
-            ],
-            capabilities: [
-                "Dynamic Vanilla JS Rendering Engine (No Framework Bloat)",
-                "Full-Spectrum Responsive Layouts (Desktop, Tablet, Mobile)",
-                "Interactive Modal Viewers with Keyboard Navigation & Focus Trapping",
-                "Automated Headless Chromium ATS PDF Generation via Puppeteer",
-                "Continuous Git-Based CI/CD Deployment on Vercel and GitHub Pages",
-                "Verified Credentials & Achievement Verification System",
-                "Custom Dark Aesthetic with CSS Variables & Smooth Transitions"
             ],
             metrics: [
                 "100% Zero-Framework Implementation (Pure HTML5 / CSS3 / ES6+ JavaScript)",
@@ -506,14 +469,25 @@ const portfolioData = {
         },
         {
             title: "Simple Calculator",
+            subtitle: "\"Structured Console Arithmetic Utility in C\"",
             category: "C Programming",
+            context: "Academic Project",
             status: "Completed",
             statusType: "completed",
             description: "A console-based calculator program built in C to perform fundamental arithmetic calculations with structured logic and user input handling.",
+            overview: "A console-based calculator program built in C to perform fundamental arithmetic calculations with structured procedural logic, boundary checks, and robust user input handling.",
+            problemSolution: "Beginning programmers need clean, predictable command-line utilities; this project implements formatted menu navigation, robust input validation, and modular arithmetic subroutines.",
+            capabilities: [
+                "Standard arithmetic operations (addition, subtraction, multiplication, division)",
+                "Input validation and division-by-zero runtime error protection",
+                "Modular procedural design with clear function separation"
+            ],
             role: "Developer (Academic Project)",
             roleDetail: "Implemented core arithmetic functions, conditional execution routines, and terminal interface.",
             technologies: [
-                "C"
+                "C",
+                "Procedural Programming",
+                "CLI"
             ],
             githubUrl: "",
             liveUrl: "",
@@ -522,14 +496,26 @@ const portfolioData = {
         },
         {
             title: "Student Result System",
+            subtitle: "\"Academic Records & Grade Distribution Manager in C\"",
             category: "C Programming",
+            context: "Academic Project",
             status: "Completed",
             statusType: "completed",
             description: "A structured C programming project for managing, calculating, and presenting student academic performance and grade distributions.",
+            overview: "A structured C programming project for managing, calculating, and presenting student academic performance, aggregate subject scores, and overall grade distributions.",
+            problemSolution: "Managing student marks manually is prone to calculation errors; this utility automates grade computation, class averages, and tabular transcript formatting.",
+            capabilities: [
+                "Student record storage with structure arrays and field validation",
+                "Automatic grade calculation and GPA percentage evaluation",
+                "Formatted tabular console reporting with formatted score summaries"
+            ],
             role: "Developer (Academic Project)",
             roleDetail: "Implemented structured record keeping, grade calculation routines, and formatted tabular console output.",
             technologies: [
-                "C"
+                "C",
+                "File I/O",
+                "Structures",
+                "Console UI"
             ],
             githubUrl: "",
             liveUrl: "",
@@ -1448,7 +1434,7 @@ function renderSkills() {
 }
 
 /**
- * Render Featured Projects Section (Step 4K Enhanced Projects & Achievements)
+ * Render Selected Projects Section (Uniform Content-Driven Cards, Zero Void)
  */
 function renderProjects() {
     const container = document.getElementById('projectsContainer');
@@ -1477,79 +1463,111 @@ function renderProjects() {
             else statusClass = 'development';
         }
 
-        // Tech stack tags
+        // Tech stack tags (5-8 tags)
         const techTagsHtml = (project.technologies || [])
-            .map(tech => `<span class="tech-tag">${tech}</span>`)
+            .map(tech => `<span class="tech-tag">${escapeHTML(tech)}</span>`)
             .join('');
 
-        // Featured label
+        // Featured label badge
         const featuredLabel = project.featured ? `<span class="project-featured-label">Featured Project</span>` : '';
 
-        // Subtitle (e.g. "Don't Guess. Verify.")
-        const subtitleHtml = project.subtitle
-            ? `<p class="project-subtitle">${escapeHTML(project.subtitle)}</p>`
+        // Tagline / Subtitle
+        const taglineText = project.subtitle || project.tagline;
+        const taglineHtml = taglineText
+            ? `<div class="project-tagline">${escapeHTML(taglineText)}</div>`
             : '';
 
-        // Context line (e.g. "Internal Round")
+        // Context badge (e.g. "Internal Round", "Campus Platform")
         const contextHtml = project.context
             ? `<span class="project-context">${escapeHTML(project.context)}</span>`
             : '';
 
-        // Role badge area (compact version)
-        const roleBadgeHtml = project.role
-            ? `<div class="project-role-badge"><span class="project-role-label">My Role:</span> <span class="project-role-value">${escapeHTML(project.role)}</span></div>`
+        // Overview paragraph (30-50 words)
+        const overviewText = project.overview || project.description || '';
+        const overviewHtml = overviewText ? `<p class="project-overview">${escapeHTML(overviewText)}</p>` : '';
+
+        // Problem & Solution callout box (20-35 words)
+        const problemSolutionHtml = project.problemSolution
+            ? `
+                <div class="project-solution-box">
+                    <div class="project-solution-header">
+                        <span class="project-solution-tag">Problem & Solution</span>
+                    </div>
+                    <p class="project-solution-text">${escapeHTML(project.problemSolution)}</p>
+                </div>
+            `
             : '';
 
-        // Action buttons handling (only rendered when real URLs exist)
+        // Key capabilities (3-4 bullet points)
+        const capabilitiesList = project.capabilities && project.capabilities.length > 0
+            ? project.capabilities.slice(0, 4)
+            : (project.highlights && project.highlights.length > 0 ? project.highlights.slice(0, 4) : []);
+
+        const capabilitiesHtml = capabilitiesList.length > 0
+            ? `
+                <div class="project-capabilities-box">
+                    <span class="project-capabilities-label">Key Capabilities</span>
+                    <ul class="project-capabilities-list">
+                        ${capabilitiesList.map(cap => `<li><span class="cap-bullet">•</span><span>${escapeHTML(cap)}</span></li>`).join('')}
+                    </ul>
+                </div>
+            `
+            : '';
+
+        // My Role callout
+        const roleHtml = project.role
+            ? `<div class="project-role-callout"><strong>My Role:</strong> <span>${escapeHTML(project.role)}</span></div>`
+            : '';
+
+        // Action buttons handling
         const buttons = [];
 
-        // Dedicated Project Details / Case Study Link
-        if (project.detailUrl && project.detailUrl.trim() !== '') {
-            const detailLabel = project.detailButtonText || 'View Project';
-            buttons.push(`
-                <a href="${project.detailUrl}" class="btn btn-sm btn-primary" aria-label="${detailLabel} for ${escapeHTML(project.title)}">
-                    <span>${detailLabel}</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-                </a>
-            `);
-        }
-
+        // Primary Action: Live Demo
         if (project.liveUrl && project.liveUrl.trim() !== '') {
             const liveLabel = project.liveButtonText || 'Live Demo';
-            const liveBtnClass = (project.detailUrl && project.detailUrl.trim() !== '')
-                ? 'btn btn-sm btn-outline'
-                : 'btn btn-sm btn-primary';
             buttons.push(`
-                <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="${liveBtnClass}" aria-label="${liveLabel} for ${escapeHTML(project.title)}">
+                <a href="${escapeHTML(project.liveUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" aria-label="${liveLabel} for ${escapeHTML(project.title)}">
                     <span>${liveLabel}</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 </a>
             `);
         }
 
+        // Secondary Action: GitHub Repository
         if (project.githubUrl && project.githubUrl.trim() !== '') {
             const githubLabel = project.githubButtonText || 'GitHub Repository';
             buttons.push(`
-                <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="${githubLabel} for ${escapeHTML(project.title)}">
+                <a href="${escapeHTML(project.githubUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="${githubLabel} for ${escapeHTML(project.title)}">
                     <span>${githubLabel}</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                 </a>
             `);
         }
 
-        // Dedicated Research Presentation Link
+        // Dedicated Project Details / Case Study Link (if exists, e.g. planet-hunters.html)
+        if (project.detailUrl && project.detailUrl.trim() !== '') {
+            const detailLabel = project.detailButtonText || 'View Project';
+            buttons.push(`
+                <a href="${escapeHTML(project.detailUrl)}" class="btn btn-sm btn-outline" aria-label="${detailLabel} for ${escapeHTML(project.title)}">
+                    <span>${detailLabel}</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+                </a>
+            `);
+        }
+
+        // Dedicated Research Presentation Link (e.g. Dark store strategy presentation)
         if (project.presentationUrl && project.presentationUrl.trim() !== '') {
             const presLabel = project.presentationButtonText || 'Research Presentation';
             buttons.push(`
-                <a href="${project.presentationUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="${presLabel} for ${escapeHTML(project.title)}">
+                <a href="${escapeHTML(project.presentationUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="${presLabel} for ${escapeHTML(project.title)}">
                     <span>${presLabel}</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 </a>
             `);
         }
 
-        // View Details button (only when roleDetail or additional info exists and project does not have dedicated detailUrl)
-        if (!project.detailUrl && (project.roleDetail || (project.subtitle && project.featured) || project.capabilities || project.keyFeatures)) {
+        // View Details Modal button (for deep dive when modal details exist)
+        if (!project.detailUrl && (project.roleDetail || project.keyFeatures || project.securityConcepts || project.metrics)) {
             buttons.push(`
                 <button type="button" class="btn btn-sm btn-outline project-details-btn" data-project-index="${index}" data-project-title="${escapeHTML(project.title)}" aria-label="View details: ${escapeHTML(project.title)}">
                     <span>View Details</span>
@@ -1558,7 +1576,8 @@ function renderProjects() {
             `);
         }
 
-        if (project.isCurrentSite && !project.liveUrl && !project.githubUrl) {
+        // Current Site Indicator
+        if (project.isCurrentSite) {
             buttons.push(`
                 <span class="project-current-tag">
                     <span class="pulse-dot" style="width:6px;height:6px;"></span>
@@ -1567,59 +1586,48 @@ function renderProjects() {
             `);
         }
 
-        // Key highlights list
-        const highlightsHtml = (project.highlights && project.highlights.length > 0)
-            ? `
-                <div class="project-highlights">
-                    <span class="project-highlights-label">Key Highlights:</span>
-                    <ul class="project-highlights-list">
-                        ${project.highlights.map(h => `<li><span class="highlight-bullet">•</span><span>${escapeHTML(h)}</span></li>`).join('')}
-                    </ul>
-                </div>
-            `
-            : '';
-
         const actionsHtml = buttons.length > 0 ? `<div class="project-footer">${buttons.join('')}</div>` : '';
 
-        // Card class: featured projects get special styling
+        // Card styling class
         const cardClass = project.featured ? 'project-card project-card-featured reveal' : 'project-card reveal';
+
+        // Image thumbnail linking
+        const imageTargetUrl = project.liveUrl || project.detailUrl || project.githubUrl || '';
+        const imageHtml = project.image ? `
+            <div class="project-thumbnail">
+                ${imageTargetUrl ? `<a href="${escapeHTML(imageTargetUrl)}" ${imageTargetUrl.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''} aria-label="Open ${escapeHTML(project.title)}">` : ''}
+                <img src="${escapeHTML(project.image)}" alt="${escapeHTML(project.imageAlt || project.title)}" loading="lazy">
+                ${imageTargetUrl ? `</a>` : ''}
+            </div>
+        ` : '';
 
         return `
             <article class="${cardClass}">
-                <div class="project-content-top">
-                    ${featuredLabel}
-                    <div class="project-header">
-                        <div class="project-header-left">
-                            <span class="project-category">${escapeHTML(project.category || 'Software')}</span>
-                            ${contextHtml}
-                        </div>
-                        <span class="project-status ${statusClass}">${escapeHTML(project.status)}</span>
+                ${featuredLabel}
+                <div class="project-header">
+                    <div class="project-header-left">
+                        <span class="project-category">${escapeHTML(project.category || 'Software')}</span>
+                        ${contextHtml}
                     </div>
-                    ${project.image ? `
-                        <div class="project-thumbnail">
-                            ${project.liveUrl ? `<a href="${escapeHTML(project.liveUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Open live demo of ${escapeHTML(project.title)}" style="display:block; width:100%; height:100%; text-decoration:none;">` : ''}
-                            <img src="${escapeHTML(project.image)}" alt="${escapeHTML(project.imageAlt || project.title)}" loading="lazy">
-                            ${project.liveUrl ? `</a>` : ''}
-                        </div>
-                    ` : ''}
-                    <h3 class="project-title">${escapeHTML(project.title)}</h3>
-                    ${subtitleHtml}
-                    <p class="project-desc">${escapeHTML(project.description)}</p>
-                    ${highlightsHtml}
-                    ${roleBadgeHtml}
-                    ${project.platformAttribution ? `
-                        <div class="project-attribution">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                            <span>${project.platformAttribution}</span>
-                        </div>
-                    ` : ''}
+                    <span class="project-status ${statusClass}">${escapeHTML(project.status)}</span>
                 </div>
-                <div class="project-bottom">
-                    <div class="project-tech-stack">
-                        ${techTagsHtml}
+                ${imageHtml}
+                <h3 class="project-title">${escapeHTML(project.title)}</h3>
+                ${taglineHtml}
+                ${overviewHtml}
+                ${problemSolutionHtml}
+                ${capabilitiesHtml}
+                ${roleHtml}
+                ${project.platformAttribution ? `
+                    <div class="project-attribution">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        <span>${project.platformAttribution}</span>
                     </div>
-                    ${actionsHtml}
+                ` : ''}
+                <div class="project-tech-stack">
+                    ${techTagsHtml}
                 </div>
+                ${actionsHtml}
             </article>
         `;
     }).join('');
@@ -2857,8 +2865,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!prefersReducedMotion && typeof window.Lenis !== 'undefined') {
         try {
             lenis = new window.Lenis({
-                lerp: 0.08, // Refined silky linear interpolation factor (~18-20% more gradual, elegant inertia)
-                wheelMultiplier: 0.88, // Gentle wheel acceleration for natural, luxurious glide
+                lerp: 0.075, // Silky linear interpolation factor (~15-20% more gradual, elegant controlled inertia)
+                wheelMultiplier: 0.82, // Gentle wheel acceleration for natural, luxurious glide
                 touchMultiplier: 1, // 100% native gesture response on mobile touch
                 smoothTouch: false, // Maintain native mobile touch inertia
                 direction: 'vertical',
@@ -2908,12 +2916,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const navbarHeight = navbar ? navbar.offsetHeight : 72;
         if (lenis) {
             lenis.scrollTo(targetEl, {
-                offset: -navbarHeight - 14,
-                duration: 1.35,
+                offset: -navbarHeight - 16,
+                duration: 1.4,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
             });
         } else {
-            const targetPos = targetEl.getBoundingClientRect().top + window.scrollY - navbarHeight - 14;
+            const targetPos = targetEl.getBoundingClientRect().top + window.scrollY - navbarHeight - 16;
             window.scrollTo({
                 top: targetPos,
                 behavior: prefersReducedMotion ? 'auto' : 'smooth'
@@ -2926,7 +2934,7 @@ document.addEventListener('DOMContentLoaded', () => {
         backToTopBtn.addEventListener('click', () => {
             if (lenis) {
                 lenis.scrollTo(0, {
-                    duration: 1.35,
+                    duration: 1.4,
                     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
                 });
             } else {
@@ -3249,6 +3257,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
+            let problemSolutionModalHtml = '';
+            if (project.problemSolution) {
+                problemSolutionModalHtml = `
+                    <div class="project-modal-section">
+                        <h4 class="project-modal-section-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            Problem & Solution
+                        </h4>
+                        <p>${escapeHTML(project.problemSolution)}</p>
+                    </div>
+                `;
+            }
+
             let keyFeaturesHtml = '';
             if (project.keyFeatures && project.keyFeatures.length > 0) {
                 keyFeaturesHtml = `
@@ -3351,6 +3372,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                     ${overviewHtml}
+                    ${problemSolutionModalHtml}
                     ${keyFeaturesHtml}
                     ${capabilitiesHtml}
                     ${metricsHtml}
