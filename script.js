@@ -25,9 +25,11 @@ const portfolioData = {
         badge: "Student Developer • Tech Enthusiast",
         tagline: "Building my skills in programming, web development, and emerging technologies through continuous learning and hands-on projects.",
         aboutJourney: [
-            "I am a B.Tech Computer Science Engineering student at KIIT, currently building a strong foundation in programming, web development, and computer science concepts.",
-            "I enjoy learning new technologies, solving programming problems, and turning what I learn into practical projects. I am continuously working on improving my technical skills and exploring emerging areas of technology."
+            "I'm a second-year Computer Science Engineering student at <span class=\"narrative-highlight\">Kalinga Institute of Industrial Technology (KIIT)</span>, driven by a deep curiosity to understand how software works under the hood and passion for turning technical ideas into practical, real-world solutions.",
+            "My journey in Computer Science revolves around programming fundamentals, algorithmic problem-solving, modern web development, and exploring emerging technologies. From writing procedural logic in C to scripting data pipelines in Python and crafting responsive user interfaces, I believe the most effective way to learn is by <span class=\"narrative-highlight\">experimenting, creating, and improving through hands-on experience</span>.",
+            "I continue to explore different areas of technology — including Machine Learning challenges, AI-assisted developer workflows, and full-stack web architectures — while developing the core software engineering discipline needed to build impactful applications."
         ],
+        philosophy: "I believe meaningful growth comes from curiosity, consistent practice, and the willingness to build, experiment, and learn from every challenge.",
         // Optional profile image: Place an image in assets/images/profile.jpg and set path here.
         // If left empty (""), the website safely continues working normally with the developer terminal card.
         profileImage: "assets/images/profile.jpg"
@@ -1166,10 +1168,23 @@ function initHeroReveal() {
 function renderAbout() {
     const { personal } = portfolioData;
     const journeyContainer = document.getElementById('aboutJourneyContainer');
-    if (journeyContainer && personal.aboutJourney && personal.aboutJourney.length > 0) {
-        journeyContainer.innerHTML = personal.aboutJourney
-            .map(para => `<p class="about-text">${para}</p>`)
-            .join('');
+    if (!journeyContainer) return;
+
+    if (personal.aboutJourney && personal.aboutJourney.length >= 3) {
+        const p1 = personal.aboutJourney[0];
+        const p2 = personal.aboutJourney[1];
+        const p3 = personal.aboutJourney[2];
+        const quote = personal.philosophy || "I believe meaningful growth comes from curiosity, consistent practice, and the willingness to build, experiment, and learn from every challenge.";
+
+        journeyContainer.innerHTML = `
+            <p>${p1}</p>
+            <p>${p2}</p>
+            <div class="about-philosophy-box">
+                "${quote}"
+                <span class="about-philosophy-author">&mdash; Priyanshu Karan &bull; Learning Philosophy</span>
+            </div>
+            <p>${p3}</p>
+        `;
     }
 }
 
@@ -1190,27 +1205,42 @@ async function loadDeveloperData() {
 }
 
 /**
- * Render "Currently Learning" list in About section
+ * Render "Currently Exploring" list in About section
  */
 function renderCurrentlyLearning() {
     const container = document.getElementById('currentlyLearningContainer');
     if (!container) return;
 
-    if (!portfolioData.currentlyLearning || portfolioData.currentlyLearning.length === 0) {
-        container.innerHTML = `<li class="learning-item"><div><strong>Continuous Learning</strong><span class="subtext">Actively exploring new technical concepts</span></div></li>`;
-        return;
-    }
+    const items = (portfolioData.currentlyExploring && portfolioData.currentlyExploring.length > 0)
+        ? portfolioData.currentlyExploring
+        : [
+            {
+                topic: "Data Structures & Algorithms",
+                description: "Complexity analysis, linear & non-linear structures through active university coursework."
+            },
+            {
+                topic: "JavaScript (ES6+)",
+                description: "Asynchronous paradigms, modern DOM APIs, and scalable web application architectures."
+            },
+            {
+                topic: "AI & Machine Learning",
+                description: "Predictive modeling, tabular algorithms, and competitive challenge problem-solving."
+            },
+            {
+                topic: "Web Development",
+                description: "Responsive frontend engineering, semantic design systems, and web accessibility standards."
+            }
+        ];
 
-    container.innerHTML = portfolioData.currentlyLearning.map(item => {
-        const title = typeof item === 'string' ? item : item.title;
-        const detail = typeof item === 'object' && item.detail ? item.detail : 'Active learning & practical development';
+    container.innerHTML = items.map(item => {
+        const title = item.topic || item.title || (typeof item === 'string' ? item : 'Technical Focus');
+        const desc = item.description || item.detail || "Complexity analysis, algorithmic thinking, and hands-on implementation.";
         return `
-            <li class="learning-item">
-                <span class="bullet" aria-hidden="true">&#9658;</span>
-                <div>
-                    <strong>${title}</strong>
-                    <span class="subtext">${detail}</span>
+            <li class="exploring-item-box">
+                <div class="exploring-item-top">
+                    <span class="exploring-item-title">${escapeHTML(title)}</span>
                 </div>
+                <p class="exploring-item-desc">${escapeHTML(desc)}</p>
             </li>
         `;
     }).join('');
