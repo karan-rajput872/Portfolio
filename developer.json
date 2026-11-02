@@ -1,9 +1,11 @@
 {
   "name": "Priyanshu Karan",
   "role": "Computer Science Engineering Student",
-  "tagline": "Building, Learning & Exploring Technology",
+  "degree": "B.Tech — Computer Science Engineering",
   "institution": "Kalinga Institute of Industrial Technology (KIIT)",
-  "year": "2nd Year",
+  "year": "2nd Year — Currently Pursuing",
+  "tagline": "Building, Learning & Exploring Technology",
+  "heroContent": "Exploring technology, building practical solutions, and continuously developing my skills through hands-on experience.",
   "interests": [
     "Programming",
     "Web Development",
@@ -11,5 +13,5 @@
     "Emerging Technologies",
     "Cybersecurity"
   ],
-  "currentStatus": "Learning by Building"
+  "currentStatus": "Open to Opportunities"
 }

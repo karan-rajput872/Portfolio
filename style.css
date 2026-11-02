@@ -917,6 +917,54 @@ button {
     transform: translateY(-2px);
 }
 
+/* Secondary Quick Links Bar: GitHub, LinkedIn, Download Resume */
+.hero-secondary-links {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 18px;
+    padding: 8px 20px;
+    background: rgba(15, 20, 31, 0.72);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.hero-secondary-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.hero-secondary-link:hover {
+    color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.hero-secondary-link svg {
+    flex-shrink: 0;
+    transition: transform var(--transition-fast);
+}
+
+.hero-secondary-link:hover svg {
+    transform: scale(1.12);
+}
+
+.hero-secondary-sep {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    opacity: 0.6;
+    user-select: none;
+}
+
 /* Subtle Scroll to Explore Indicator */
 .hero-scroll-indicator {
     position: absolute;
@@ -4221,6 +4269,15 @@ button {
     .hero-actions .btn {
         width: 100%;
         justify-content: center;
+    }
+
+    .hero-secondary-links {
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 380px;
+        padding: 8px 14px;
+        gap: 10px;
+        font-size: 0.8rem;
     }
 
     /* Mobile Statistics Section (2x2 Grid) */

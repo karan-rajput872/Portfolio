@@ -23,11 +23,11 @@ const portfolioData = {
         role: "Computer Science Engineering Student",
         institution: "KIIT",
         badge: "Student Developer • Tech Enthusiast",
-        tagline: "Building my skills in programming, web development, and emerging technologies through continuous learning and hands-on projects.",
+        tagline: "Exploring technology, building practical solutions, and continuously developing my skills through hands-on experience.",
         aboutJourney: [
-            "I'm a second-year Computer Science Engineering student at <span class=\"narrative-highlight\">Kalinga Institute of Industrial Technology (KIIT)</span>, driven by a deep curiosity to understand how software works under the hood and passion for turning technical ideas into practical, real-world solutions.",
-            "My journey in Computer Science revolves around programming fundamentals, algorithmic problem-solving, modern web development, and exploring emerging technologies. From writing procedural logic in C to scripting data pipelines in Python and crafting responsive user interfaces, I believe the most effective way to learn is by <span class=\"narrative-highlight\">experimenting, creating, and improving through hands-on experience</span>.",
-            "I continue to explore different areas of technology — including Machine Learning challenges, AI-assisted developer workflows, and full-stack web architectures — while developing the core software engineering discipline needed to build impactful applications."
+            "I'm a second-year Computer Science Engineering student at <span class=\"narrative-highlight\">Kalinga Institute of Industrial Technology (KIIT)</span>, interested in understanding how technology works and turning ideas into practical solutions.",
+            "My journey revolves around programming, software development, problem-solving, and exploring emerging technologies. I enjoy learning through <span class=\"narrative-highlight\">hands-on projects, technical challenges, and continuous experimentation</span>.",
+            "I'm particularly interested in Artificial Intelligence, Machine Learning, Web Development, and the evolving possibilities of technology."
         ],
         philosophy: "I believe meaningful growth comes from curiosity, consistent practice, and the willingness to build, experiment, and learn from every challenge.",
         // Optional profile image: Place an image in assets/images/profile.jpg and set path here.
@@ -41,9 +41,11 @@ const portfolioData = {
     developer: {
         name: "Priyanshu Karan",
         role: "Computer Science Engineering Student",
+        degree: "B.Tech — Computer Science Engineering",
         tagline: "Building, Learning & Exploring Technology",
+        heroContent: "Exploring technology, building practical solutions, and continuously developing my skills through hands-on experience.",
         institution: "Kalinga Institute of Industrial Technology (KIIT)",
-        year: "2nd Year",
+        year: "2nd Year — Currently Pursuing",
         interests: [
             "Programming",
             "Web Development",
@@ -274,14 +276,63 @@ const portfolioData = {
             featured: true
         },
         {
+            title: "CLICKBAIT",
+            subtitle: "“DON'T GUESS. VERIFY.”",
+            category: "Smart India Hackathon 2026",
+            context: "Internal Round",
+            status: "Completed",
+            statusType: "completed",
+            description: "A student-focused digital verification platform designed to help users identify potentially suspicious communications, including emails, scholarship notices, examination circulars, fee updates, internship messages, URLs, and raw messages — before trusting them.",
+            highlights: [
+                "Suspicious message and URL verification.",
+                "Evidence extraction and authenticity analysis.",
+                "AI-assisted explanations and forensic verification."
+            ],
+            role: "Backend / Cryptography / Security",
+            roleDetail: "Contributed to backend verification logic including Ed25519-based cryptographic signing and verification, SHA-256 hashing, canonical payload generation, public-key verification, expiry checking, revocation checking, tamper detection, and zero-PII blockchain registry concepts.",
+            technologies: [
+                "Ed25519",
+                "SHA-256",
+                "Node.js",
+                "Python",
+                "Cryptography",
+                "Backend Security"
+            ],
+            capabilities: [
+                "Verify emails & raw messages",
+                "Verify URLs and check authenticity",
+                "Analyze screenshots & extract evidence",
+                "Detect suspicious indicators & alterations",
+                "AI-assisted analysis & forensic verification",
+                "Explain verification results in understandable language"
+            ],
+            securityConcepts: [
+                "Ed25519 signing and verification",
+                "SHA-256 hashing",
+                "Canonical payload generation",
+                "Public-key verification",
+                "Expiry checking",
+                "Revocation checking",
+                "Tamper detection",
+                "Zero-PII blockchain registry concepts"
+            ],
+            teamContext: "The project involved frontend, backend, OCR, AI-assisted analysis, and forensic verification components. Developed collaboratively for the Smart India Hackathon 2026 Internal Round.",
+            githubUrl: "",
+            liveUrl: "https://lnkd.in/g23EDkZE",
+            image: "assets/images/clickbait_cover.png",
+            imageAlt: "CLICKBAIT digital verification platform interface showing suspicious communication analysis.",
+            featured: true
+        },
+        {
             title: "Planet Hunters — Find New Worlds in Starlight",
             subtitle: "“Exploring Stellar Signals Through Machine Learning”",
             category: "Machine Learning / Artificial Intelligence",
-            context: "HACK4HACK 2026 — Round 2 Shortlisted",
-            status: "Round 2 Shortlisted",
+            context: "HACK4HACK 2026 — ML Challenge",
+            status: "Round 1 Cleared • Shortlisted for Round 2",
             statusType: "completed",
-            description: "An astronomy-focused Machine Learning project developed for the HACK4HACK ML Challenge 2026, combining detector-aware data processing, 88 domain-engineered features, and a heterogeneous three-model ensemble to classify stellar observations and investigate potential planetary signals.",
+            description: "An astronomy-focused Machine Learning project developed for the HACK4HACK ML Challenge 2026 (Team Kaalchakra). Successfully cleared Round 1 and was shortlisted for Round 2 (did not participate in Round 2). Combines detector-aware data processing, 88 domain-engineered features, and a heterogeneous three-model ensemble to classify stellar observations and investigate potential planetary signals.",
             highlights: [
+                "Successfully cleared Round 1; shortlisted for Round 2 (did not participate in Round 2).",
                 "Astro-Cotrending systematic noise removal (-60.3% drift).",
                 "88 domain-engineered features across 4 physical pillars.",
                 "Heterogeneous tri-model ensemble (0.6455 OOF Macro F1)."
@@ -326,7 +377,7 @@ const portfolioData = {
                 "14 / 14 Automated Submission Schema & Physics Checks Passed",
                 "7,000 Deterministic Test Sample Predictions (SHA-256 Verified)"
             ],
-            teamContext: "ML Challenge Hack4Hack 2026 entry for Planet Hunters (Round 2 Shortlisted). All experiment records, cross-validation artifacts, telemetry dashboards, and verified submission files preserved in repository.",
+            teamContext: "ML Challenge Hack4Hack 2026 entry for Planet Hunters (Round 2 Shortlisted). Cleared Round 1 and shortlisted for Round 2 (Certificate of Participation received; Round 2 participation not completed). All experiment records, cross-validation artifacts, telemetry dashboards, and verified submission files preserved in repository.",
             githubUrl: "https://github.com/karan-rajput872/Planet-Hunters-Round1",
             githubButtonText: "GitHub Repository",
             detailUrl: "planet-hunters.html",
@@ -392,54 +443,6 @@ const portfolioData = {
             detailButtonText: "Case Study Overview",
             image: "assets/images/unstop_prompt_to_podium_cover.png",
             imageAlt: "Dark Store Private-Label Defence Strategy — Unstop Prompt to Podium Presentation Cover Slide",
-            featured: true
-        },
-        {
-            title: "CLICKBAIT",
-            subtitle: "“Don't Guess. Verify.”",
-            category: "Smart India Hackathon 2026",
-            context: "Internal Round",
-            status: "Completed",
-            statusType: "completed",
-            description: "A student-focused digital verification platform designed to help users identify potentially suspicious communications, including emails, scholarship notices, examination circulars, fee updates, internship messages, URLs, and raw messages — before trusting them.",
-            highlights: [
-                "Suspicious message and URL verification.",
-                "Evidence extraction and authenticity analysis.",
-                "AI-assisted explanations and forensic verification."
-            ],
-            role: "Backend / Cryptography / Security",
-            roleDetail: "Contributed to backend verification logic including Ed25519-based cryptographic signing and verification, SHA-256 hashing, canonical payload generation, public-key verification, expiry checking, revocation checking, tamper detection, and zero-PII blockchain registry concepts.",
-            technologies: [
-                "Ed25519",
-                "SHA-256",
-                "Node.js",
-                "Python",
-                "Cryptography",
-                "Backend Security"
-            ],
-            capabilities: [
-                "Verify emails & raw messages",
-                "Verify URLs and check authenticity",
-                "Analyze screenshots & extract evidence",
-                "Detect suspicious indicators & alterations",
-                "AI-assisted analysis & forensic verification",
-                "Explain verification results in understandable language"
-            ],
-            securityConcepts: [
-                "Ed25519 signing and verification",
-                "SHA-256 hashing",
-                "Canonical payload generation",
-                "Public-key verification",
-                "Expiry checking",
-                "Revocation checking",
-                "Tamper detection",
-                "Zero-PII blockchain registry concepts"
-            ],
-            teamContext: "The project involved frontend, backend, OCR, AI-assisted analysis, and forensic verification components. Developed collaboratively for the Smart India Hackathon 2026 Internal Round.",
-            githubUrl: "",
-            liveUrl: "https://lnkd.in/g23EDkZE",
-            image: "assets/images/clickbait_cover.png",
-            imageAlt: "CLICKBAIT digital verification platform interface showing suspicious communication analysis.",
             featured: true
         },
         {
@@ -851,15 +854,15 @@ const portfolioData = {
             organizer: "Hack4Hack",
             team: "Team Kaalchakra",
             type: "Hackathon / ML Challenge",
-            status: "Shortlisted for Round 2",
+            status: "Round 1 Cleared • Shortlisted for Round 2",
             year: "2026",
             role: "Machine Learning Engineer",
-            description: "Participated in the ML Challenge Hack4Hack 2026, organized by Hack4Hack, as a member of Team Kaalchakra with Planet Hunters — Find New Worlds in Starlight. Successfully cleared Round 1 and was shortlisted for Round 2 (Certificate of Participation received).",
+            description: "Participated in the ML Challenge Hack4Hack 2026, organized by Hack4Hack, as a member of Team Kaalchakra with Planet Hunters — Find New Worlds in Starlight. Successfully cleared Round 1 and was shortlisted for Round 2 (Certificate of Participation received; Round 2 participation not completed).",
             resumeTitle: "Hack4Hack 2026 — ML Challenge",
-            resumeDesc: "Participated as a member of Team Kaalchakra; successfully cleared Round 1 and was shortlisted for Round 2.",
+            resumeDesc: "Participated as a member of Team Kaalchakra; successfully cleared Round 1 and was shortlisted for Round 2 (Round 2 participation not completed).",
             highlights: [
                 "Successfully cleared Round 1.",
-                "Shortlisted for Round 2.",
+                "Shortlisted for Round 2 (did not participate in Round 2).",
                 "Participated as a member of Team Kaalchakra.",
                 "Certificate of Participation received.",
                 "Developed Planet Hunters using a heterogeneous Machine Learning ensemble.",
@@ -971,12 +974,11 @@ function renderHero() {
 
     if (heroRole) heroRole.textContent = dev.role || "Computer Science Engineering Student";
     if (heroTagline) {
-        heroTagline.textContent = "Computer Science Engineering student at KIIT, passionate about programming, problem-solving, web development, and artificial intelligence. Learning by building projects and exploring emerging technologies.";
+        heroTagline.textContent = dev.heroContent || "Exploring technology, building practical solutions, and continuously developing my skills through hands-on experience.";
     }
-    if (heroStatusText) heroStatusText.textContent = "Open to Opportunities";
+    if (heroStatusText) heroStatusText.textContent = dev.currentStatus || "Open to Opportunities";
     if (heroMetaText) {
-        const instShort = dev.institution && dev.institution.includes('KIIT') ? 'KIIT' : (dev.institution || 'KIIT');
-        heroMetaText.textContent = `${dev.year || '2nd Year'} • ${instShort}`;
+        heroMetaText.textContent = "2nd Year • B.Tech CSE • KIIT";
     }
 
     // Render Interests with staggered reveal delays & data attributes
@@ -1298,7 +1300,7 @@ function renderSkills() {
     // Category display configuration
     const categoryConfig = {
         programming: {
-            title: "Programming Languages",
+            title: "Programming",
             badge: "2 Languages",
             desc: "Core languages used for foundational algorithms, computational problem solving, and software engineering.",
             note: "Academic coursework & computational foundations",
@@ -1318,7 +1320,7 @@ function renderSkills() {
             isTwoCol: false
         },
         tools: {
-            title: "Developer Tools",
+            title: "Tools & Platforms",
             badge: "2 Platforms",
             desc: "Industry-standard version control and collaborative development workflows across all active repositories.",
             note: "Active Git commit history & branch workflows",
@@ -1328,7 +1330,7 @@ function renderSkills() {
             isTwoCol: false
         },
         aiMl: {
-            title: "AI & Machine Learning",
+            title: "Applied AI & ML Tools",
             badge: "4 Focus Areas",
             desc: "Practical exposure to machine learning workflows, tabular model experimentation, and AI tooling.",
             note: "Supported by Hack4Hack 2026 challenge participation & Be10x workshop",
