@@ -2764,75 +2764,99 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 1. Sticky Navbar Visual Treatment on Scroll
+    // 1. Sticky Navbar Visual Treatment on Scroll (State-Guarded to Prevent DOM Churn)
+    let isNavbarScrolled = false;
     const handleNavbarScroll = (scrollY = window.scrollY) => {
         if (!navbar) return;
-        if (scrollY > 20) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+        const shouldBeScrolled = scrollY > 20;
+        if (shouldBeScrolled !== isNavbarScrolled) {
+            isNavbarScrolled = shouldBeScrolled;
+            navbar.classList.toggle('scrolled', shouldBeScrolled);
         }
     };
 
-    // 2. Reading Progress Indicator Bar
+    // Pre-calculate maximum scrollable range for zero-layout-reflow progress calculation
+    let maxScroll = 1;
+    const updateMaxScroll = () => {
+        maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    };
+    window.addEventListener('resize', updateMaxScroll, { passive: true });
+    updateMaxScroll();
+
+    // 2. Reading Progress Indicator Bar (Hardware-Accelerated transform scaleX)
     const updateScrollProgress = (scrollY = window.scrollY) => {
         if (!scrollProgressBar) return;
-        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = totalHeight > 0 ? (scrollY / totalHeight) * 100 : 0;
-        scrollProgressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+        const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollY / maxScroll)) : 0;
+        scrollProgressBar.style.transform = `scaleX(${progress})`;
     };
 
-    // 3. Floating Back to Top Button
+    // 3. Floating Back to Top Button (State-Guarded)
+    let isBackToTopVisible = false;
     const updateBackToTop = (scrollY = window.scrollY) => {
         if (!backToTopBtn) return;
-        if (scrollY > 380) {
-            backToTopBtn.classList.add('visible');
-        } else {
-            backToTopBtn.classList.remove('visible');
+        const shouldBeVisible = scrollY > 380;
+        if (shouldBeVisible !== isBackToTopVisible) {
+            isBackToTopVisible = shouldBeVisible;
+            backToTopBtn.classList.toggle('visible', shouldBeVisible);
         }
     };
 
-    // 4. Active Navigation Highlighting (Accurate Section Scrollspy)
-    const highlightActiveNav = (scrollY = window.scrollY) => {
-        const scrollPosition = scrollY + 140;
-        const isBottom = window.innerHeight + scrollY >= document.documentElement.scrollHeight - 60;
-
-        if (isBottom) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#contact') {
-                    link.classList.add('active');
-                }
-            });
-            return;
-        }
-
-        sections.forEach(section => {
-            const sectionRect = section.getBoundingClientRect();
-            const sectionTop = sectionRect.top + scrollY;
-            const sectionHeight = sectionRect.height || section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
+    // 4. Active Navigation Highlighting (Cached Section Scrollspy - Zero Layout Thrashing)
+    let sectionBounds = [];
+    const cacheSectionBounds = () => {
+        updateMaxScroll();
+        sectionBounds = Array.from(sections).map(section => {
+            const rect = section.getBoundingClientRect();
+            const top = rect.top + window.scrollY;
+            return {
+                id: section.getAttribute('id'),
+                top,
+                bottom: top + (rect.height || section.offsetHeight)
+            };
         });
     };
+    cacheSectionBounds();
+    window.addEventListener('resize', cacheSectionBounds, { passive: true });
+    setTimeout(cacheSectionBounds, 400);
+    setTimeout(cacheSectionBounds, 1200);
 
-    // Unified scroll tick dispatcher
+    let activeNavId = '';
+    const highlightActiveNav = (scrollY = window.scrollY) => {
+        const scrollPosition = scrollY + 140;
+        const isBottom = window.innerHeight + scrollY >= maxScroll - 60;
+
+        let targetId = '';
+        if (isBottom) {
+            targetId = 'contact';
+        } else {
+            for (let i = 0; i < sectionBounds.length; i++) {
+                const s = sectionBounds[i];
+                if (scrollPosition >= s.top && scrollPosition < s.bottom) {
+                    targetId = s.id;
+                    break;
+                }
+            }
+        }
+
+        if (targetId && targetId !== activeNavId) {
+            activeNavId = targetId;
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === `#${targetId}`) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+    };
+
+    // Unified scroll tick dispatcher (Optimized for pure 60fps GPU compositor performance)
     const onScrollTick = (scrollY = window.scrollY) => {
         handleNavbarScroll(scrollY);
         updateScrollProgress(scrollY);
         updateBackToTop(scrollY);
         highlightActiveNav(scrollY);
-        if (typeof checkViewportReveals === 'function') {
-            checkViewportReveals();
-        }
     };
 
     // 5. Initialize Lenis Smooth Scrolling Engine
@@ -2842,10 +2866,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!prefersReducedMotion && typeof window.Lenis !== 'undefined') {
         try {
             lenis = new window.Lenis({
-                lerp: 0.07, // Silky linear interpolation factor (~15-20% more gradual, luxurious controlled inertia)
-                wheelMultiplier: 0.80, // Gentle wheel acceleration for natural, fluid glide
-                touchMultiplier: 1, // 100% native gesture response on mobile touch
+                lerp: 0.055, // Silky exponential damping for a gentle, luxurious, ultra-smooth glide
+                wheelMultiplier: 0.70, // ~30% slower scroll speed for comfortable, impressive content viewing
+                touchMultiplier: 1.0, // 100% native gesture response on mobile touch
                 smoothTouch: false, // Maintain native mobile touch momentum
+                syncTouch: false,
                 direction: 'vertical',
                 gestureDirection: 'vertical',
                 smooth: true,
@@ -2894,7 +2919,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (lenis) {
             lenis.scrollTo(targetEl, {
                 offset: -navbarHeight - 16,
-                duration: 1.45,
+                duration: 1.6,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
             });
         } else {
@@ -2911,7 +2936,7 @@ document.addEventListener('DOMContentLoaded', () => {
         backToTopBtn.addEventListener('click', () => {
             if (lenis) {
                 lenis.scrollTo(0, {
-                    duration: 1.45,
+                    duration: 1.6,
                     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
                 });
             } else {
@@ -3480,9 +3505,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     checkViewportReveals();
-    setTimeout(checkViewportReveals, 250);
-    setTimeout(checkViewportReveals, 750);
-    window.addEventListener('scroll', checkViewportReveals, { passive: true });
+    setTimeout(checkViewportReveals, 300);
+    setTimeout(checkViewportReveals, 800);
     window.addEventListener('resize', checkViewportReveals, { passive: true });
 
     console.log("Priyanshu Karan Portfolio — Complete.");
